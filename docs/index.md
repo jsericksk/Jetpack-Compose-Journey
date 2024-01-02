@@ -13,7 +13,7 @@ Para fins de compatibilidade e evitar problemas, é recomendável que você este
 - kotlinCompilerExtensionVersion 1.5.6 ou superior.
 - Material Design 3.
 
-Todo o conteúdo está sendo criado com base nos componentes do Material Design 3. Há várias várias diferenças entre o MD2 e MD3, portanto, é recomendável seguir o MD3 para evitar problemas com o conteúdo. Ao criar um projeto Compose no Android Android Studio Hedgehog, o MD3 é incluído por padrão.
+Todo o conteúdo está sendo criado com base nos componentes do Material Design 3. Há várias várias diferenças entre o MD2 e MD3, portanto, é recomendável seguir o MD3 para evitar problemas com o conteúdo. Ao criar um projeto Compose no Android Studio Hedgehog, o MD3 é incluído por padrão.
 - Você pode usar o [Material Theme Builder](https://m3.material.io/theme-builder) para criar seu tema rapidamente.
 
 Vamos utilizar as dependências padrão que vêm configuradas ao criar um projeto Compose, que atualmente na versão do  Android Studio Hedgehog são:
