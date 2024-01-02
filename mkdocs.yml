@@ -32,7 +32,7 @@ theme:
 # Navigation
 nav:
   - 'Introdução': index.md
-  - 'Conhecimentos básicos inicias': basic.md
+  - 'Conhecimentos básicos iniciais': basic.md
 
 
 markdown_extensions:
