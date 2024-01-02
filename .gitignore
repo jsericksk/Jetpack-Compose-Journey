@@ -1,0 +1,6 @@
+.vscode
+
+# Mkdocs
+site/
+docs-gen
+*.bak
