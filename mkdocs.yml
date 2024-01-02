@@ -1,0 +1,58 @@
+site_name: Jetpack Compose Journey
+site_description: 'Conteúdo sobre Jetpack Compose voltado para iniciantes'
+site_author: 'Jesus Ericks'
+site_url: 'https://github.com/jsericksk/Jetpack-Compose-Journey'
+edit_uri: 'tree/main/docs/'
+
+## Local dev
+dev_addr: 127.0.0.1:3333
+
+theme:
+  name: material
+  language: pt-BR
+  font:
+    code: Jetbrains Mono
+  palette:
+    # Light mode
+    - scheme: default
+      primary: black
+      accent: red
+      toggle:
+        icon: material/weather-night
+        name: Mudar para tema light
+
+    # Dark mode
+    - scheme: slate
+      primary: red
+      accent: red
+      toggle:
+        icon: material/weather-sunny
+        name: Mudar para tema light
+
+# Navigation
+nav:
+  - 'Introdução': index.md
+  - 'Conhecimentos básicos inicias': basic.md
+
+
+markdown_extensions:
+  - pymdownx.tasklist
+  - pymdownx.emoji
+  - pymdownx.betterem
+
+  - pymdownx.caret
+  - pymdownx.mark
+  - pymdownx.tilde
+
+  - pymdownx.highlight
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - codehilite:
+      guess_lang: false
+  - pymdownx.superfences
+
+plugins:
+  - search
+  - git-revision-date-localized:
+      type: date
+      locale: pt
