@@ -36,6 +36,7 @@ nav:
   - 'Layouts':
     - 'Column': layout-column.md
     - 'Row': layout-row.md
+    - 'Box': layout-box.md
 
 markdown_extensions:
   - pymdownx.tasklist
