@@ -93,3 +93,87 @@ Veja como ficaria o alinhamento horizontal ao modificar o **horizontalAlignment*
         }
     }
     ```
+
+E, claro, também podemos modificar o **verticalArrangement**.
+
+=== "Arrangement.Top" 
+
+    ![Column com Arrangement.Top](img-06.png)
+
+    ```kotlin
+    @Composable
+    fun Profile() {
+        Column(
+           verticalArrangement = Arrangement.Top,
+           modifier = Modifier.size(150.dp)
+        ) {
+            ...
+        }
+    }
+    ```
+
+=== "Arrangement.Center" 
+
+    ![Column com Arrangement.Center](img-07.png)
+
+    ```kotlin
+    @Composable
+    fun Profile() {
+        Column(
+           verticalArrangement = Arrangement.Center,
+           modifier = Modifier.size(150.dp)
+        ) {
+            ...
+        }
+    }
+    ```
+
+=== "Arrangement.Bottom" 
+
+    ![Column com Arrangement.Bottom](img-08.png)
+
+    ```kotlin
+    @Composable
+    fun Profile() {
+        Column(
+           verticalArrangement = Arrangement.Bottom,
+           modifier = Modifier.size(150.dp)
+        ) {
+            ...
+        }
+    }
+    ```
+
+=== "Arrangement.SpaceBetween" 
+
+    ![Column com Arrangement.SpaceBetween](img-09.png)
+
+    ```kotlin
+    @Composable
+    fun Profile() {
+        Column(
+           verticalArrangement = Arrangement.SpaceBetween,
+           modifier = Modifier.size(150.dp)
+        ) {
+            ...
+        }
+    }
+    ```
+
+Também podemos fazer uma combinações de **verticalArrangement** e **horizontalAlignment** para deixar todo o conteúdo centralizado verticalmente e horizontalmente, por exemplo.
+
+![Column centralizada](img-10.png)
+
+```kotlin
+@Composable
+fun Profile() {
+    Column(
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.size(150.dp)
+    ) {
+        ...
+    }
+}
+```
+
