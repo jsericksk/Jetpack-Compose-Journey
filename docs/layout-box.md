@@ -79,3 +79,6 @@ fun VideoItem() {
 Lembre-se que a ordem dos componentes importa, pois cada componente será colocado um sobre o outro. Portanto, se trocarmos a posição do Icon() e Image() do exemplo acima, deixando Icon() em primeiro e Image() em segundo, o ícone não será exibido na tela. Isso acontece porque a imagem sobrepões o ícone, já que ela está ocupando todo o espaço com ```Modifier.fillMaxSize()```, enquanto o ícone está usando um tamanho fixo de 50.dp e em uma camada inferior a da imagem.
 
 - Box também tem uma opção de alinhamento: **contentAlignment**. O padrão é ```Alignment.TopStart```. Ao definir contentAlignment como ```Alignment.Center```, por exemplo, os componentes ainda serão colocados uns sobre os outros, mas iniciando no centro.
+
+## :link: Referências:
+- [Compose layout basics (documentação)](https://developer.android.com/jetpack/compose/layouts/basics)
