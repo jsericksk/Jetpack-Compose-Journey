@@ -33,7 +33,7 @@ theme:
 nav:
   - 'Introdução': index.md
   - 'Conhecimentos básicos iniciais': basic.md
-
+  - 'Layouts: Column, Row, Box, ConstraintLayout': layouts.md 
 
 markdown_extensions:
   - pymdownx.tasklist
@@ -45,11 +45,14 @@ markdown_extensions:
   - pymdownx.tilde
 
   - pymdownx.highlight
-  - pymdownx.highlight
   - pymdownx.inlinehilite
   - codehilite:
       guess_lang: false
   - pymdownx.superfences
+  - admonition
+  - footnotes
+  - pymdownx.tabbed:
+      alternate_style: true
 
 plugins:
   - search
