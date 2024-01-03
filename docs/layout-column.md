@@ -162,8 +162,6 @@ E, claro, também podemos modificar o **verticalArrangement**.
 
 Também podemos fazer uma combinações de **verticalArrangement** e **horizontalAlignment** para deixar todo o conteúdo centralizado verticalmente e horizontalmente, por exemplo.
 
-![Column centralizada](img-10.png)
-
 ```kotlin
 @Composable
 fun Profile() {
@@ -176,6 +174,38 @@ fun Profile() {
     }
 }
 ```
+
+![Column centralizada](img-10.png)
+
+#### Modificando o alinhamento manualmente em cada componente
+
+Também é possível modificar o alinhamento dos componentes diretamente através do ```Modifier.align()```. Por exemplo, ao invés de usarmos ```horizontalAlignment = Alignment.CenterHorizontally``` na Column em si, podemos obter o mesmo resultado aplicando ```Modifier.align()``` em cada componente:
+
+```kotlin
+@Composable
+fun Profile() {
+    Column(
+        modifier = Modifier.width(250.dp)
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.baseline_person_24),
+            contentDescription = "profile image",
+            modifier = Modifier
+                .size(50.dp)
+                .align(Alignment.CenterHorizontally)
+        )
+        Text(
+            text = "John",
+            modifier = Modifier.align(Alignment.CenterHorizontally)
+        )
+    }
+}
+```
+
+![Column centralizada](img-04.png)
+
+- É importante notar que dentro da Column só podemos modificar o alinhamento horizontal dessa forma. Se tentarmos aplicar ```Alignment.Bottom```, por exemplo, você verá um erro, pois ```Modifier.align()``` espera um ```Alignment.Horizontal``` e não um ```Alignment.Vertical```, como é o caso de ```Alignment.Bottom```.
+Também vale ressaltar que ```Modifier.align()``` tem prioridade sobre o **horizontalAlignment** da Column. Portanto, se você usar ```horizontalAlignment = Alignment.End``` na Column, mas ```Modifier.align(Alignment.Start)``` no componente, ele será alinhado com **Alignment.Start**.
 
 ## :link: Referências:
 - [Compose layout basics (documentação)](https://developer.android.com/jetpack/compose/layouts/basics)
