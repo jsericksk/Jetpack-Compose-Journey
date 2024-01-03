@@ -18,12 +18,12 @@ fun Profile() {
 }
 ```
 
-![Sem layout demo](img-01.png)
+![Sem layout](img-01.png)
 
 ## Column
 
 Como o nome sugere, uma **Column** é uma espécie de coluna onde cada elemento é colocado um abaixo do outro, verticalmente.
-Seria o mesmo que um **LinearLayout** com a orientação definida como vertical. Vamos usar o código anterior e envolvê-lo em uma Column para ver como fica:
+É o equivalente a um **LinearLayout** com a orientação vertical. Vamos usar o código anterior e envolvê-lo em uma Column para ver como fica:
 
 ```kotlin
 @Composable
@@ -48,7 +48,7 @@ Veja como ficaria o alinhamento horizontal ao modificar o **horizontalAlignment*
 
 === "Alignment.Start" 
 
-    ![Column com Alignment.Start](img-03.png)
+    ![Alignment.Start](img-03.png)
 
     ```kotlin
     @Composable
@@ -64,7 +64,7 @@ Veja como ficaria o alinhamento horizontal ao modificar o **horizontalAlignment*
 
 === "Alignment.CenterHorizontally" 
 
-    ![Column com Alignment.CenterHorizontally](img-04.png)
+    ![Alignment.CenterHorizontally](img-04.png)
 
     ```kotlin
     @Composable
@@ -80,7 +80,7 @@ Veja como ficaria o alinhamento horizontal ao modificar o **horizontalAlignment*
 
 === "Alignment.End" 
 
-    ![Column com Alignment.End](img-05.png)
+    ![Alignment.End](img-05.png)
 
     ```kotlin
     @Composable
@@ -98,7 +98,7 @@ E, claro, também podemos modificar o **verticalArrangement**.
 
 === "Arrangement.Top" 
 
-    ![Column com Arrangement.Top](img-06.png)
+    ![Arrangement.Top](img-06.png)
 
     ```kotlin
     @Composable
@@ -114,7 +114,7 @@ E, claro, também podemos modificar o **verticalArrangement**.
 
 === "Arrangement.Center" 
 
-    ![Column com Arrangement.Center](img-07.png)
+    ![Arrangement.Center](img-07.png)
 
     ```kotlin
     @Composable
@@ -130,7 +130,7 @@ E, claro, também podemos modificar o **verticalArrangement**.
 
 === "Arrangement.Bottom" 
 
-    ![Column com Arrangement.Bottom](img-08.png)
+    ![Arrangement.Bottom](img-08.png)
 
     ```kotlin
     @Composable
@@ -146,7 +146,7 @@ E, claro, também podemos modificar o **verticalArrangement**.
 
 === "Arrangement.SpaceBetween" 
 
-    ![Column com Arrangement.SpaceBetween](img-09.png)
+    ![Arrangement.SpaceBetween](img-09.png)
 
     ```kotlin
     @Composable
@@ -176,3 +176,6 @@ fun Profile() {
     }
 }
 ```
+
+## :link: Referências:
+- [Compose layout basics (documentação)](https://developer.android.com/jetpack/compose/layouts/basics)

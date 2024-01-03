@@ -35,6 +35,7 @@ nav:
   - 'Conhecimentos básicos iniciais': basic.md
   - 'Layouts':
     - 'Column': layout-column.md
+    - 'Row': layout-row.md
 
 markdown_extensions:
   - pymdownx.tasklist
