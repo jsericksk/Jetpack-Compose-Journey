@@ -33,7 +33,8 @@ theme:
 nav:
   - 'Introdução': index.md
   - 'Conhecimentos básicos iniciais': basic.md
-  - 'Layouts: Column, Row, Box, ConstraintLayout': layouts.md 
+  - 'Layouts':
+    - 'Column': layout-column.md
 
 markdown_extensions:
   - pymdownx.tasklist

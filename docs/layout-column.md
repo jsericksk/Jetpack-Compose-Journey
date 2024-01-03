@@ -1,6 +1,6 @@
-# Layouts: Column, Row, Box, ConstraintLayout
+# Column
 
-Construir seus layouts é obviamente uma parte fundamental em qualquer app. Essa seção descreve os principais layouts que você pode utilizar no Compose.
+Construir seus layouts é obviamente uma parte fundamental em qualquer app. Essa seção descreve um pouco sobre o layout Column.
 
 ## Sem layout
 
@@ -176,4 +176,3 @@ fun Profile() {
     }
 }
 ```
-
