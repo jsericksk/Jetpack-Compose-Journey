@@ -119,5 +119,5 @@ fun Profile() {
 }
 ```
 
-## :link: Referências:
+## :link: Conteúdos auxiliares:
 - [Compose layout basics (documentação)](https://developer.android.com/jetpack/compose/layouts/basics)

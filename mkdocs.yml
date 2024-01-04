@@ -38,6 +38,8 @@ nav:
     - 'Row': layout-row.md
     - 'Box': layout-box.md
     - 'ConstraintLayout': layout-constraintlayout.md
+  - 'Previews: Visualize seus Composables': previews.md
+
 
 markdown_extensions:
   - pymdownx.tasklist
