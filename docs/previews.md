@@ -1,6 +1,6 @@
 # Previews: Visualize seus layouts
 
-Jetpack Compose fornece um meio de visualizar seus layouts e componentes através de **Previews**. Previews nada mais são do que funções Composable com mais uma anotação: ```@Preview```. Ao anotar a função com ```@Preview```, o Android Studio carregará a visualização desse Composable. Veja o exemplo:
+Jetpack Compose fornece um meio de visualizar seus layouts e componentes através de **Previews**. Previews nada mais são do que funções Composable com mais uma anotação: ```@Preview```. Ao anotar a função com ```@Preview```, o Android Studio carregará uma visualização desse Composable. Veja o exemplo:
 
 ![Previews](img-01.png)
 
@@ -34,13 +34,13 @@ Preview possui várias propriedades que você pode definir para alterar o compor
 
 #### Mostrando UI do sistema
 
-```@Preview(showSystemUi = true)```:
+```@Preview(showSystemUi = true)```
 
 ![Preview com SystemUI](img-02.png)
 
 #### Tema light e dark
 
-Para ver uma real diferença, teremos um exemplo usando cores do tema, como ```MaterialTheme.colorScheme.surface``` e ```MaterialTheme.colorScheme.onSurface```
+Para ver uma real diferença, teremos um exemplo usando cores do tema, como ```MaterialTheme.colorScheme.surface``` e ```MaterialTheme.colorScheme.onSurface```.
 
 ```kotlin
 @Composable
@@ -87,6 +87,35 @@ Há algumas outras propriedades que você pode utilizar para alterar sua Preview
 - **showBackground** e **backgroundColor**.
 - **device**, onde você pode usar um valor de **Devices**, como **Devices.PIXEL_3A_XL** (por padrão, nenhum é usado). Juntamente com **showSystemUi = true**, ela muda a aparência do dispositivo mostrado na Preview.
 - **locale**, que você pode utilizar para carregar recursos, como valores do **strings.xml**, de acordo com o locale passado.
+
+## Anotações Preview personalizadas
+
+Você pode criar anotações personalizadas para fornecer multipreviews de uma forma mais facilitada. Por exemplo, ao invés de definirmos manualmente em cada preview do nosso projeto algo assim:
+
+```kotlin
+@Preview(name = "Light theme")
+@Preview(name = "Dark theme", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun Preview() { ... }
+```
+
+Podemos criar uma anotação personalizada:
+
+```kotlin
+@Preview(name = "Light theme")
+@Preview(name = "Dark theme", uiMode = Configuration.UI_MODE_NIGHT_YES)
+annotation class PreviewLightDark
+```
+
+Dessa forma podemos utilizar **PreviewLightDark** em nossas Previews facilmente:
+
+```kotlin
+@PreviewLightDark
+@Composable
+private fun Preview() { ... }
+```
+
+- A partir do **androidx.compose.ui:ui-tooling-preview1.6.0-alpha01**, foram introduzidas diversas novas anotações focadas em MultiPreview, como **@PreviewScreenSizes, @PreviewFontScales, @PreviewLightDark e @PreviewDynamicColors**. Enquanto essa seção está sendo escrita, estou usando o [Compose BOM 2023.10.01](https://developer.android.com/jetpack/compose/bom/bom-mapping) que usa a versão do Compose 1.5.4, que não possui essas anotações.
 
 ## :link: Conteúdos auxiliares:
 - [Previews (documentação)](https://developer.android.com/jetpack/compose/tooling/previews)

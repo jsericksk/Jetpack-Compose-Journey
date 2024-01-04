@@ -38,7 +38,7 @@ nav:
     - 'Row': layout-row.md
     - 'Box': layout-box.md
     - 'ConstraintLayout': layout-constraintlayout.md
-  - 'Previews: Visualize seus Composables': previews.md
+  - 'Previews: Visualize seus layouts': previews.md
 
 
 markdown_extensions:
