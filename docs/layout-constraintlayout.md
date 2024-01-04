@@ -143,5 +143,5 @@ fun VideoItem() {
 
 Nos exemplos, vimos que em grande parte podemos fazer com **ConstraintLayout** o mesmo que fazemos com outros layouts. Isso não significa que esse seja o objetivo dele e você deva sempre utilizar **ConstraintLayout** para tudo. Sempre considere se é necessário utilizá-lo e se ele atende suas necessidades. Normalmente, na maioria das vezes, você irá utilizar combinações de **Column**, **Row** e **Box**.
 
-## :link: Referências:
+## :link: Conteúdos auxiliares:
 - [ConstraintLayout in Compose (documentação)](https://developer.android.com/jetpack/compose/layouts/constraintlayout)

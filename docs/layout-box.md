@@ -80,5 +80,5 @@ Lembre-se que a ordem dos componentes importa, pois cada componente será coloca
 
 - Box também tem uma opção de alinhamento: **contentAlignment**. O padrão é ```Alignment.TopStart```. Ao definir contentAlignment como ```Alignment.Center```, por exemplo, os componentes ainda serão colocados uns sobre os outros, mas iniciando no centro.
 
-## :link: Referências:
+## :link: Conteúdos auxiliares:
 - [Compose layout basics (documentação)](https://developer.android.com/jetpack/compose/layouts/basics)
