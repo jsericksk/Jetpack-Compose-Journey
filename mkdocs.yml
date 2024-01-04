@@ -37,6 +37,7 @@ nav:
     - 'Column': layout-column.md
     - 'Row': layout-row.md
     - 'Box': layout-box.md
+    - 'ConstraintLayout': layout-constraintlayout.md
 
 markdown_extensions:
   - pymdownx.tasklist
