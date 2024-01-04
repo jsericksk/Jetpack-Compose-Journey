@@ -119,3 +119,4 @@ private fun Preview() { ... }
 
 ## :link: Conteúdos auxiliares:
 - [Previews (documentação)](https://developer.android.com/jetpack/compose/tooling/previews)
+- [Animation Preview (documentação)](https://developer.android.com/jetpack/compose/tooling/animation-preview)
