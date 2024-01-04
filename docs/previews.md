@@ -80,13 +80,39 @@ private fun Preview() {
 
 ![Preview com tema light e dark](img-03.png)
 
+#### Aparência e resolução e da Preview com System UI
+
+Podemos mudar a aparência da Preview para um dos dispositivos incluídos em **Devices**, dessa forma, mudamos também a resolução da mesma ao usarmos junto de **showSystemUi = true**.
+
+```kotlin
+@Preview(
+    name = "Devices.PIXEL_3A_XL",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+    showSystemUi = true,
+    device = Devices.PIXEL_3A_XL
+)
+@Preview(
+    name = "Devices.NEXUS_7",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+    showSystemUi = true,
+    device = Devices.NEXUS_7
+)
+@Composable
+private fun Preview() {
+    MyAppTheme {
+        Profile()
+    }
+}
+```
+
+![Preview com devices](img-04.png)
+
 #### Outras propriedades
 
 Há algumas outras propriedades que você pode utilizar para alterar sua Preview, sendo algumas delas:
 
 - **showBackground** e **backgroundColor**.
-- **device**, onde você pode usar um valor de **Devices**, como **Devices.PIXEL_3A_XL** (por padrão, nenhum é usado). Juntamente com **showSystemUi = true**, ela muda a aparência do dispositivo mostrado na Preview.
-- **locale**, que você pode utilizar para carregar recursos, como valores do **strings.xml**, de acordo com o locale passado.
+- **locale**, que você pode utilizar para carregar recursos alternativos com base no locale passado, como valores de **strings.xml**.
 
 ## Anotações Preview personalizadas
 
