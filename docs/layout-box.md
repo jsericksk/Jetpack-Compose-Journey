@@ -2,7 +2,7 @@
 
 Diferente de **Column** e **Row**, Box não alinha os elementos em uma direção vertical ou horizontal. Cada elemento será colocado um sobre o outro, semelhante ao que acontece quando não especificamos um layout. Algo também semelhante ao que temos no **FramewLayout**, com cada componente sobrepondo o outro em uma espécie de camadas.
 
-A diferença principal é que você pode aplicar o alinhamento de cada componente manualmente, através do ```Modifier.align()```. Veja o exemplo:
+A diferença principal é que você pode aplicar o alinhamento de cada componente manualmente com mais flexibilidade, através do ```Modifier.align()```. Diferente da **Column**, por exemplo, você não está preso a um alinhamento horizontal. Veja:
 
 ```kotlin
 @Composable
