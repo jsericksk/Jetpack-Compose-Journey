@@ -16,7 +16,7 @@ Algumas notas importantes:
 
 Diferente do sistema de Views que usa o paradigma imperativo, o Compose utiliza o paradigma declarativo. Em um modelo de UI imperativo, para alterar um widget, você chama um setter no widget para alterar seu estado interno. Por exemplo: ```textView.setText("Texto do TextView")```. O Compose funciona de forma diferente. Ao invés de setarmos o valor do texto diretamente no componente Text (o equivalente ao TextView aqui), o nosso componente Text recebe o texto (**estado**) e sempre que esse texto for modificado (por conta de algum **evento**), Text() é chamada novamente com esse novo valor. Esse processo que ocorre quando um estado muda e aciona essas mudanças é chamado de **recomposição**.
 
-Compose trabalha com **estados e eventos**. O estado pode ser algum tipo primitivo, como um Int, um Boolean etc., String ou alguma classe personalizada. Já um evento é tudo aquilo que acontece que pode modificar a UI, ou seja, os estados. Por exemplo, um click ou long click em algum componente.
+Compose trabalha com **estados e eventos**. O estado pode ser algum tipo de dado, como um Int, Boolean, String ou alguma classe personalizada. Já um evento é tudo aquilo que acontece que pode modificar a UI, ou seja, os estados. Por exemplo, um click ou long click em algum componente.
 
 Portanto, recomposição é o processo de chamar suas funções Composable novamente quando as entradas mudam. Isso é feito pelo Compose. Quando o Compose recompõe com base em novas entradas, ele chama apenas as funções ou lambdas que podem ter sido alteradas e ignora o restante. Ao ignorar todas as funções ou lambdas que não possuem parâmetros alterados, o Compose pode recompor com eficiência.
 
@@ -63,6 +63,25 @@ Ao invés disso: ```Profile("John", 20, true)```
 Faça isso: ```Profile(name = "John", age = 20, online = true)```
 
 Isso obviamente nem sempre é necessário, quando a função tem apenas 1 ou 2 parâmetros, por exemplo, mas na maioria das vezes é sempre interessante deixar o argumento explícito para fins de legibilidade.
+
+## Funções Composable com sua devida visibilidade
+
+Tanto na documentação oficial quanto nesse conteúdo você verá exemplos usando funções sem nenhum modificador de acesso explícito, o que significa funções públicas por padrão no Kotlin. Como criamos muitas funções Composable que não estão presentes dentro de uma classe ou outro escopo específico, ao deixarmos uma função public, podemos usá-la em qualquer parte do projeto naquele módulo. Isso significa que se tivermos uma função **ImageList()** no arquivo **HomeScreen.kt**, por exemplo, poderemos chamá-la em qualquer parte do projeto naquele módulo. Mas se **ImageList()** só faz sentido para a **HomeScreen**, então é importante que você deixe-a privada para evitar esse problema.
+
+Sua função só será usada naquele arquivo específico? Não use:
+
+```kotlin
+@Composable
+fun ImageList() {...}
+```
+
+Use:
+
+```kotlin
+@Composable
+private fun ImageList() {...}
+```
+
 
 ## :link: Conteúdos auxiliares:
 - [Thinking in Compose (documentação)](https://developer.android.com/jetpack/compose/mental-model)
