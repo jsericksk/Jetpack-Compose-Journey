@@ -68,7 +68,7 @@ private fun Profile() {
 Podemos usar várias **@Preview** numa mesma função, dessa forma carregará múltiplas previews do nosso conteúdo com as modificações que adicionarmos. Estamos modificando a propriedade **name** para a legibilidade no Android Studio e a **uiMode** de uma das Previews para usar o dark mode do tema.
 
 ```kotlin
-@Preview(name = "Default")
+@Preview(name = "Light theme")
 @Preview(name = "Dark theme", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun Preview() {
@@ -80,9 +80,9 @@ private fun Preview() {
 
 ![Preview com tema light e dark](img-03.png)
 
-#### Aparência e resolução e da Preview com System UI
+#### Aparência e resolução da Preview com System UI
 
-Podemos mudar a aparência da Preview para um dos dispositivos incluídos em **Devices**, dessa forma, mudamos também a resolução da mesma ao usarmos junto de **showSystemUi = true**.
+Podemos mudar a aparência da Preview para um dos dispositivos incluídos em **Devices**, dessa forma, mudamos também a resolução da mesma ao usarmos junto de **showSystemUi = true**. Isso é bastante útil para ver como seu layout se comporta em diferentes tamanhos de tela.
 
 ```kotlin
 @Preview(
@@ -142,6 +142,12 @@ private fun Preview() { ... }
 ```
 
 - A partir do **androidx.compose.ui:ui-tooling-preview1.6.0-alpha01**, foram introduzidas diversas novas anotações focadas em MultiPreview, como **@PreviewScreenSizes, @PreviewFontScales, @PreviewLightDark e @PreviewDynamicColors**. Enquanto essa seção está sendo escrita, estou usando o [Compose BOM 2023.10.01](https://developer.android.com/jetpack/compose/bom/bom-mapping) que usa a versão do Compose 1.5.4, que não possui essas anotações.
+
+## Outros pontos importantes
+
+Você também pode executar sua Preview como se fosse uma tela normal do seu app, num dispositivo físico ou emulador. Basta tocar em **Run Preview**. É bastante útil se quiser ver uma tela inteira sem a necessidade de executar todo o app. A opção aparece tanto ao lado do nome da função Preview no código quanto no design. Também há uma opção para configurar rapidamente sua Preview com as propriedades que foram abordadas nessa seção, como pode ver no ícone de configuração na imagem abaixo.
+
+![Preview com devices](img-05.png)
 
 ## :link: Conteúdos auxiliares:
 - [Previews (documentação)](https://developer.android.com/jetpack/compose/tooling/previews)
