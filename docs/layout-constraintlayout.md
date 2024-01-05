@@ -13,13 +13,13 @@ De acordo com a documentação oficial, considere usar ConstraintLayout nos segu
 - Para evitar o aninhamento de vários **Columns** e **Rows** para posicionar elementos na tela para melhorar a legibilidade do código.
 - Para posicionar Composables em relação a outros Composables ou para posicionar Composables com base em **guidelines**, **barriers** ou **chains**.
 
-É importante notar que no sistema de Views, **ConstraintLayout era a maneira recomendada de criar layouts grandes e complexos**, já que uma hierarquia de Views plana era melhor para o desempenho do que Views aninhadas, como vários **LinearLayouts**. No entanto, **isso não é uma preocupação no Compose, que é capaz de lidar com eficiência com hierarquias profundas de layout** e você não precisa se preocupar com o aninhamento de **Columns**, **Rows** e **Box** em questão de desempenho.
+É importante notar que **no sistema de Views, ConstraintLayout era a maneira recomendada de criar layouts grandes e complexos**, já que uma hierarquia de Views plana era melhor para o desempenho do que Views aninhadas, como vários **LinearLayouts**. No entanto, **isso não é uma preocupação no Compose, que é capaz de lidar com eficiência com hierarquias profundas de layout** e você não precisa se preocupar com o aninhamento de **Columns**, **Rows** e **Box** em questão de desempenho.
 
 ## Utilização
 
 ConstraintLayout no Compose funciona da seguinte forma:
 
-- Crie referências para cada Composable usando ```createRefs()``` ou ```createRefFor()```;
+- Você cria referências para cada Composable usando ```createRefs()``` ou ```createRefFor()```;
 - As restrições são fornecidas usando o ```Modifier.constrainAs()``` no Composable desejado, que toma a referência como parâmetro e permite especificar suas restrições no lambda: ```Modifier.constrainAs() { // restrições }```;
 - As restrições são especificadas usando ```linkTo()``` ou outros métodos úteis;
 - ```parent``` é uma referência existente que pode ser usada para especificar restrições para o próprio ```ConstraintLayout```.
