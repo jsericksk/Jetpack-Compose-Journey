@@ -39,7 +39,7 @@ nav:
     - 'Box': layout-box.md
     - 'ConstraintLayout': layout-constraintlayout.md
   - 'Previews: Visualize seus layouts': previews.md
-
+  - 'Componentes 01: Text, TextField, Button, Image...': components-1.md
 
 markdown_extensions:
   - pymdownx.tasklist
