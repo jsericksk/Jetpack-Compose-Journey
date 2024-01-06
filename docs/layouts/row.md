@@ -16,7 +16,7 @@ fun Profile() {
 }
 ```
 
-![Row](img-01.png)
+![Row](row/img-01.png)
 
 ## Alinhamento de uma Row
 
@@ -24,7 +24,7 @@ Assim como a Column, Row possui mais 2 parâmetros que podem ser usados para ali
 
 === "Arrangement.Start" 
 
-    ![Arrangement.Start](img-02.png)
+    ![Arrangement.Start](row/img-02.png)
 
     ```kotlin
     @Composable
@@ -40,7 +40,7 @@ Assim como a Column, Row possui mais 2 parâmetros que podem ser usados para ali
 
 === "Arrangement.Center" 
 
-    ![Arrangement.Center](img-03.png)
+    ![Arrangement.Center](row/img-03.png)
 
     ```kotlin
     @Composable
@@ -56,7 +56,7 @@ Assim como a Column, Row possui mais 2 parâmetros que podem ser usados para ali
 
 === "Arrangement.End" 
 
-    ![Arrangement.End](img-04.png)
+    ![Arrangement.End](row/img-04.png)
 
     ```kotlin
     @Composable
@@ -72,7 +72,7 @@ Assim como a Column, Row possui mais 2 parâmetros que podem ser usados para ali
 
 === "Arrangement.SpaceBetween" 
 
-    ![Arrangement.SpaceBetween](img-05.png)
+    ![Arrangement.SpaceBetween](row/img-05.png)
 
     ```kotlin
     @Composable
@@ -88,7 +88,7 @@ Assim como a Column, Row possui mais 2 parâmetros que podem ser usados para ali
 
 === "Arrangement.SpaceEvenly" 
 
-    ![Arrangement.SpaceEvenly](img-06.png)
+    ![Arrangement.SpaceEvenly](row/img-06.png)
 
     ```kotlin
     @Composable
@@ -104,7 +104,7 @@ Assim como a Column, Row possui mais 2 parâmetros que podem ser usados para ali
 
 Também podemos fazer uma combinações de **horizontalArrangement** e **verticalAlignment** para deixar todo o conteúdo centralizado verticalmente e horizontalmente, por exemplo.
 
-![Row centralizada](img-07.png)
+![Row centralizada](row/img-07.png)
 
 ```kotlin
 @Composable

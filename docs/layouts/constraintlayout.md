@@ -61,7 +61,7 @@ fun Profile() {
 }
 ```
 
-![ConstraintLayout como Column](img-01.png)
+![ConstraintLayout como Column](constraintlayout/img-01.png)
 
 #### Usando como uma Row
 
@@ -83,7 +83,7 @@ fun Profile() {
 }
 ```
 
-![ConstraintLayout como Row](img-02.png)
+![ConstraintLayout como Row](constraintlayout/img-02.png)
 
 #### Usando como uma Box
 
@@ -137,7 +137,7 @@ fun VideoItem() {
 }
 ```
 
-![ConstraintLayout como Box](img-03.png)
+![ConstraintLayout como Box](constraintlayout/img-03.png)
 
 ## Considerações finais
 

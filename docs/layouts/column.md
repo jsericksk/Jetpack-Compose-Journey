@@ -1,4 +1,4 @@
-# Column
+# Layouts
 
 Construir seus layouts é obviamente uma parte fundamental em qualquer app. Essa seção descreve um pouco sobre o layout Column.
 
@@ -18,7 +18,7 @@ fun Profile() {
 }
 ```
 
-![Sem layout](img-01.png)
+![Sem layout](column/img-01.png)
 
 ## Column
 
@@ -39,7 +39,7 @@ fun Profile() {
 }
 ```
 
-![Column](img-02.png)
+![Column](column/img-02.png)
 
 ### Alinhamento de uma Column
 
@@ -48,7 +48,7 @@ Veja como ficaria o alinhamento horizontal ao modificar o **horizontalAlignment*
 
 === "Alignment.Start" 
 
-    ![Alignment.Start](img-03.png)
+    ![Alignment.Start](column/img-03.png)
 
     ```kotlin
     @Composable
@@ -64,7 +64,7 @@ Veja como ficaria o alinhamento horizontal ao modificar o **horizontalAlignment*
 
 === "Alignment.CenterHorizontally" 
 
-    ![Alignment.CenterHorizontally](img-04.png)
+    ![Alignment.CenterHorizontally](column/img-04.png)
 
     ```kotlin
     @Composable
@@ -80,7 +80,7 @@ Veja como ficaria o alinhamento horizontal ao modificar o **horizontalAlignment*
 
 === "Alignment.End" 
 
-    ![Alignment.End](img-05.png)
+    ![Alignment.End](column/img-05.png)
 
     ```kotlin
     @Composable
@@ -98,7 +98,7 @@ E, claro, também podemos modificar o **verticalArrangement**.
 
 === "Arrangement.Top" 
 
-    ![Arrangement.Top](img-06.png)
+    ![Arrangement.Top](column/img-06.png)
 
     ```kotlin
     @Composable
@@ -114,7 +114,7 @@ E, claro, também podemos modificar o **verticalArrangement**.
 
 === "Arrangement.Center" 
 
-    ![Arrangement.Center](img-07.png)
+    ![Arrangement.Center](column/img-07.png)
 
     ```kotlin
     @Composable
@@ -130,7 +130,7 @@ E, claro, também podemos modificar o **verticalArrangement**.
 
 === "Arrangement.Bottom" 
 
-    ![Arrangement.Bottom](img-08.png)
+    ![Arrangement.Bottom](column/img-08.png)
 
     ```kotlin
     @Composable
@@ -146,7 +146,7 @@ E, claro, também podemos modificar o **verticalArrangement**.
 
 === "Arrangement.SpaceBetween" 
 
-    ![Arrangement.SpaceBetween](img-09.png)
+    ![Arrangement.SpaceBetween](column/img-09.png)
 
     ```kotlin
     @Composable
@@ -175,7 +175,7 @@ fun Profile() {
 }
 ```
 
-![Column centralizada](img-10.png)
+![Column centralizada](column/img-10.png)
 
 #### Modificando o alinhamento manualmente em cada componente
 
@@ -202,7 +202,7 @@ fun Profile() {
 }
 ```
 
-![Column centralizada](img-04.png)
+![Column centralizada](column/img-04.png)
 
 - É importante notar que dentro da Column só podemos modificar o alinhamento horizontal dessa forma. Se tentarmos aplicar ```Alignment.Bottom```, por exemplo, você verá um erro, pois ```Modifier.align()``` espera um ```Alignment.Horizontal``` e não um ```Alignment.Vertical```, como é o caso de ```Alignment.Bottom```.
 Também vale ressaltar que ```Modifier.align()``` tem prioridade sobre o **horizontalAlignment** da Column. Portanto, se você usar ```horizontalAlignment = Alignment.End``` na Column, mas ```Modifier.align(Alignment.Start)``` no componente, ele será alinhado com **Alignment.Start**.

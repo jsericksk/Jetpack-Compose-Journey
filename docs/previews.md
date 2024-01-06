@@ -2,7 +2,7 @@
 
 Jetpack Compose fornece um meio de visualizar seus layouts e componentes através de **Previews**. Previews nada mais são do que funções Composable com mais uma anotação: ```@Preview```. Ao anotar a função com ```@Preview```, o Android Studio carregará uma visualização desse Composable. Veja o exemplo:
 
-![Previews](img-01.png)
+![Previews](previews/img-01.png)
 
 Normalmente, você adiciona o conteúdo da Preview com o tema do seu app, que é uma função Composable (normalmente) localizada no arquivo **Theme.kt**, onde são definidas as configurações do tema, como cores, shapes, typography etc. Como geralmente você define as cores e outros atributos dos componentes usando o tema do app, como um **Text()** com ```color = MaterialTheme.colorScheme.onPrimary``` (pode mudar dependendo do light e dark mode) ao invés de ```Color.White``` (valor literal), por exemplo, você se beneficia de algumas propriedades da Preview que vão ser abordadas em seguida.
 
@@ -36,7 +36,7 @@ Preview possui várias propriedades que você pode definir para alterar o compor
 
 ```@Preview(showSystemUi = true)```
 
-![Preview com SystemUI](img-02.png)
+![Preview com SystemUI](previews/img-02.png)
 
 #### Tema light e dark
 
@@ -78,7 +78,7 @@ private fun Preview() {
 }
 ```
 
-![Preview com tema light e dark](img-03.png)
+![Preview com tema light e dark](previews/img-03.png)
 
 #### Aparência e resolução da Preview com System UI
 
@@ -105,7 +105,7 @@ private fun Preview() {
 }
 ```
 
-![Preview com devices](img-04.png)
+![Preview com devices](previews/img-04.png)
 
 #### Outras propriedades
 
@@ -147,7 +147,7 @@ private fun Preview() { ... }
 
 Você também pode executar sua Preview como se fosse uma tela normal do seu app, num dispositivo físico ou emulador. Basta tocar em **Run Preview**. É bastante útil se quiser ver uma tela inteira sem a necessidade de executar todo o app. A opção aparece tanto ao lado do nome da função Preview no código quanto no design. Também há uma opção para configurar rapidamente sua Preview com as propriedades que foram abordadas nessa seção, como pode ver no ícone de configuração na imagem abaixo.
 
-![Preview com devices](img-05.png)
+![Preview com devices](previews/img-05.png)
 
 ## :link: Conteúdos auxiliares:
 - [Previews (documentação)](https://developer.android.com/jetpack/compose/tooling/previews)

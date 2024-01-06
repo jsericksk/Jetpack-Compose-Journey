@@ -28,11 +28,11 @@ private fun TextField() {
 }
 ```
 
-![TextField](img/img-02.png)
+![TextField](textfield/img-01.png)
 
 Se trocarmos a propriedade **label** por **placeholder**, quando digitarmos algo, o **placeholder** não irá aparecer:
 
-![TextField com placeholder](img/img-03.png)
+![TextField com placeholder](textfield/img-02.png)
 
 Também temos várias outras opções, como **leadingIcon**, **trailingIcon** e **keyboardOptions**:
 
@@ -71,7 +71,7 @@ private fun TextField() {
 }
 ```
 
-![TextField](img/img-04.png)
+![TextField](textfield/img-03.png)
 
 #### É bom lembrar...
 Veja que usamos 2 ícones. Nós poderíamos definir as cores desses ícones com a propriedade **tint**, mas não fizemos isso. No TextField, evite modificar as cores de componentes como esse diretamente. Através da opção **colors** do TextField, você pode adicionar as cores do **leadingIcon** e **trailingIcon**, tanto nos estados ***focused*** quanto ***unfocused***, assim como foi feito no **IndicatorColor**. Se adicionarmos uma cor manualmente ao Icon(), perderemos essa função.
@@ -103,11 +103,11 @@ private fun OutlinedTextField() {
 }
 ```
 
-![OutlinedTextField](img/img-05.png)
+![OutlinedTextField](textfield/img-04.png)
 
 Você também pode mudar o shape do TextField/OutlinedTextField com a propriedade **shape**, por exemplo: ```shape = CircleShape```.
 
-![OutlinedTextField CircleShape](img/img-06.png)
+![OutlinedTextField CircleShape](textfield/img-05.png)
 
 ## BasicTextField
 

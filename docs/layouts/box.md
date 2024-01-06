@@ -34,7 +34,7 @@ fun BoxExample() {
 }
 ```
 
-![Box](img-01.png)
+![Box](box/img-01.png)
 
 Veja um exemplo de layout básico que pode ser criado utilizando Box e como ele pode ser útil:
 
@@ -74,7 +74,7 @@ fun VideoItem() {
 }
 ```
 
-![Box](img-02.png)
+![Box](box/img-02.png)
 
 Lembre-se que a ordem dos componentes importa, pois cada componente será colocado um sobre o outro. Portanto, se trocarmos a posição do Icon() e Image() do exemplo acima, deixando Icon() em primeiro e Image() em segundo, o ícone não será exibido na tela. Isso acontece porque a imagem sobrepões o ícone, já que ela está ocupando todo o espaço com ```Modifier.fillMaxSize()```, enquanto o ícone está usando um tamanho fixo de 50.dp e em uma camada inferior a da imagem.
 

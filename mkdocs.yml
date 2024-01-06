@@ -34,10 +34,10 @@ nav:
   - 'Introdução': index.md
   - 'Conhecimentos básicos iniciais': basic.md
   - 'Layouts':
-    - 'Column': layout-column.md
-    - 'Row': layout-row.md
-    - 'Box': layout-box.md
-    - 'ConstraintLayout': layout-constraintlayout.md
+    - 'Column': layouts/column.md
+    - 'Row': layouts/row.md
+    - 'Box': layouts/box.md
+    - 'ConstraintLayout': layouts/constraintlayout.md
   - 'Previews: Visualize seus layouts': previews.md
   - 'Componentes 01: Text, TextField, Button, Image...':
     - 'Text': components-1/text.md
