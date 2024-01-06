@@ -23,7 +23,7 @@ theme:
 
     # Dark mode
     - scheme: slate
-      primary: red
+      primary: green
       accent: red
       toggle:
         icon: material/weather-sunny
