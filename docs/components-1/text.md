@@ -23,3 +23,6 @@ private fun Text() {
 ```
 
 ![Text](text/img-01.png)
+
+## :link: Conteúdos auxiliares:
+- [Style text (documentação)](https://developer.android.com/jetpack/compose/text/style-text)
