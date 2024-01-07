@@ -49,6 +49,7 @@ nav:
     - 'Checkbox': components-1/checkbox.md
     - 'Slider': components-1/slider.md
     - 'Outros': components-1/others.md
+  - 'Modifier: Um modificador onipresente': modifiers.md
 
 markdown_extensions:
   - pymdownx.tasklist
