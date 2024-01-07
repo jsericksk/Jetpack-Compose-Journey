@@ -5,12 +5,12 @@ Já vimos em seções anteriores vários usos do Modifier. Essa seção é dedic
 Os modificadores são praticamente onipresentes e permitem decorar as funções Composables de várias formas. Como já vimos antes, além de várias outras opções, com ele é possível fazer coisas como:
 
 - Adicionar uma cor de fundo com ```Modifier.background()```;
-- Alterar o tamanho com ```Modifier.background()```;
+- Alterar o tamanho com ```Modifier.size()```;
 - Adicionar um padding com ```Modifier.padding()```.
 
 ## Um parâmetro Modifier opcional
 
-Você já deve ter notado que praticamente todo componente no Compose possui um parâmetro **Modifier**, certo? Isso acontece porque **é uma boa prática sempre adicionar um parâmetro Modifier aos Composables**, pois como já foi discutido antes, com ele você pode alterar alguns comportamentos do Composable sem muito esforço.
+Você já deve ter notado que praticamente todo componente no Compose possui um parâmetro **Modifier** opcional, certo? Isso acontece porque **é uma boa prática sempre adicionar um parâmetro Modifier opcional aos Composables**, pois como já foi discutido antes, com ele você pode alterar alguns comportamentos do Composable sem muito esforço.
 
 Portanto, quando estiver criando seu componente, é recomendável sempre colocar um parâmetro Modifier opcional. É importante ser opcional pois nem sempre o chamador irá usar o Modifier. **Ele deve ser o primeiro parâmetro opcional**. Veja o exemplo abaixo, os parâmetros **text** e **onClick** não são opcionais, portanto, ele fica logo abaixo deles:
 
