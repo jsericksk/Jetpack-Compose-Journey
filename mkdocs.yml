@@ -44,6 +44,7 @@ nav:
     - 'TextField': components-1/textfield.md
     - 'Button': components-1/button.md
     - 'Image': components-1/image.md
+    - 'Card': components-1/card.md
 
 markdown_extensions:
   - pymdownx.tasklist
