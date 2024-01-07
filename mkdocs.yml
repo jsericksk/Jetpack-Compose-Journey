@@ -46,6 +46,7 @@ nav:
     - 'Image': components-1/image.md
     - 'Card': components-1/card.md
     - 'Switch': components-1/switch.md
+    - 'Checkbox': components-1/checkbox.md
 
 markdown_extensions:
   - pymdownx.tasklist
