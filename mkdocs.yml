@@ -39,7 +39,7 @@ nav:
     - 'Box': layouts/box.md
     - 'ConstraintLayout': layouts/constraintlayout.md
   - 'Previews: Visualize seus layouts': previews.md
-  - 'Componentes 01: Text, TextField, Button, Image...':
+  - 'Componentes - Parte 1':
     - 'Text': components-1/text.md
     - 'TextField': components-1/textfield.md
     - 'Button': components-1/button.md
