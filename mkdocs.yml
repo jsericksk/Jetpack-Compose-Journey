@@ -45,6 +45,7 @@ nav:
     - 'Button': components-1/button.md
     - 'Image': components-1/image.md
     - 'Card': components-1/card.md
+    - 'Switch': components-1/switch.md
 
 markdown_extensions:
   - pymdownx.tasklist
