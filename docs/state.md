@@ -78,7 +78,7 @@ O Compose suporta outros tipos observáveis, contanto que eles sejam convertidos
 implementation("androidx.lifecycle:lifecycle-runtime-compose:$version")
 ```
 
-Após isso, podemos coletar um **Flow** com ***collectAsStateWithLifecycle()***, que é a maneira recomendada para apps Android **consciente do ciclo de vida, permitindo que o app economize recursos desnecessários**.
+Após isso, podemos usar ***collectAsStateWithLifecycle()*** para **coletar um Flow consciente do ciclo de vida, permitindo que o app economize recursos desnecessários**, que é a maneira recomendada para apps Android.
 
 ## Stateful versus stateless
 
