@@ -48,7 +48,8 @@ nav:
     - 'Switch': components-1/switch.md
     - 'Checkbox': components-1/checkbox.md
     - 'Slider': components-1/slider.md
-    - 'Outros': components-1/others.md
+    - 'Outros componentes': components-1/others.md
+  - 'Theme: Modificando o tema do app': theme.md
   - 'Modifier: Um modificador onipresente': modifiers.md
   - 'Estados': state.md
 

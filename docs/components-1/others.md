@@ -1,4 +1,4 @@
-# Outros
+# Outros componentes
 
 Para evitar deixar essa seção longa demais e como existem outros componentes, vou apenas citar o nome de mais alguns. A documentação é bem rica e possui detalhes de como implementar cada um deles. Os componentes mostrados anteriormente são importantes e devem te dar uma boa base de como eles funcionam no Compose, e como é muito fácil personalizar, não há problemas maiores de entendimento.
 
