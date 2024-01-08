@@ -2,9 +2,9 @@
 
 Aqui você começará a ver coisas interessantes que se repetirão bastante no Compose. Vamos falar sobre algumas delas antes de ver o código do TextField:
 
-- Como se trata de um campo de texto editável, o **TextField** usará o que já falamos no começo sobre **estados** (o texto) e **eventos** (quando o usuário digitar algo). No exemplo do código, temos uma linha importante: ```var text by remember { mutableStateOf("") }```. Basicamente essa variável será lida como um estado que, ao ser modificada, acionará a **recomposição**. Ou seja, o texto do TextField mudará. Veremos explicações melhores sobre isso na seção sobre **estados**.
+- Como se trata de um campo de texto editável, o **TextField** usará o que já falamos no começo sobre **estados** (o texto) e **eventos** (quando o usuário digitar algo). No exemplo do código, temos uma linha importante: ```var text by remember { mutableStateOf("") }```. Basicamente essa variável será lida como um estado que, ao ser modificada, acionará a **recomposição**. Ou seja, o texto do TextField mudará. Veremos explicações melhores sobre isso na seção sobre [**estados**](../state.md).
 - TextField tem diversos parâmetros que **recebem como argumentos funções Composable**. Por exemplo, **label**. Ao invés de passarmos apenas uma String ou algo do tipo, colocamos o nosso próprio componente **Text()** ou o que quisermos de Composable. Isso é muito útil no Compose e já vimos isso várias vezes na seção de layouts de forma implícita. Por exemplo, **Column** tem como último parâmetro ```content: @Composable() (ColumnScope.() -> Unit)```.
-- Ele usa o padrão de **state hoisting (elevação de estado)**. Recebe o valor com **value** e, quando esse valor muda, aciona **onValueChange** com o novo valor. Veremos mais sobre isso na seção sobre esse tema.
+- Ele usa o padrão de **state hoisting (elevação de estado)**. Recebe o valor com **value** e, quando esse valor muda, aciona **onValueChange** com o novo valor. Também veremos mais disso na seção sobre [**estados**](../state.md).
 
 Vamos ao exemplo de um TextField:
 
