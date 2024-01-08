@@ -50,6 +50,7 @@ nav:
     - 'Slider': components-1/slider.md
     - 'Outros': components-1/others.md
   - 'Modifier: Um modificador onipresente': modifiers.md
+  - 'Estados': state.md
 
 markdown_extensions:
   - pymdownx.tasklist
