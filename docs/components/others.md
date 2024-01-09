@@ -4,20 +4,36 @@ Para evitar deixar essa seção longa demais e como existem diversos outros comp
 
 As imagens usadas aqui também são da própria documentação de cada componente.
 
+## AlertDialog
+
+AlertDialogs são fundamentais em qualquer aplicativo e o Compose também oferece esse componente com fácil utilização. Além do componente tradicional do M3, você também tem acesso ao componente [**Dialog**](https://developer.android.com/jetpack/compose/components/dialog#dialog-composable), que pode ser usado para criar dialogs mais personalizados sem estar preso aos paddings/diretrizes que o **AlertDialog** tradicional possui. Confira na [documentação](https://developer.android.com/jetpack/compose/components/dialog).
+
+![AlertDialog](others/img-04.png)
+
+## TopAppBar e BottomAppBar
+
+TopAppBar também é um componente essencial. Compose oferece diversas opções para se utilizar, como ***CenterAlignedTopAppBar***, além de opções de [comportamento de rolagem](https://developer.android.com/jetpack/compose/components/app-bars#scroll).
+
+Ele é comumente utilizado com o componente **Scaffold** e também existe a versão inversa do TopAppBar, o **BottomAppBar**. Nas imagens abaixo você vê exemplos de um **TopAppBar** e **BottomAppBar**, respectivamente. Confira na [documentação](https://developer.android.com/jetpack/compose/components/app-bars).
+
+![TopAppBar](others/img-05.png)
+
+![BottomAppBar](others/img-06.png)
+
 ## Progress
 
-Progress é um componente bastante comum e utilizado. Confira a [documentação](https://developer.android.com/jetpack/compose/components/progress) para ver a implementação e mais detalhes sobre ele.
+Progress é um componente bastante comum e utilizado. Confira na [documentação](https://developer.android.com/jetpack/compose/components/progress).
 
 ![CircularProgressIndicator](others/img-01.gif)
 
 ## Chip
 
-Chip também é um componente bem comum. Confira a [documentação](https://developer.android.com/jetpack/compose/components/chip) para ver a implementação e mais detalhes sobre ele.
+Chip também é um componente bem comum. Confira na [documentação](https://developer.android.com/jetpack/compose/components/chip).
 
 ![Chips](others/img-02.png)
 
 ## Floating Action Button
 
-Floating Action Button (FAB) é um componente bem conhecido. Ele é comumente utilizado junto de outro componente que abordaremos na parte 2 de componentes, o **Scaffold**. Confira a [documentação](https://developer.android.com/jetpack/compose/components/fab) para ver a implementação e mais detalhes sobre ele.
+Floating Action Button (FAB) é um componente bem conhecido. Ele é comumente utilizado junto de outro componente que abordaremos na parte 2 de componentes, o **Scaffold**. Confira na [documentação](https://developer.android.com/jetpack/compose/components/fab).
 
 ![Floating Action Button](others/img-03.png)
