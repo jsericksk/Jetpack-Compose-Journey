@@ -30,7 +30,7 @@ Assim como a Column, Row possui mais 2 parâmetros que podem ser usados para ali
     @Composable
     fun Profile() {
         Row(
-           horizontalAlignment = Arrangement.Start,
+           horizontalArrangement = Arrangement.Start,
            modifier = Modifier.width(150.dp)
         ) {
             ...
@@ -46,7 +46,7 @@ Assim como a Column, Row possui mais 2 parâmetros que podem ser usados para ali
     @Composable
     fun Profile() {
         Row(
-           horizontalAlignment = Arrangement.Center,
+           horizontalArrangement = Arrangement.Center,
            modifier = Modifier.width(150.dp)
         ) {
             ...
@@ -62,7 +62,7 @@ Assim como a Column, Row possui mais 2 parâmetros que podem ser usados para ali
     @Composable
     fun Profile() {
         Row(
-           horizontalAlignment = Arrangement.End,
+           horizontalArrangement = Arrangement.End,
            modifier = Modifier.width(150.dp)
         ) {
             ...
@@ -78,7 +78,7 @@ Assim como a Column, Row possui mais 2 parâmetros que podem ser usados para ali
     @Composable
     fun Profile() {
         Row(
-           horizontalAlignment = Arrangement.SpaceBetween,
+           horizontalArrangement = Arrangement.SpaceBetween,
            modifier = Modifier.width(150.dp)
         ) {
             ...
@@ -94,7 +94,7 @@ Assim como a Column, Row possui mais 2 parâmetros que podem ser usados para ali
     @Composable
     fun Profile() {
         Row(
-           horizontalAlignment = Arrangement.SpaceEvenly,
+           horizontalArrangement = Arrangement.SpaceEvenly,
            modifier = Modifier.width(150.dp)
         ) {
             ...
