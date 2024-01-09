@@ -29,7 +29,7 @@ private fun Text() {
         fontFamily = FontFamily.SansSerif,
         letterSpacing = 4.sp
     )
-}g
+}
 ```
 
 ![Text](text/img-01.png)
