@@ -1,8 +1,8 @@
 # Navigation Drawer
 
-Navigation Drawer é um componente bem comum e utilizado em apps. Na versão de componentes do Material Design 2 no Compose, o **Navigation Drawer** era parte do **Scaffold**. Nos componentes do M3, é o contrário.
+Navigation Drawer é um componente bem conhecido e utilizado em apps. Na versão de componentes do Material Design 2 no Compose, o **Navigation Drawer** era parte do **Scaffold**. Nos componentes do M3, ele se tornou independente.
 
-Vamos criar uma implementação básica dele e ver como fica. Primeiro, vamos criar uma **sealed class** que servirá como classe para os itens do nosso Navigation Drawer.
+Vamos criar uma implementação básica dele e ver como fica. Primeiro, vamos criar uma **sealed class** que servirá para agrupar os itens do nosso Navigation Drawer.
 
 ```kotlin
 sealed class NavDrawerItem(
