@@ -1,8 +1,8 @@
 # Scaffold
 
-Essa seção é dedicada a componentes que estão mais a níveis de tela do que os abordados na parte 1. Começaremos com Scaffold, que é um dos principais.
+Diferente dos componentes citados anteriormente, os componentes a seguir são mais a **nível de tela**. **Scaffold** é uma estrutura fundamental que fornece um meio padronizado para interfaces complexas. Ele também fornece uma API simples que você pode usar para montar rapidamente a estrutura do seu app de acordo com as diretrizes do Material Design.
 
-Scaffold é uma estrutura fundamental que fornece um meio padronizado para interfaces complexas. Ele também fornece uma API simples que você pode usar para montar rapidamente a estrutura do seu app de acordo com as diretrizes do Material Design. Scaffold aceita vários Composables como parâmetros, entre estes estão os seguintes:
+Scaffold aceita vários Composables como parâmetros, entre os quais estão:
 
 - **topBar**: a barra de aplicativos na parte superior da tela.
 - **bottomBar**: a barra de aplicativos na parte inferior da tela, que também pode ser uma **barra de navegação**;

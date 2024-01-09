@@ -40,20 +40,19 @@ nav:
     - 'ConstraintLayout': layouts/constraintlayout.md
   - 'Previews: Visualize seus layouts': previews.md
   - 'Theme: Modificando o tema do app': theme.md
-  - 'Componentes - Parte 1':
-    - 'Text': components-1/text.md
-    - 'TextField': components-1/textfield.md
-    - 'Button': components-1/button.md
-    - 'Image': components-1/image.md
-    - 'Card': components-1/card.md
-    - 'Switch': components-1/switch.md
-    - 'Checkbox': components-1/checkbox.md
-    - 'Slider': components-1/slider.md
-    - 'Outros componentes': components-1/others.md
+  - 'Componentes importantes':
+    - 'Text': components/text.md
+    - 'TextField': components/textfield.md
+    - 'Button': components/button.md
+    - 'Image': components/image.md
+    - 'Card': components/card.md
+    - 'Switch': components/switch.md
+    - 'Checkbox': components/checkbox.md
+    - 'Slider': components/slider.md
+    - 'Scaffold': components/scaffold.md
+    - 'Outros componentes': components/others.md
   - 'Modifier: Um modificador onipresente': modifiers.md
   - 'Estados': state.md
-  - 'Componentes - Parte 2':
-    - 'Scaffold': components-2/scaffold.md
 
 markdown_extensions:
   - pymdownx.tasklist
