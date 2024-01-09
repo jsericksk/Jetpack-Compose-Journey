@@ -53,7 +53,7 @@ nav:
     - 'Navigation Drawer': components/navigationdrawer.md
     - 'Outros componentes': components/others.md
   - 'Modifier: Um modificador onipresente': modifiers.md
-  - 'Estados': state.md
+  - 'Estado no Compose': state.md
 
 markdown_extensions:
   - pymdownx.tasklist

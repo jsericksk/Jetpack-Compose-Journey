@@ -1,4 +1,4 @@
-# Estados
+# Estado no Compose
 
 Já falamos um pouco sobre estados em seções anteriores, mas nessa vamos ver de uma forma mais detalhada como isso funciona no Jetpack Compose. **Um estado é qualquer valor que pode mudar com o tempo**. Esta é uma definição muito ampla e abrange tudo, desde um banco de dados Room até uma variável em uma classe.
 
@@ -26,17 +26,17 @@ private fun State() {
 }
 ```
 
-Nesse código, ***name*** é o estado e está sendo usado por ***Text()***. Na teoria, ao clicar no botão para mudar o nome de "John" para "Mary", ***name*** seria alterada e ***Text()*** seria atualizado, certo? Porém, isso não vai acontecer. Ao tocar no botão, **name** será alterada, mas nosso Composable **Text()** não será atualizado pois o Compose não sabe que **name** é um estado e que deve acionar a recomposição quando ela for atualizada. Mas precisamos fazer apenas uma pequena modificação no código para ele funcionar como queremos:
+Nesse código, ***name*** é o estado e está sendo usado por ***Text()***. Na teoria, ao clicar no botão para mudar o nome de "John" para "Mary", ***name*** seria alterada e ***Text()*** seria atualizado, certo? Porém, isso não vai acontecer. Ao tocar no botão, **name** será alterada, mas nosso Composable **Text()** não será atualizado pois o Compose não sabe que **name** é um estado e que deve acionar a recomposição quando ela for atualizada. Precisamos fazer apenas uma pequena modificação no código para ele funcionar como queremos:
 
 ```var name by remember { mutableStateOf("John") }```
 
 ## Estados nos Composables
 
-Fizemos duas pequenas alterações no código anterior: usamos ***remember { }*** e ***mutableStateOf()***. Um valor calculado com **remember** é armazenado na composição durante a composição inicial e o valor armazenado é retornado durante a recomposição. Já ***mutableStateOf*** cria um observable MutableState<T>, que é um tipo observável integrado ao Compose runtime.
+Fizemos duas pequenas alterações no código anterior: usamos ***remember { }*** e ***mutableStateOf()***. Um valor calculado com **remember** é armazenado na composição durante a composição inicial e o valor armazenado é retornado durante a recomposição. Já ***mutableStateOf()*** cria um MutableState<T>, que é um tipo observável integrado ao Compose runtime. Como argumento, ***mutableStateOf()*** espera um valor padrão inicial, que no nosso caso é "John".
 
 Como visto na [documentação](https://developer.android.com/jetpack/compose/mental-model#frequent), **a recomposição pode acontecer com bastante frequência**.
 
-Em resumo, ***remember*** serve para evitar que o estado seja perdido durante as recomposições, já o ***mutableStateOf*** serve para dizer ao Compose para observar as alterações naquele estado.
+Em resumo, ***remember*** serve para evitar que o estado seja perdido durante as recomposições, já o ***mutableStateOf()*** serve para dizer ao Compose para observar as alterações naquele valor.
 
 Existem três maneiras de declarar um objeto **MutableState** em um Composable:
 
@@ -44,7 +44,9 @@ Existem três maneiras de declarar um objeto **MutableState** em um Composable:
 - ```var value by remember { mutableStateOf(default) }```
 - ```val (value, setValue) = remember { mutableStateOf(default) }```
 
-Normalmente, se utiliza mais a segunda opção, com ***by***. Ela também exige as seguintes importações:
+Normalmente, se utiliza muito mais a segunda opção, com ***by***. Ao utilizar a primeira opção você precisaria sempre chamar o **.value** para obter o valor, o que não é muito o desejado.
+
+Utilizar **by** exige as seguintes importações:
 
 ```kotlin
 import androidx.compose.runtime.getValue
@@ -52,7 +54,7 @@ import androidx.compose.runtime.setValue
 ```
 #### Usando rememberSaveable
 
-***remember*** não funciona nas alterações de configuração, como uma rotação de tela. Existe a opção ***rememberSaveable***, que salva automaticamente qualquer valor que possa ser salvo em um arquivo **Bundle**, como Strings e tipos primitivos.
+***remember*** não funciona nas alterações de configuração, como uma rotação de tela. Para isso existe a opção ***rememberSaveable***, que salva automaticamente qualquer valor que possa ser salvo em um arquivo **Bundle**, como Strings e tipos primitivos.
 
 #### remember não precisa de mutableState
 
