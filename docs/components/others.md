@@ -1,6 +1,6 @@
 # Outros componentes
 
-Para evitar deixar essa seção longa demais e como existem diversos outros componentes, vou apenas citar o nome de mais alguns. A documentação é bem rica e possui detalhes de como implementar cada um deles. Os componentes mostrados anteriormente são importantes e devem te dar uma boa base de como eles funcionam no Compose.
+Para evitar deixar essa seção longa demais e como existem diversos outros componentes, vou apenas citar o nome de mais alguns. A documentação é bem rica e possui detalhes de como implementar cada um deles. Os componentes mostrados anteriormente são importantes e devem te dar uma boa base de como os outros funcionam no Compose.
 
 As imagens usadas aqui também são da própria documentação de cada componente.
 
@@ -43,3 +43,7 @@ Progress é um componente bastante comum e utilizado. Confira na [documentação
 Chip também é um componente bem comum. Confira na [documentação](https://developer.android.com/jetpack/compose/components/chip).
 
 ![Chips](others/img-02.png)
+
+## Conclusão
+
+Há vários outros componentes que não foram citados e você pode conferir na [documentação do pacote do Material Design 3 do Compose](https://developer.android.com/reference/kotlin/androidx/compose/material3/package-summary). Alguns outros componentes também muito utilizados e que vale a pena mencionar são o **NavigationBar**, **RadioButton** e **DropdownMenu**. Como nenhum deles possuem uma página dedicada na seção de componentes da documentação como os mencionados acima, evitei colocá-los sem uma referência "oficial", mas todos eles estão presentes na documentação do pacote do MD3 do Compose, incluindo alguns exemplos de implementação e imagens.
