@@ -50,6 +50,7 @@ nav:
     - 'Checkbox': components/checkbox.md
     - 'Slider': components/slider.md
     - 'Scaffold': components/scaffold.md
+    - 'Navigation Drawer': components/navigationdrawer.md
     - 'Outros componentes': components/others.md
   - 'Modifier: Um modificador onipresente': modifiers.md
   - 'Estados': state.md
