@@ -93,7 +93,7 @@ A elevação de estado no Compose é um padrão de movimentação de estado para
 - ```value: T```: O valor atual a ser exibido
 - ```onValueChange: (T) -> Unit```: Um evento que solicita a alteração do valor, onde **T** é o novo valor
 
-Você já viu isso em diversos componentes na seção da parte 1 sobre componentes, como o ***TextField***. 
+Você já viu isso em diversos componentes na seção sobre componentes, como o ***TextField***. 
 
 Vale lembrar que você não está limitado a **onValueChange**. Se eventos mais específicos forem apropriados para o Composable, você deverá defini-los usando lambdas.
 
@@ -122,7 +122,7 @@ fun HelloContent(name: String, onNameChange: (String) -> Unit) {
 
 ## Detentores de estado (state holders)
 
-Para não tornar essa seção extremamente longa e como esse conteúdo não está sendo feito para substituir a documentação oficial, vou mencionar apenas mais um tema importante que faz parte dos estados no Compose: ***state holders***. Leia mais sobre eles na [documentação](https://developer.android.com/topic/architecture/ui-layer/stateholders). Em resumo, ao invés de gerenciar o estado internamento nos Composables, você delega as funções de alterar e armazenar os estados a outras classes, que nesse caso se tornam as ditas ***state holders***. 
+Para não tornar essa seção extremamente longa e como esse conteúdo não está sendo feito para substituir a documentação oficial, vou mencionar apenas mais um tema importante que faz um pouco parte dos estados no Compose: ***state holders***. Leia mais sobre eles na [documentação](https://developer.android.com/topic/architecture/ui-layer/stateholders). Em resumo, ao invés de gerenciar o estado internamento nos Composables, você delega as funções de alterar e armazenar os estados a outras classes, que nesse caso se tornam as ditas ***state holders***. 
 
 Se você está iniciando no Compose e seguindo esse conteúdo por ordem cronológica, não precisa se preocupar com isso por enquanto. Apenas saiba que é um recurso útil e você usará bastante.
 
