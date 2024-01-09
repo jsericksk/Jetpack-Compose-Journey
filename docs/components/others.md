@@ -20,6 +20,18 @@ Ele é comumente utilizado com o componente **Scaffold** e também existe a vers
 
 ![BottomAppBar](others/img-06.png)
 
+## Pager
+
+Pager é um componente que oferece a função de paginação de Composables, bem comum em visualizadores de imagens, por exemplo. Ele é semelhante ao **ViewPager** do XML. Existem as opções de ***HorizontalPager*** e ***VerticalPager***, onde o nome já sugere bem o que cada um faz. Confira na [documentação](https://developer.android.com/jetpack/compose/layouts/pager).
+
+<img src="../others/img-07.gif" alt="Pager" width="50%" height="20%"/>
+
+## Floating Action Button
+
+Floating Action Button (FAB) é um componente bem conhecido. Ele também é comumente utilizado junto do **Scaffold**. Confira na [documentação](https://developer.android.com/jetpack/compose/components/fab).
+
+![Floating Action Button](others/img-03.png)
+
 ## Progress
 
 Progress é um componente bastante comum e utilizado. Confira na [documentação](https://developer.android.com/jetpack/compose/components/progress).
@@ -31,9 +43,3 @@ Progress é um componente bastante comum e utilizado. Confira na [documentação
 Chip também é um componente bem comum. Confira na [documentação](https://developer.android.com/jetpack/compose/components/chip).
 
 ![Chips](others/img-02.png)
-
-## Floating Action Button
-
-Floating Action Button (FAB) é um componente bem conhecido. Ele é comumente utilizado junto de outro componente que abordaremos na parte 2 de componentes, o **Scaffold**. Confira na [documentação](https://developer.android.com/jetpack/compose/components/fab).
-
-![Floating Action Button](others/img-03.png)
