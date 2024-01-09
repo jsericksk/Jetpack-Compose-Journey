@@ -4,6 +4,16 @@ Componentes obviamente são uma parte fundamental de qualquer app e nessa seçã
 
 Todos os componentes possuem diversos parâmetros, então obviamente não abordaremos todos eles. Você pode navegar no componente específico ou colocar seu mouse sobre o componente para ver os parâmetros.
 
+## Recursos
+
+Antes de falarmos sobre o **Text()** e outros componentes, é importante sabermos primeiro que também podemos usar recursos criados no projeto. Recursos são arquivos adicionais e conteúdo estático que seu código usa, como bitmaps, strings, instruções de animação e muito mais. Dois recursos bastante utilizados são recursos de strings e de cores. Compose oferece algumas funções Composable simples para isso, veja nos exemplos abaixo:
+
+- ```Text(text = stringResource(R.string.compose))```
+- ```Text(text = stringResource(R.string.congratulate, "New Year", 2024))```
+- ```Divider(color = colorResource(R.color.purple_200))```
+
+Veja a [documentação](https://developer.android.com/jetpack/compose/resources) para saber um pouco mais.
+
 ## Text
 
 O componente Text não tem muitos segredos, então vamos ver apenas um exemplo com várias propriedades.
