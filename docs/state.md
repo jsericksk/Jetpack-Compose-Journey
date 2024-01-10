@@ -86,7 +86,7 @@ Após isso, podemos usar ***collectAsStateWithLifecycle()*** para **coletar um F
 
 Basicamente, um Composable **com estado (stateful)** cria e mantém o estado internamente, já um Composable **sem estado (stateless)** não contém nenhum estado. O código que criamos de exemplo no início é **stateful**, pois **name** foi criada e é controlada internamente pelo própria Composable **State()**.
 
-Uma forma de tornar um Composable **stateless** é usando **elevação de estado (state hoisting)**, que veremos logo em seguida.
+Uma forma de tornar um Composable **stateless** é usando **elevação de estado (state hoisting)**, que veremos logo a seguir.
 
 ## Elevação de estado (state hoisting)
 
@@ -121,6 +121,8 @@ fun HelloContent(name: String, onNameChange: (String) -> Unit) {
     }
 }
 ```
+
+<img src="../state/img-01.png" alt="Scaffold" width="50%" height="30%"/>
 
 ## Detentores de estado (state holders)
 
