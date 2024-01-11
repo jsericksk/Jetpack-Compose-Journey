@@ -54,6 +54,7 @@ nav:
     - 'Outros componentes': components/others.md
   - 'Modifier: Um modificador onipresente': modifiers.md
   - 'Estado no Compose': state.md
+  - 'Listas': lists.md
 
 markdown_extensions:
   - pymdownx.tasklist

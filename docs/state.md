@@ -122,7 +122,7 @@ fun HelloContent(name: String, onNameChange: (String) -> Unit) {
 }
 ```
 
-<img src="../state/img-01.png" alt="Scaffold" width="50%" height="30%"/>
+<img src="../state/img-01.png" alt="State" width="50%" height="30%"/>
 
 ## Detentores de estado (state holders)
 
