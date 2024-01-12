@@ -106,7 +106,9 @@ fun MyTextField(modifier: Modifier = Modifier) {
         modifier = modifier
     )
 }
+```
 
+```kotlin
 /**
  * Stateless, pois elevamos o estado principal do MyTextField().
  * Facilita a reutilização, pois o estado é elevado e gerenciado externamente.
