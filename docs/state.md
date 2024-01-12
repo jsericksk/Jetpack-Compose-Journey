@@ -86,7 +86,48 @@ Após isso, podemos usar ***collectAsStateWithLifecycle()*** para **coletar um F
 
 Basicamente, um Composable **com estado (stateful)** cria e mantém o estado internamente, já um Composable **sem estado (stateless)** não contém nenhum estado. O código que criamos de exemplo no início é **stateful**, pois **name** foi criada e é controlada internamente pelo própria Composable **State()**.
 
-Uma forma de tornar um Composable **stateless** é usando **elevação de estado (state hoisting)**, que veremos logo a seguir.
+Uma forma de tornar um Composable **stateless** é usando **elevação de estado (state hoisting)**, que veremos logo a seguir. Veja dois pequenos exemplos de um Composable **com e sem estado**.
+
+```kotlin
+/**
+ * Stateful, pois text está sendo controlado internamente pela MyTextField().
+ * Dificulta a reutilização do componente usando outros valores.
+ */
+@Composable
+fun MyTextField(modifier: Modifier = Modifier) {
+    var text by remember { mutableStateOf("") }
+    OutlinedTextField(
+        value = text,
+        onValueChange = { updatedText ->
+            text = updatedText
+        },
+        label = { Text(text = "Texto") },
+        shape = CircleShape,
+        modifier = modifier
+    )
+}
+
+/**
+ * Stateless, pois elevamos o estado principal do MyTextField().
+ * Facilita a reutilização, pois o estado é elevado e gerenciado externamente.
+ */
+@Composable
+fun MyTextField(
+    text: String,
+    onTextChange: (String) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    OutlinedTextField(
+        value = text,
+        onValueChange = onTextChange,
+        label = { Text(text = "Texto") },
+        shape = CircleShape,
+        modifier = modifier
+    )
+}
+```
+
+- Nem sempre é necessário elevar o estado. Às vezes, o componente pode lidar com o estado internamente sem passar essa responsabilidade para o chamador. Porém, como pode ver no exemplo acima, manter o componente com estado dificulta a reutilização.
 
 ## Elevação de estado (state hoisting)
 
