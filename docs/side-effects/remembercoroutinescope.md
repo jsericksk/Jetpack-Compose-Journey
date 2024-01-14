@@ -37,3 +37,6 @@ private fun MyHorizontalPager() {
     }
 }
 ```
+
+## :link: Conteúdos auxiliares:
+- [Side-effects in Compose (documentação)](https://developer.android.com/jetpack/compose/side-effects)
