@@ -55,6 +55,9 @@ nav:
   - 'Modifier: Um modificador onipresente': modifiers.md
   - 'Estado no Compose': state.md
   - 'Listas': lists.md
+  - 'Side Effects':
+    - 'LaunchedEffect': side-effects/launched-effect.md
+    - 'rememberCoroutineScope': side-effects/remembercoroutinescope.md
 
 markdown_extensions:
   - pymdownx.tasklist
