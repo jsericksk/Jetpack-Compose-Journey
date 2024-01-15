@@ -58,6 +58,7 @@ nav:
   - 'Side Effects':
     - 'LaunchedEffect': side-effects/launched-effect.md
     - 'rememberCoroutineScope': side-effects/remembercoroutinescope.md
+    - 'rememberUpdatedState': side-effects/rememberupdatedstate.md
 
 markdown_extensions:
   - pymdownx.tasklist
