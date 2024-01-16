@@ -74,7 +74,7 @@ private fun Profile() {
 
 Dessa forma, obtemos o nome do perfil e fazemos a atualização necessária em **state**. **Unit** aqui é usado como **key**, pois queremos executar esse trecho do LaunchedEffect apenas na primeira composição. LaunchedEffect aceita um número variável de **keys**. Quando o valor de uma das keys muda, a coroutine existente será cancelada e o trecho de LaunchedEffect será iniciado em uma nova coroutine.
 
-Veja um pequeno código de **timer** abaixo que exemplifica o LaunchedEffect reagindo com as mudanças de uma **key**. Poderíamos fazer o código abaixo de inúmeras formas diferentes, mas novamente, serve como um exemplo.
+Veja um pequeno código de **timer** abaixo que exemplifica o LaunchedEffect reagindo com as mudanças de valores de uma **key**. Poderíamos fazer o código abaixo de inúmeras formas diferentes, mas novamente, serve como um exemplo.
 
 ```kotlin
 @Composable
@@ -110,9 +110,9 @@ private fun CountdownTimer() {
 }
 ```
 
-<img src="../launched-effect/img-01.gif" alt="LaunchedEffect" width="50%" height="30%"/>
+<img src="../launchedeffect/img-01.gif" alt="LaunchedEffect" width="50%" height="30%"/>
 
-No exemplo acima, estamos usando a suspend function **delay()** e LaunchedEffect irá atualizar **currentTime** enquanto ele for > 0. Toda vez que clicarmos na tela, o contador será reiniciado, pois definimos **currentTime = initialTime** no clickable do Box. Não precisamos de nenhum loop para isso, pois LaunchedEffect reinicia o trecho de código dentro dele sempre que o valor da **key currentTime** muda.
+No exemplo acima, estamos usando a suspend function **delay()** e LaunchedEffect irá atualizar **currentTime** enquanto ele for maior que 0. Uma vez que ele atualiza **currentTime** para 4 na primeira execução após 1 segundo do delay, o valor da key muda e LaunchedEffect reinicia.
 
 ## :link: Conteúdos auxiliares:
 - [Side-effects in Compose (documentação)](https://developer.android.com/jetpack/compose/side-effects)

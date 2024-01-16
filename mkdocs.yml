@@ -56,9 +56,10 @@ nav:
   - 'Estado no Compose': state.md
   - 'Listas': lists.md
   - 'Side Effects':
-    - 'LaunchedEffect': side-effects/launched-effect.md
+    - 'LaunchedEffect': side-effects/launchedeffect.md
     - 'rememberCoroutineScope': side-effects/remembercoroutinescope.md
     - 'rememberUpdatedState': side-effects/rememberupdatedstate.md
+    - 'DisposableEffect': side-effects/disposableeffect.md
 
 markdown_extensions:
   - pymdownx.tasklist
