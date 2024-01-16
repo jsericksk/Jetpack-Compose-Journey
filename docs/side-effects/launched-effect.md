@@ -116,3 +116,4 @@ No exemplo acima, estamos usando a suspend function **delay()** e LaunchedEffect
 
 ## :link: Conteúdos auxiliares:
 - [Side-effects in Compose (documentação)](https://developer.android.com/jetpack/compose/side-effects)
+- [Jetpack Compose Side-Effects I — LaunchedEffect (artigo)](https://proandroiddev.com/jetpack-compose-side-effects-launchedeffect-59d2330d7834)

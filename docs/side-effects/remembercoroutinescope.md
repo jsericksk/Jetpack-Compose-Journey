@@ -40,3 +40,4 @@ private fun MyHorizontalPager() {
 
 ## :link: Conteúdos auxiliares:
 - [Side-effects in Compose (documentação)](https://developer.android.com/jetpack/compose/side-effects)
+- [Jetpack Compose Side-Effects II — rememberCoroutineScope (artigo)](https://proandroiddev.com/jetpack-compose-side-effects-ii-remembercoroutinescope-76104d7ff09)
