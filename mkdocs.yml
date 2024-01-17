@@ -61,6 +61,7 @@ nav:
     - 'rememberUpdatedState': side-effects/rememberupdatedstate.md
     - 'DisposableEffect': side-effects/disposableeffect.md
     - 'SideEffect': side-effects/sideeffect.md
+    - 'Outros side effects': side-effects/others.md
 
 markdown_extensions:
   - pymdownx.tasklist
