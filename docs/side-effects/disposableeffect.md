@@ -6,7 +6,7 @@ Veja um exemplo simples retirado da própria documentação oficial, que pode se
 
 ```kotlin
 @Composable
-private fun LifeCycleObserver(
+private fun LifecycleObserver(
     lifecycleOwner: LifecycleOwner = LocalLifecycleOwner.current,
     onStart: () -> Unit,
     onStop: () -> Unit,

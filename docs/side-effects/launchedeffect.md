@@ -112,7 +112,7 @@ private fun CountdownTimer() {
 
 <img src="../launchedeffect/img-01.gif" alt="LaunchedEffect" width="50%" height="30%"/>
 
-No exemplo acima, estamos usando a suspend function **delay()** e LaunchedEffect irá atualizar **currentTime** enquanto ele for maior que 0. Uma vez que ele atualiza **currentTime** para 4 na primeira execução após 1 segundo do delay, o valor da key muda e LaunchedEffect reinicia.
+No exemplo acima, estamos usando a suspend function **delay()** e o LaunchedEffect irá atualizar **currentTime** enquanto ele for maior que 0. Uma vez que ele atualiza **currentTime** para 4 na primeira execução após 1 segundo do delay, o valor da key muda e o LaunchedEffect reinicia.
 
 ## :link: Conteúdos auxiliares:
 - [Side-effects in Compose (documentação)](https://developer.android.com/jetpack/compose/side-effects)

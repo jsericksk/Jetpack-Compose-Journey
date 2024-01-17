@@ -60,6 +60,7 @@ nav:
     - 'rememberCoroutineScope': side-effects/remembercoroutinescope.md
     - 'rememberUpdatedState': side-effects/rememberupdatedstate.md
     - 'DisposableEffect': side-effects/disposableeffect.md
+    - 'SideEffect': side-effects/sideeffect.md
 
 markdown_extensions:
   - pymdownx.tasklist
