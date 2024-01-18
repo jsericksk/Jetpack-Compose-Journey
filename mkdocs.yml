@@ -62,6 +62,7 @@ nav:
     - 'DisposableEffect': side-effects/disposableeffect.md
     - 'SideEffect': side-effects/sideeffect.md
     - 'Outros side effects': side-effects/others.md
+  - 'Animações': animations.md
 
 markdown_extensions:
   - pymdownx.tasklist
