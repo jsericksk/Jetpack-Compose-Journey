@@ -233,3 +233,48 @@ private const val loremIpsumText = "Lorem ipsum dolor sit amet, consectetur adip
 ```
 
 <img src="../animations/img-04.gif" alt="Modifier.animateContentSize()" width="50%" height="20%"/>
+
+## Bônus: Animações com Lottie
+
+Além das animações padrão que o Compose fornece, também podemos utilizar animações com **Lottie**. Um Lottie é um formato de arquivo de animação baseado em JSON que permite enviar animações em qualquer plataforma com a mesma facilidade com que envia ativos estáticos. É um padrão já bem utilizado em apps com o sistema de Views/XML e outras plataformas. 
+
+Vamos utilizar a biblioteca do [Lottie Compose](https://github.com/airbnb/lottie/blob/master/android-compose.md) para usar essas animações. Primeiro, adicione a dependência necessária no **build.gradle (app)**:
+
+```gradle
+dependencies {
+    implementation("com.airbnb.android:lottie-compose:$version")
+}
+```
+
+Vamos ver uma pequena implementação básica com uma animação de loading. Você pode baixar o arquivo de animação usado no exemplo abaixo [aqui](https://lottiefiles.com/animations/loading-sand-clock-YwwRRL2vx4) se desejar. Para baixar outras animações, acesse o [LottieFiles](https://lottiefiles.com/featured).
+
+```kotlin
+@Composable
+fun LoadingAnimation() {
+    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.loading_animation))
+    val progress by animateLottieCompositionAsState(
+        composition = composition,
+        iterations = LottieConstants.IterateForever
+    )
+    Column(
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
+            .fillMaxSize()
+    ) {
+        LottieAnimation(
+            composition = composition,
+            progress = { progress },
+            modifier = Modifier.size(200.dp)
+        )
+    }
+}
+```
+
+<img src="../animations/img-000.gif" alt="Lottie animation" width="50%" height="20%"/>
+
+Como pode ver, é bem simples. Você pode conferir a [documentação da biblioteca](https://github.com/airbnb/lottie/blob/master/android-compose.md) para ver outros tipos de implementações.
+
+## :link: Conteúdos auxiliares:
+- [Quick guide to Animations in Compose (documentação)](https://developer.android.com/jetpack/compose/animation/quick-guide)
+- [Animation modifiers and composables (documentação)](https://developer.android.com/jetpack/compose/animation/composables-modifiers)
