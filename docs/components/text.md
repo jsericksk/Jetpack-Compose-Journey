@@ -6,7 +6,7 @@ Todos os componentes possuem diversos parâmetros e opções de personalização
 
 ## Estado no Compose
 
-Um conceito extremamente importante antes de aprendermos sobre os componentes é o conceito de **estado no Compose**. Há uma seção sobre isso mais a frente. Ela poderia ser facilmente uma das primeiras seções desse conteúdo, mas por questões de conveniência, eu preferi deixar ela um pouco para depois. Estando mais familiarizado com componentes, funções Composable e o mundo do Compose na prática com elementos visuais, acredito que fica mais fácil entender e absorver melhor a seção sobre estados. Se preferir, você pode lê-la antes de se introduzir nos componentes Composable.
+Um conceito extremamente importante antes de aprendermos sobre os componentes é o conceito de [**estado no Compose**](../state.md). Há uma seção sobre isso mais a frente. Ela poderia ser facilmente uma das primeiras seções desse conteúdo, mas por questões de conveniência, eu preferi deixar ela um pouco para depois. Estando mais familiarizado com componentes, funções Composable e o mundo do Compose na prática com elementos visuais, acredito que fica mais fácil entender e absorver melhor a seção sobre estados. Se preferir, você pode lê-la antes de se introduzir nos componentes Composable.
 
 ## Recursos
 
@@ -20,7 +20,7 @@ Veja a [documentação](https://developer.android.com/jetpack/compose/resources)
 
 ## Text
 
-O componente Text não tem muitos segredos, então vamos ver apenas um exemplo com várias propriedades.
+O componente **Text()** não tem muitos segredos, então vamos ver apenas alguns poucos exemplos. Você pode ver os conteúdos auxiliares para aplicar mais personalizações nos textos.
 
 ```kotlin
 @Composable
@@ -37,6 +37,48 @@ private fun Text() {
 ```
 
 ![Text](text/img-01.png)
+
+## Propriedade overflow e Modifier.basicMarquee()
+
+Às vezes, temos textos longos demais e queremos aplicar algum pequeno efeito para indicar isso. A propriedade **overlow** no **Text()** pode ser usada para aplicar o efeito de reticências (**...**) quando o texto for muito extenso e não couber na tela, definindo com ***TextOverflow.Ellipsis***. Seguindo a mesma ideia, temos o ```Modifier.basicMarquee()```, que pode ser usado para aplicar uma animação de rolagem de texto. Ele não necessariamente funciona apenas com textos e ainda é **experimental**, por isso devemos usar a anotação no código abaixo, porém, pode ser bastante útil em alguns casos.
+
+Para que ambos façam sentido, é necessário também definir o número máximo de linhas do **Text()** com a propriedade **maxLines**. Veja o pequeno exemplo abaixo:
+
+```kotlin
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+private fun LongText() {
+    val longText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula" +
+            " eu lectus lobortis condimentum. Aliquam nonummy auctor massa."
+    Column(
+        modifier = Modifier
+            .background(Color.Black)
+            .padding(12.dp)
+    ) {
+        Text(
+            text = longText,
+            color = Color.White,
+            fontSize = 18.sp,
+            fontStyle = FontStyle.Italic,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis
+        )
+        Spacer(Modifier.height(16.dp))
+        Text(
+            text = longText,
+            color = Color.White,
+            fontSize = 18.sp,
+            fontStyle = FontStyle.Italic,
+            maxLines = 1,
+            modifier = Modifier.basicMarquee()
+        )
+    }
+}
+```
+
+<img src="../text/img-02.gif" alt="LongText" width="80%" height="30%"/>
+
+- ```Modifier.basicMarquee()``` possui algumas propriedades interessantes, como mudar o número máximo de iterações, velocidade etc. No exemplo não definimos nenhuma delas para fins de conveniência, mas você pode explorar mais esse **modificador**.
 
 ## :link: Conteúdos auxiliares:
 - [Style text (documentação)](https://developer.android.com/jetpack/compose/text/style-text)
