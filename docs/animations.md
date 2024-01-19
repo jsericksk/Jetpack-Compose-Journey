@@ -4,7 +4,7 @@ Animações são fundamentais e deixam nossos apps com um visual mais interessan
 
 ## Escolher a API de animação
 
-Antes de começar a utilizar uma animação, é útil primeiro saber qual a API utilizar para isso. Como o Compose possui múltiplas formas para criar animações, essa é uma decisão importante. A [documentação](https://developer.android.com/jetpack/compose/animation/choose-api) fornece um guia simples que você pode consultar rapidamente e ficar por dentro das principais opções e casos de uso. Abaixo temos um diagrama retirado da própria documentação para demonstrar isso.
+Antes de começar a utilizar uma animação, é útil primeiro saber qual API utilizar para isso. A [documentação](https://developer.android.com/jetpack/compose/animation/choose-api) fornece um guia simples que você pode consultar rapidamente e ficar por dentro das principais opções e casos de uso. Abaixo temos um diagrama retirado da própria documentação para demonstrar isso.
 
 <img src="../animations/img-01.jpg" alt="LazyVerticalGrid Adaptive" width="80%" height="50%"/>
 
@@ -234,6 +234,66 @@ private const val loremIpsumText = "Lorem ipsum dolor sit amet, consectetur adip
 
 <img src="../animations/img-04.gif" alt="Modifier.animateContentSize()" width="50%" height="20%"/>
 
+## Animar padding e rotação
+
+Para animar as mudanças de padding e rotação de um Composable, você pode utilizar as funções ```animateDpAsState()``` e ```animateFloatAsState()```. Vamos ver um pequeno exemplo abaixo de como podemos fazer isso, animando o padding de um texto e a rotação de um ícone.
+
+```kotlin
+@Composable
+private fun Info() {
+    var expanded by remember { mutableStateOf(false) }
+    val textPadding by animateDpAsState(
+        targetValue = if (expanded) 14.dp else 4.dp,
+        animationSpec = spring(
+            dampingRatio = 3f,
+            stiffness = Spring.StiffnessLow
+        ),
+        label = "textPadding"
+    )
+    val iconRotationAngle by animateFloatAsState(
+        targetValue = if (expanded) 180f else 0f,
+        animationSpec = spring(
+            dampingRatio = 2f,
+            stiffness = Spring.StiffnessMediumLow
+        ),
+        label = "iconRotationAngle"
+    )
+    Column(
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(24.dp)
+    ) {
+        Text(
+            text = "Jetpack Compose Journey!",
+            color = Color.White,
+            modifier = Modifier
+                .background(
+                    color = Color.Black,
+                    shape = RoundedCornerShape(8.dp)
+                )
+                .padding(textPadding)
+        )
+        Spacer(Modifier.height(24.dp))
+        Button(onClick = { expanded = !expanded }) {
+            Icon(
+                imageVector = Icons.Default.KeyboardArrowDown,
+                contentDescription = null,
+                modifier = Modifier.rotate(iconRotationAngle)
+            )
+            Text(
+                text = if (expanded) "Diminuir padding" else "Aumentar padding"
+            )
+        }
+    }
+}
+```
+
+<img src="../animations/img-05.gif" alt="Modifier.animateContentSize()" width="50%" height="20%"/>
+
+Como pode ver, no caso do padding, usamos o ```Modifier.padding()``` no **Text()** como faríamos normalmente, mas dessa vez usando nosso valor de **animateDpAsState()**. No caso da rotação do ícone, usamos o ```Modifier.rotate()``` no **Icon()**, com o nosso valor de **animateFloatAsState()**.
+
 ## Bônus: Animações com Lottie
 
 Além das animações padrão que o Compose fornece, também podemos utilizar animações com **Lottie**. Um Lottie é um formato de arquivo de animação baseado em JSON que permite enviar animações em qualquer plataforma com a mesma facilidade com que envia ativos estáticos. É um padrão já bem utilizado em apps com o sistema de Views/XML e outras plataformas. 
@@ -271,10 +331,15 @@ fun LoadingAnimation() {
 }
 ```
 
-<img src="../animations/img-000.gif" alt="Lottie animation" width="50%" height="20%"/>
+<img src="../animations/img-06.gif" alt="Lottie animation" width="50%" height="20%"/>
 
-Como pode ver, é bem simples. Você pode conferir a [documentação da biblioteca](https://github.com/airbnb/lottie/blob/master/android-compose.md) para ver outros tipos de implementações.
+Como pode ver, é bem simples utilizar animações Lottie no Compose. Você pode conferir a [documentação da biblioteca](https://github.com/airbnb/lottie/blob/master/android-compose.md) para ver outros tipos de implementações.
+
+## Conclusão
+
+Animações com certeza dão um up a mais em qualquer app e conhecer algumas delas no Compose é essencial. Compose oferece muitos recursos e facilita muito o uso de animações, como você pôde ver nos exemplos acima. Não se esqueça de conferir a documentação para conhecer mais sobre animações no Compose.
 
 ## :link: Conteúdos auxiliares:
 - [Quick guide to Animations in Compose (documentação)](https://developer.android.com/jetpack/compose/animation/quick-guide)
 - [Animation modifiers and composables (documentação)](https://developer.android.com/jetpack/compose/animation/composables-modifiers)
+- [Simple Animation with Jetpack Compose (codelab)](https://developer.android.com/codelabs/basic-android-kotlin-compose-woof-animation#0)
