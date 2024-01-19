@@ -1,24 +1,26 @@
 # Introdução
 
-Esse conteúdo foi planejado para ser algo direto ao ponto para iniciantes, mas em alguns momentos você poderá ver diversas informações importantes que podem tornar alguns tópicos relativamente extensos. Cada seção abordará temas específicos, sendo como espécie de capítulos, e terá referências tanto à documentação quanto a conteúdos que eu achar interessantes.
+Esse conteúdo foi planejado para ser algo direto ao ponto para iniciantes, mas em alguns momentos você poderá ver diversas informações importantes que podem tornar alguns tópicos relativamente extensos. Cada seção abordará temas específicos, sendo como espécie de capítulos, e terá referências tanto à documentação quanto a conteúdos que eu achar interessantes referenciar.
 
-As seções estão numa ordem cronológica do que acredito ser interessante aprender primeiro, mas essa ordem pode mudar ou não ter grande eficiência. Se você não for um completo iniciante no Compose, não precisa se prender a essa ordem, caso contrário, é recomendável segui-la.
+As seções estão organizadas numa ordem cronológica do que acredito ser interessante aprender primeiro, mas essa ordem pode mudar ou não ter grande eficiência. Se você não for um completo iniciante no Compose, não precisa se prender a essa ordem, caso contrário, é recomendável segui-la.
 
 ## Requisitos mínimos
+
+É necessário que você conheça a linguagem [Kotlin](https://kotlinlang.org/docs/home.html) e de preferência, tenha familiaridade com Android nativo. Todas as seções cobrem apenas conteúdos relacionados ao Jetpack Compose. Conteúdos específicos do Android, como **Activities, Services, ViewModels** etc., não são explorados aqui.
 
 Para fins de compatibilidade e evitar problemas, é recomendável que você esteja usando:
 
 - **Android Studio Hedgehog - 2023.1.1** ou superior.
 - [Compose BOM 2023.10.01](https://developer.android.com/jetpack/compose/bom/bom-mapping) ou superior.
-- Kotlin 1.9.20 ou superior.
-- kotlinCompilerExtensionVersion 1.5.6 ou superior.
-- Material Design 3.
+- **Kotlin** 1.9.20 ou superior.
+- **kotlinCompilerExtensionVersion** 1.5.6 ou superior.
+- **Material Design 3**.
 
-Todo o conteúdo está sendo criado com base nos componentes do Material Design 3. Há várias diferenças em alguns componentes do MD2 e MD3 no Compose, portanto, é recomendável seguir o MD3 para evitar problemas com o conteúdo. Ao criar um projeto Compose no Android Studio Hedgehog, o MD3 é incluído por padrão.
+Todo o conteúdo está sendo criado com base nos componentes do **Material Design 3**. Há várias diferenças em alguns componentes do MD2 e MD3 no Compose, portanto, é recomendável seguir o MD3 para evitar problemas com o conteúdo. Ao criar um projeto Compose no Android Studio Hedgehog, o MD3 é incluído por padrão.
 
 - Você pode usar o [Material Theme Builder](https://m3.material.io/theme-builder) para criar seu tema rapidamente.
 
-Vamos utilizar as dependências que vêm configuradas ao criar um projeto Compose, que atualmente na versão do  Android Studio Hedgehog são:
+Vamos utilizar as dependências que vêm configuradas ao criar um projeto Compose, que geralmente são:
 
 ```gradle
 dependencies {
@@ -46,4 +48,4 @@ As seções que precisarem de novas dependências terão essa informação inclu
 
 ## Não esqueça a documentação oficial
 
-O foco desse conteúdo não é substituir a documentação oficial nem você deve evitar de lê-la, é claro. Em muitas seções você lerá coisas que foram retiradas da própria documentação, mas usando outras palavras, tentando tornar mais simples ou mais explicativo. Tentarei melhorar apenas o que eu achar necessário.
+O foco desse conteúdo não é substituir a documentação oficial nem você deve evitar de lê-la. A maioria do conteúdo terá como fonte de apoio a própria documentação. Em muitas seções você lerá coisas que foram retiradas dela, às vezes usando outras palavras, tentando tornar mais simples ou mais explicativo. Tentarei melhorar apenas o que eu achar necessário.
