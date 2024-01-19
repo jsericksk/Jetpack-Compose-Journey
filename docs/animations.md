@@ -306,7 +306,7 @@ dependencies {
 }
 ```
 
-Vamos ver uma pequena implementação básica com uma animação de loading. Você pode baixar o arquivo de animação usado no exemplo abaixo [aqui](https://lottiefiles.com/animations/loading-sand-clock-YwwRRL2vx4) se desejar. Para baixar outras animações, acesse o [LottieFiles](https://lottiefiles.com/featured).
+Vamos ver uma pequena implementação básica com uma animação de loading. Você pode baixar o arquivo de animação usado no exemplo abaixo [aqui](https://lottiefiles.com/animations/loading-sand-clock-YwwRRL2vx4) se desejar. Para baixar outras animações, acesse o [LottieFiles](https://lottiefiles.com/featured). Você deve colocar o arquivo **json** da animação na pasta **res/raw** do seu projeto.
 
 ```kotlin
 @Composable
