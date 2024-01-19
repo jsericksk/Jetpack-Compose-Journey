@@ -290,7 +290,7 @@ private fun Info() {
 }
 ```
 
-<img src="../animations/img-05.gif" alt="Modifier.animateContentSize()" width="50%" height="20%"/>
+<img src="../animations/img-05.gif" alt="animateDpAsState() e animateFloatAsState" width="50%" height="20%"/>
 
 Como pode ver, no caso do padding, usamos o ```Modifier.padding()``` no **Text()** como faríamos normalmente, mas dessa vez usando nosso valor de **animateDpAsState()**. No caso da rotação do ícone, usamos o ```Modifier.rotate()``` no **Icon()**, com o nosso valor de **animateFloatAsState()**.
 
