@@ -149,6 +149,10 @@ Você também pode executar sua Preview como se fosse uma tela normal do seu app
 
 ![Preview com devices](previews/img-05.png)
 
+Também é possível interagir com as Previews no **modo interativo** do Android Studio. Esse recurso é muito útil para visualizar alguns comportamentos simples, como mudanças de estados após um clique, animações etc. Veja o exemplo abaixo na imagem retirada da documentação.
+
+![Modo interativo](previews/img-06.gif)
+
 ## :link: Conteúdos auxiliares:
 - [Previews (documentação)](https://developer.android.com/jetpack/compose/tooling/previews)
 - [Animation Preview (documentação)](https://developer.android.com/jetpack/compose/tooling/animation-preview)
