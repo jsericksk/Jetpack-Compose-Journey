@@ -47,7 +47,7 @@ Você verá isso se repetindo em praticamente todos os componentes do Compose, i
 
 #### Nomear argumentos é uma boa prática
 
-É sempre recomendável nomear seus argumentos. Por exemplo:
+É recomendável na maioria das vezes nomear seus argumentos. Por exemplo:
 
 ```kotlin
 @Composable
