@@ -63,6 +63,7 @@ nav:
     - 'SideEffect': side-effects/sideeffect.md
     - 'Outros side effects': side-effects/others.md
   - 'Animações': animations.md
+  - 'Interoperabilidade: Usando Views no Compose': interoperability.md
 
 markdown_extensions:
   - pymdownx.tasklist
