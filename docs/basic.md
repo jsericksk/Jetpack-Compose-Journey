@@ -62,7 +62,7 @@ Ao invés disso: ```Profile("John", 20, true)```
 
 Faça isso: ```Profile(name = "John", age = 20, online = true)```
 
-Isso obviamente nem sempre é necessário, quando a função tem apenas 1 ou 2 parâmetros, por exemplo, mas na maioria das vezes é sempre interessante deixar o argumento explícito para fins de legibilidade.
+Isso obviamente nem sempre é necessário, quando a função tem apenas 1 ou 2 parâmetros, por exemplo, mas na maioria das vezes é uma boa prática para fins de legibilidade.
 
 ## Funções Composable com sua devida visibilidade
 

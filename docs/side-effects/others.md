@@ -22,9 +22,10 @@ Você deve usar o **derivedStateOf** quando suas entradas para um Composable mud
 
 Vimos nessa seção o que são e como trabalhar com **side effects**, além de ser notório que existem vários para diferentes situações. Apesar disso, pode ser comum não os utilizar muito, até porque, como vimos logo no início da seção, **o ideal é que funções Composable sejam livres de efeitos colaterais**.
 
-Pode ser um pouco confuso entender tudo de início ou quando utilizar alguns deles, mas não se preocupe com isso. Com o tempo e com a prática, entendê-los será um **efeito colateral** natural. :)
+Pode ser um pouco confuso entender tudo de início ou quando utilizar alguns deles, mas não se preocupe com isso. Com o tempo e com a prática, entendê-los será apenas um **efeito colateral**. :)
 
 Como sempre, não se esqueça de ler mais sobre eles na documentação oficial.
 
 ## :link: Conteúdos auxiliares:
 - [Side-effects in Compose (documentação)](https://developer.android.com/jetpack/compose/side-effects)
+- [Advanced State and Side Effects in Jetpack Compose (codelab)](https://developer.android.com/codelabs/jetpack-compose-advanced-state-side-effects)
