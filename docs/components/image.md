@@ -6,7 +6,7 @@ Praticamente todo app tem imagens. Essa seção abordará algumas das funções 
 
 Antes de falarmos sobre o componente **Image()**, vamos falar sobre o [Icon()](https://developer.android.com/jetpack/compose/graphics/images/material). Você pode obter o mesmo comportamento usando Image(), mas Icon() é uma forma mais conveniente para carregar ícones, como drawables vetoriais. Isso porque ele fornece uma propriedade **tint** que pode ser usada para mudar a cor do ícone facilmente. Já usamos ele em seções anteriores, mas vamos ver mais um exemplo:
 
-Compose possui alguns ícones padrão fornecido através de **Icons**, como por exemplo: ```Icons.Default.Delete```. Você pode usar ícones tanto com ***imageVector*** quanto ***painter***, como no exemplo abaixo:
+Compose possui alguns ícones padrão fornecido através de **Icons**, como por exemplo: ```Icons.Default.Delete```. Você pode usar ícones tanto com ***imageVector*** quanto ***painter***, como no exemplo abaixo, que utiliza um ícone de **Icons** e um ícone criado através do [**Image Asset Studio**](https://developer.android.com/studio/write/create-app-icons):
 
 ```kotlin
 @Composable
@@ -48,7 +48,7 @@ private fun Image() {
 
 ![Image](image/img-02.png)
 
-Adicionamos um ***ContentScale.Crop*** e mudamos o tamanho da imagem com o ***Modifier.size(width = 200.dp, height = 150.dp)***. Veja [esse guia](https://www.composables.com/tutorials/contentscale) para ter noção sobre qual ContentScale você pode utilizar e como ele modifica a exibição da imagem.
+Adicionamos um ***ContentScale.Crop*** e mudamos o tamanho da imagem com o ***Modifier.size(width = 200.dp, height = 150.dp)***. Veja a [documentação](https://developer.android.com/jetpack/compose/graphics/images/customize#content-scale) para ter mais noção sobre o **ContentScale** e como ele modifica a exibição da imagem.
 
 ## Carregando imagens da internet
 
@@ -58,7 +58,7 @@ Assim como no sistema View, Compose não oferece uma maneira nativa de carregar 
 implementation("io.coil-kt:coil-compose:$version")
 ```
 
-Lembre-se também de adicionar a permissão no **AndroidManifest**:
+Lembre-se também de adicionar a permissão de acesso à internet no **AndroidManifest**:
 
 ```xml
 <uses-permission android:name="android.permission.INTERNET" />
