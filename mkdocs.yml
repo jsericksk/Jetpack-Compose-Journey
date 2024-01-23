@@ -1,16 +1,18 @@
+# Project information
 site_name: Jetpack Compose Journey
 site_description: 'Conteúdo sobre Jetpack Compose voltado para iniciantes'
 site_author: 'Jesus Ericks'
 site_url: 'https://github.com/jsericksk/Jetpack-Compose-Journey'
 edit_uri: 'tree/main/docs/'
 
-## Local dev
+# Local dev
 dev_addr: 127.0.0.1:3333
 
-## Custom colors
+# Custom colors
 extra_css:
   - stylesheets/extra.css
 
+# Theme
 theme:
   name: material
   language: pt-BR
@@ -69,6 +71,7 @@ nav:
   - 'Animações': animations.md
   - 'Interoperabilidade: Usando Views no Compose': interoperability.md
 
+# Extensions
 markdown_extensions:
   - pymdownx.tasklist
   - pymdownx.emoji
@@ -88,6 +91,7 @@ markdown_extensions:
   - pymdownx.tabbed:
       alternate_style: true
 
+# Plugins
 plugins:
   - search
   - git-revision-date-localized:
