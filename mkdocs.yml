@@ -7,6 +7,10 @@ edit_uri: 'tree/main/docs/'
 ## Local dev
 dev_addr: 127.0.0.1:3333
 
+## Custom colors
+extra_css:
+  - stylesheets/extra.css
+
 theme:
   name: material
   language: pt-BR
@@ -15,16 +19,14 @@ theme:
   palette:
     # Light mode
     - scheme: default
-      primary: black
-      accent: red
+      primary: custom
       toggle:
         icon: material/weather-night
-        name: Mudar para tema light
+        name: Mudar para tema dark
 
     # Dark mode
     - scheme: slate
-      primary: green
-      accent: red
+      primary: custom
       toggle:
         icon: material/weather-sunny
         name: Mudar para tema light
