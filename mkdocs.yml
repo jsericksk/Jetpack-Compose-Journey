@@ -33,6 +33,8 @@ theme:
 
 # Navigation
 nav:
+  - 'Informações do Conteúdo':
+    - 'Guia de Contribuição': content-info/contributing.md
   - 'Introdução': index.md
   - 'Conhecimentos básicos iniciais': basic.md
   - 'Layouts':
