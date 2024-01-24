@@ -30,9 +30,9 @@ Nesse código, ***name*** é o estado e está sendo usado por ***Text()***. Na t
 
 ```var name by remember { mutableStateOf("John") }```
 
-## Estados nos Composables
+## remember e mutableStateOf
 
-Fizemos duas pequenas alterações no código anterior: usamos ***remember { }*** e ***mutableStateOf()***. Um valor calculado com **remember** é armazenado na composição durante a composição inicial e o valor armazenado é retornado durante a recomposição. Já ***mutableStateOf()*** cria um MutableState<T>, que é um tipo observável integrado ao Compose runtime. Como argumento, ***mutableStateOf()*** espera um valor padrão inicial, que no nosso caso é "John".
+Fizemos duas pequenas alterações no código anterior: usamos ***remember { }*** e ***mutableStateOf()***. Um valor calculado com **remember** é armazenado na composição durante a composição inicial e o valor armazenado é retornado durante a recomposição. Já ***mutableStateOf()*** cria um ***MutableState<T>***, que é um tipo observável integrado ao Compose runtime. Como argumento, ***mutableStateOf()*** espera um valor padrão inicial, que no nosso caso é "John".
 
 Como visto na [documentação](https://developer.android.com/jetpack/compose/mental-model#frequent), **a recomposição pode acontecer com bastante frequência**.
 
@@ -54,11 +54,11 @@ import androidx.compose.runtime.setValue
 ```
 #### Usando rememberSaveable
 
-***remember*** não funciona nas alterações de configuração, como uma rotação de tela. Para isso existe a opção ***rememberSaveable***, que salva automaticamente qualquer valor que possa ser salvo em um arquivo **Bundle**, como Strings e tipos primitivos.
+Os valores salvos com ***remember*** são perdidos em alterações de configuração, como uma rotação de tela. Para isso existe a opção ***rememberSaveable***, que salva automaticamente qualquer valor que possa ser salvo em um **Bundle**, como Strings e tipos primitivos.
 
-#### remember não precisa de mutableState
+#### remember sem mutableState
 
-Apesar de ser usado com frequência em conjunto com ***mutableState***, a função do ***remember*** não é apenas guardar um valor observável **MutableState**. Você também pode usar ***remember*** para armazenar qualquer objeto ou resultado de uma operação que seja caro para inicializar ou calcular no Composable. Talvez você não queira repetir esse cálculo em cada recomposição. Um exemplo é a criação deste objeto **ShaderBrush**, que é uma operação cara e não queremos que ele seja recriado em cada sabe-se lá quantas recomposições:
+Apesar de ser usado com frequência em conjunto com o ***mutableState***, a função do ***remember*** não é apenas guardar um valor observável **MutableState**. Você também pode usar ***remember*** para armazenar qualquer objeto ou resultado de uma operação que seja caro para inicializar ou calcular no Composable. Talvez você não queira repetir esse cálculo em cada recomposição. Um exemplo é a criação do objeto **ShaderBrush** abaixo, que é uma operação cara:
 
 ```kotlin
 val brush = remember {
@@ -71,6 +71,104 @@ val brush = remember {
     )
 }
 ```
+
+#### remember com keys
+
+Também é possível passar alguns argumentos para ***remember***, nomeados como **keys**. Você pode usar um número variável de **keys**, ou até mesmo nenhum, como já fizemos acima. Quando o valor de uma das **keys** muda, o código do **remember** é reexecutado para obter o novo valor. Vamos ver um exemplo prático disso.
+
+Temos a função abaixo para destacar em negrito um texto de uma String que esteja entre ```<b>``` e ```</b>``` (esse parser não funciona em textos muito complexos e serve apenas de exemplo). Adicionei um ```Log.d()``` para exibir posteriormente quantas vezes essa função é chamada.
+
+```kotlin
+private fun createAnnotatedString(text: String): AnnotatedString {
+    Log.d("Caption", "createAnnotatedString() chamada")
+    val parts = text.split("<b>", "</b>")
+    return buildAnnotatedString {
+        var bold = false
+        for (part in parts) {
+            if (bold) {
+                withStyle(
+                    style = SpanStyle(
+                        color = Color.Red,
+                        fontWeight = FontWeight.Bold
+                    )
+                ) { append(part) }
+            } else {
+                append(part)
+            }
+            bold = !bold
+        }
+    }
+}
+```
+
+Então, temos a Composable **Caption()** abaixo que faz uso dessa **createAnnotatedString()**, aplicando o destaque a um **Text()**, já que esse componente também tem uma opção para **AnnotatedString**, que é o que queremos.
+
+```kotlin
+@Composable
+private fun Caption() {
+    var caption by remember { mutableStateOf("Jetpack <b>Compose</b> Journey") }
+    var backgroundColor by remember { mutableStateOf(Color.White) }
+    Column(
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
+            .fillMaxSize()
+            .background(backgroundColor)
+            .clickable {
+                backgroundColor = if (backgroundColor == Color.White) Color.LightGray else Color.White
+            }
+            .padding(24.dp)
+    ) {
+        Text(
+            text = createAnnotatedString(text = caption),
+            fontSize = 18.sp,
+            modifier = Modifier
+                .padding(12.dp)
+        )
+        Spacer(Modifier.height(18.dp))
+        OutlinedTextField(
+            value = caption,
+            onValueChange = { newCaption ->
+                caption = newCaption
+            },
+            label = { Text(text = "Legenda") },
+            shape = RoundedCornerShape(16.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+        )
+    }
+}
+```
+
+Veja o resultado disso:
+
+![remember com key](state/img-02.gif)
+
+Como pode ver, a função **createAnnotatedString()** está sendo chamada mais do que deveria e isso obviamente é por conta da recomposição e a forma como a estamos usando. Não queremos que **createAnnotatedString()** seja chamada quando a cor de fundo da **Column** mudar ou outra recomposição sem correlação acontecer. Para resolver isso, podemos utilizar o **remember** com uma **key**. Usaremos **caption** como **key**, então só iremos obter uma **AnnotatedString** na primeira composição e quando de fato o texto de **caption** mudar.
+
+```kotlin
+@Composable
+private fun Caption() {
+    var caption by remember { mutableStateOf("Jetpack <b>Compose</b> Journey") }
+    var backgroundColor by remember { mutableStateOf(Color.White) }
+    val captionAnnotatedString = remember(key1 = caption) {
+        createAnnotatedString(text = caption)
+    }
+    Column(
+       ...
+    ) {
+        Text(
+            text = captionAnnotatedString,
+            fontSize = 18.sp,
+            modifier = Modifier
+                .padding(12.dp)
+        )
+        ...
+    }
+}
+```
+
+![remember com key](state/img-03.gif)
 
 ## Outros tipos de estados
 
