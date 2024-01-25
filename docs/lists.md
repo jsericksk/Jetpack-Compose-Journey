@@ -4,7 +4,7 @@ Exibir listas é uma função bastante comum em qualquer app e nessa seção vam
 
 ## Scroll com Modifier
 
-Às vezes não precisamos de uma lista em si, mas queremos apenas um conteúdo **scrollable**, como o **ScrollView** do XML. Existem 2 modificadores úteis que podem ser usados com layouts como **Column** para obter esse comportamento: ```Modifier.verticalScroll()``` e ```Modifier.horizontalScroll()```. Veja um exemplo abaixo:
+Às vezes não precisamos de uma lista em si, mas queremos apenas um **conteúdo rolável**, como o **ScrollView** do XML. Existem 2 modificadores úteis que podem ser usados com layouts como **Column** para obter esse comportamento: ```Modifier.verticalScroll()``` e ```Modifier.horizontalScroll()```. Veja um exemplo abaixo:
 
 ```kotlin
 @Composable
@@ -12,20 +12,18 @@ fun MyScreen() {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .horizontalScroll(rememberScrollState())
+            .verticalScroll(rememberScrollState())
     ) {
        // Conteúdo que pode ultrapassar a resolução da tela verticalmente
     }
 }
 ```
 
-Isso é útil para layouts ou listas pequenas que ultrapassam a tela, porém, pode causar problemas de desempenho para listas de itens maiores ou com tamanho desconhecido, pois todos os itens serão compostos e organizados, estejam ou não visíveis.
+Isso é útil para layouts ou listas pequenas que ultrapassam a tela, porém, pode causar problemas de desempenho com listas grandes ou com tamanho desconhecido, pois todos os itens serão compostos e processados, estejam ou não visíveis na tela.
 
 ## LazyColumn e LazyRow
 
-Compose fornece um conjunto de componentes que apenas compõem e organizam os itens atualmente visíveis. Um comportamento bem similar ao **RecyclerView** do XML.
-
-Alguns desses componentes são o ***LazyColumn*** e ***LazyRow***, que como os nomes sugerem, fornecem uma lista de rolagem vertical e horizontal, respectivamente.
+Compose fornece um conjunto de componentes que apenas compõem e processa os itens atualmente visíveis. Um comportamento bem similar ao **RecyclerView** do XML. Alguns desses componentes são o ***LazyColumn*** e ***LazyRow***, que como os nomes sugerem, fornecem uma lista de rolagem vertical e horizontal, respectivamente.
 
 Vamos criar uma lista básica de imagens utilizando ***LazyColumn***. Primeiro vamos criar uma **data class** para representar as imagens:
 
