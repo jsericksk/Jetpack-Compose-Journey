@@ -141,7 +141,7 @@ Dessa forma podemos utilizar **PreviewLightDark** em nossas Previews facilmente:
 private fun Preview() { ... }
 ```
 
-- A partir do **androidx.compose.ui:ui-tooling-preview1.6.0-alpha01**, foram introduzidas diversas novas anotações focadas em MultiPreview, como **@PreviewScreenSizes, @PreviewFontScales, @PreviewLightDark e @PreviewDynamicColors**. Enquanto essa seção está sendo escrita, estou usando o [Compose BOM 2023.10.01](https://developer.android.com/jetpack/compose/bom/bom-mapping) que usa a versão do Compose 1.5.4, que não possui essas anotações.
+- A partir da versão **1.6.0** do **Jetpack Compose** ([Compose BOM 2024.01.00](https://developer.android.com/jetpack/compose/bom/bom-mapping), mais especificamente o **androidx.compose.ui:ui-tooling-preview:1.6.0**), foram introduzidas diversas novas anotações focadas em MultiPreview, como **@PreviewScreenSizes, @PreviewFontScales, @PreviewLightDark e @PreviewDynamicColors**. Você pode utilizá-las para evitar criar anotações manualmente para esses casos mais comuns.
 
 ## Outros pontos importantes
 
