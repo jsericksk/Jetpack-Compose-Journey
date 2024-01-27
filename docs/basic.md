@@ -20,6 +20,29 @@ Compose trabalha com **estados e eventos**. Um estado é qualquer valor que pode
 
 Portanto, recomposição é o processo de chamar suas funções Composable novamente quando as entradas mudam. Isso é feito pelo Compose. Quando o Compose recompõe com base em novas entradas, ele chama apenas as funções ou lambdas que podem ter sido alteradas e ignora o restante. Ao ignorar todas as funções ou lambdas que não possuem parâmetros alterados, o Compose pode recompor com eficiência.
 
+Em termos práticos, isso significa que não podemos fazer com funções Composable o que normalmente poderia ser feito com funções "normais". Por exemplo, vamos ver um código simples que obtém uma lista de arquivos e posteriormente muda o texto de um **TextView** com o nome do primeiro arquivo da lista:
+
+```kotlin
+private fun fileItem() {
+    val files = getFiles()
+    textView.setText("Nome do primeiro arquivo: ${files.first().name}")
+    // Outras configurações
+}
+```
+
+Isso funcionaria sem problemas no cenário do XML. Agora veja um código similar no Compose:
+
+```kotlin
+@Composable
+private fun FileItem() {
+    val files = getFiles()
+    Text(text = "Nome do primeiro arquivo: ${files.first().name}")
+    // Outras configurações
+}
+```
+
+Isso até funciona no Compose, porém, há um grande problema. **FileItem()** pode **recompor** várias vezes, o que significa que **getFiles()** também seria chamada inúmeras vezes desnecessariamente, pois a **recomposição** causaria isso. Você lerá um pouco mais sobre isso na seção sobre [**side effects (efeitos colaterais)**](../side-effects/launchedeffect).
+
 #### Não espere uma ordem na chamada de funções Composable
 
 Se uma função Composable contém chamadas para outras funções Composable, essas funções poderão ser executadas em qualquer ordem. O Compose pode reconhecer que alguns elementos da UI têm maior prioridade do que outros e desenhá-los primeiro. Por exemplo:
