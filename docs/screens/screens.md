@@ -418,7 +418,9 @@ private fun MainContent(
 
 <img src="../screens/img-02.png" alt="HomeScreen" width="50%" height="20%"/>
 
-A **TrackingScreen** não possui nada do que não já vimos antes, mas como destaque, é possível perceber que ela possui 2 parâmetros, **code** e **cep**, que são os que iremos passar quando navegar da **HomeScreen**. Ela também utiliza uma função do **TrackingViewModel** chamada **getTrackingInfo()**, que veremos posteriormente que é apenas uma forma de inicializar o estado da tela. Estamos usando **LaunchedEffect(Unit)** para que essa função seja chamada apenas na primeira composição da tela. É importante notar que em um cenário real, onde **getTrackingInfo()** fosse uma função que busca informações em um repositório com base no código de rastreio e cep e devesse ser chamada apenas na primeira vez que a tela é exibida, chamá-la dessa forma com **LaunchedEffect(Unit)** talvez não fosse o mais ideal, pois a função ainda seria chamada em rotações de tela e buscaria os dados novamente. Mas funciona bem como exemplo.
+A **TrackingScreen** não possui nada do que não já vimos antes, mas como destaque, é possível perceber que ela possui 2 parâmetros, **code** e **cep**, que são os que iremos passar quando navegar da **HomeScreen**, além do **onNavigateBack**, que será acionado quando o ícone de arrow back for tocado para voltar à tela anterior. Ela também utiliza uma função do **TrackingViewModel** chamada **getTrackingInfo()**, que veremos posteriormente que é apenas uma forma de inicializar o estado da tela. Estamos usando **LaunchedEffect(Unit)** para que essa função seja chamada apenas na primeira composição da tela.
+
+É importante notar que em um cenário real, onde **getTrackingInfo()** fosse uma função que busca informações em um repositório com base no código de rastreio e cep e devesse ser chamada apenas na primeira vez que a tela é exibida, chamá-la dessa forma com **LaunchedEffect(Unit)** talvez não fosse o mais ideal, pois a função ainda seria chamada em rotações de tela e buscaria os dados novamente. Mas funciona bem como exemplo.
 
 <details>
   <summary>Ver código da TrackingViewModel</summary>
