@@ -1,12 +1,25 @@
 # Telas, ViewModels e navegação
 
-Na grande maioria das vezes, os aplicativos possuem mais de uma tela e, obviamente, uma navegação entre elas. Nessa seção veremos um pouco sobre a construção de um app simples que com telas, uma navegação entre elas e também um componente muito conhecido e utilizado no Android, que é o **ViewModel**.
+Na grande maioria das vezes, os aplicativos possuem mais de uma tela e uma navegação entre elas. Nessa seção veremos um pouco sobre a construção de um app simples com telas, uma navegação entre elas e também um componente muito conhecido e utilizado no Android, que é o **ViewModel**.
 
 ## O que faremos
 
 Vamos construir um app bem básico com apenas duas telas. Será um app do tipo rastreador de encomendas, com uma tela inicial e uma tela de informações sobre o rastreio. Para não tornar as coisas muito complexas e como esse não é o objetivo dessa seção, não há uma funcionalidade real no app, nem conexão com a internet ou coisas do tipo.
 
-Diferente das seções anteriores, dessa vez teremos uma pequena organização a mais. Você pode fazer da forma que preferir, mas vamos utilizar um padrão bem utilizado, que é o de um nome de tela por pacote. Por exemplo, criaremos um pacote **home** e, dentro dele, teremos os arquivos **HomeScreen** e **HomeViewModel**, além de tudo que envolver a **HomeScreen**.
+Diferente das seções anteriores, dessa vez teremos uma pequena organização a mais. Você pode fazer da forma que preferir, mas vamos utilizar um padrão bem utilizado, que é o de um nome de pacote por tela. Primeiro criaremos um pacote **screens** onde terá mais dois pacotes representando as duas telas, **home** e **tracking**. Cada pacote terá um arquivo relacionado aquela tela. Veja o exemplo abaixo:
+
+```
+...
+screens:
+    home ->
+        HomeScreen.kt
+        HomeViewModel.kt
+        ...
+    tracking ->
+        TrackingScreen.kt
+        ...
+...
+```
 
 ## Criando a HomeScreen
 
