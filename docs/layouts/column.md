@@ -11,7 +11,7 @@ Sem especificar um layout, os componentes Composable vão ser colocados uns sobr
 fun Profile() {
     Image(
         painter = painterResource(id = R.drawable.baseline_person_24),
-        contentDescription = "profile image",
+        contentDescription = "Profile image",
         modifier = Modifier.size(50.dp)
     )
     Text(text = "John")
@@ -31,7 +31,7 @@ fun Profile() {
     Column {
         Image(
             painter = painterResource(id = R.drawable.baseline_person_24),
-            contentDescription = "profile image",
+            contentDescription = "Profile image",
             modifier = Modifier.size(50.dp)
         )
         Text(text = "John")
@@ -189,7 +189,7 @@ fun Profile() {
     ) {
         Image(
             painter = painterResource(id = R.drawable.baseline_person_24),
-            contentDescription = "profile image",
+            contentDescription = "Profile image",
             modifier = Modifier
                 .size(50.dp)
                 .align(Alignment.CenterHorizontally)
