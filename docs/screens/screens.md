@@ -11,11 +11,11 @@ Diferente das seções anteriores, dessa vez teremos uma pequena organização a
 ```
 ...
 screens:
-    home ->
+    home:
         HomeScreen.kt
         HomeViewModel.kt
         ...
-    tracking ->
+    tracking:
         TrackingScreen.kt
         ...
 ...
