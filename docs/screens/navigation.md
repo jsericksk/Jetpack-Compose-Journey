@@ -4,7 +4,19 @@ Já criamos as duas telas principais no tópico anterior, então agora veremos u
 
 ## Navigation Component
 
-O [**Navigation Component**](https://developer.android.com/guide/navigation) é bem conhecido no sistema de Views e também possui uma versão para Compose. Por ser o componente oficial de navegação, vamos utilizá-lo. É importante saber que existem diversas alternativas para atingir essa função de navegação, como por exemplo as bibliotecas [Voyager](https://github.com/adrielcafe/voyager) e [Decompose](https://github.com/arkivanov/Decompose), que inclusive oferecem alguns recursos a mais que o **Navigation Component** não possui.
+O [**Navigation Component**](https://developer.android.com/guide/navigation) é bem conhecido no sistema de Views e também possui uma versão para Compose. Por ser o componente oficial de navegação, vamos utilizá-lo. É importante saber que existem diversas alternativas para atingir essa função, como por exemplo as bibliotecas [Voyager](https://github.com/adrielcafe/voyager) e [Decompose](https://github.com/arkivanov/Decompose), que inclusive oferecem alguns recursos a mais que o **Navigation Component** não possui.
+
+Antes de tudo, adicione a dependência do **Navigation Component** (cheque a versão atual na [documentação](https://developer.android.com/guide/navigation)):
+
+```gradle
+implementation("androidx.navigation:navigation-compose:$version")
+```
+
+Existem 3 conceitos principais no **Navigation Component**:
+
+- **Navigation Graph**: Uma estrutura de dados que define todos os destinos de navegação no aplicativo e como eles se conectam. No caso desse projeto de exemplo, o arquivo **AppNavHost** que vamos criar mais a frente será nosso gráfico de navegação.
+- **NavHost**: O componente principal onde faz referência a um **NavController**, assim como define um **destino inicial**. Ele também é responsável por conter as **composable()** (extension function de **NavGraphBuilder**) que são usadas para compor as telas do app. Cada tela é um **destino** e possui uma **rota** exclusiva do tipo String.
+- **NavController:** O coordenador central para gerenciar a navegação entre destinos. O **NavController** oferece métodos para navegar entre destinos, lidar com deep links, gerenciar backstack e muito mais.
 
 ## Organizando
 
@@ -151,3 +163,87 @@ class MainActivity : ComponentActivity() {
 E é isso! O app já deve se comportar devidamente com a navegação entre as duas telas, como pode ver na imagem abaixo.
 
 <img src="../navigation/img-01.gif" alt="Navigation" width="50%" height="20%"/>
+
+## Usando SavedStateHandle
+
+Atualmente estamos obtendo os argumentos passados da **HomeScreen** diretamente com o **NavBackStackEntry** no **AppNavHost**, mais especificamente na **composable()** da rota da **TrackingScreen**. No entanto, existe também uma outra maneira de obter esses argumentos através do módulo **SavedStateHandle**. Vamos fazer isso e ver como as coisas mudam um pouco.
+
+#### Modificando o TrackingViewModel
+
+Precisamos primeiro alterar o **TrackingViewModel** que já fizemos antes. Veja como ele ficará agora:
+
+```kotlin
+class TrackingViewModel(
+    private val savedStateHandle: SavedStateHandle
+) : ViewModel() {
+    private val _uiState = MutableStateFlow(
+        TrackingUiState(
+            code = savedStateHandle.get<String>(TRACKING_CODE) ?: "",
+            cep = savedStateHandle.get<Int>(TRACKING_CEP) ?: 0,
+        )
+    )
+    val uiState: StateFlow<TrackingUiState> = _uiState.asStateFlow()
+}
+```
+
+Foi adicionado a propriedade do **SavedStateHandle** e a função **getTrackingInfo()** foi removida. Como vimos na versão anterior, **getTrackingInfo()** só servia para inicializar o **code** e **cep**. Nessa nova versão, a **TrackingUiState** é inicializada diretamente com os valores do **SavedStateHandle** através da função **get()**, que espera uma **key** para buscar o argumento. Como ela pode retornar null se não houver nada encontrado com a **key** passada, adicionamos com um valor padrão.
+
+O **SavedStateHandle** pode ser usado de outras formas, inclusive com **Flows**, porém não vamos ver essa abordagem aqui, pois não é o caso.
+
+#### Modificando a TrackingScreen
+
+Como agora vamos obter os argumentos diretamente do **ViewModel**, não precisamos mais que a **TrackingScreen** tenha os parâmetros **code** e **cep**. Além disso, a abordagem para instanciar o **TrackingViewModel** vai mudar, pois agora ele espera um argumento **SavedStateHandle**. Veja como ela fica agora:
+
+```kotlin
+@Composable
+fun TrackingScreen(onNavigateBack: () -> Unit) {
+    val trackingViewModel = viewModel { 
+        val savedStateHandle = createSavedStateHandle()
+        TrackingViewModel(savedStateHandle)
+    }
+    val uiState by trackingViewModel.uiState.collectAsStateWithLifecycle()
+    TrackingScreenContent(
+        uiState = uiState,
+        onNavigateBack = onNavigateBack
+    )
+}
+```
+
+Note que para utilizar a função **viewModel** que possui um lambda para criar o **SavedStateHandle** através da função **createSavedStateHandle()**, você precisa da seguinte dependência (cheque a versão atual na [documentação](https://developer.android.com/jetpack/androidx/releases/lifecycle)):
+
+```gradle
+implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$version")
+```
+
+Como o **Navigation Component** já inclui essa dependência por padrão, você não precisa adicioná-la explicitamente se não desejar.
+
+#### Modificando o AppNavHost
+
+Agora também precisamo fazer leves alterações no **AppNavHost**, removendo os argumentos da **TrackingScreen** que não existem mais:
+
+```kotlin
+@Composable
+fun AppNavHost() {
+    val navController = rememberNavController()
+    NavHost(
+        navController = navController,
+        startDestination = Screen.HomeScreen.route
+    ) {
+        ...
+
+        composable(
+            route = Screen.TrackingScreen.route,
+            arguments = listOf(
+                navArgument(name = TRACKING_CODE) {
+                    type = NavType.StringType
+                },
+                navArgument(name = TRACKING_CEP) {
+                    type = NavType.IntType
+                }
+            )
+        ) {
+            TrackingScreen(onNavigateBack = { navController.popBackStack() })
+        }
+    }
+}
+```
