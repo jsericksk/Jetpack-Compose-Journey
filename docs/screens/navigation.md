@@ -20,7 +20,7 @@ Existem 3 conceitos principais no **Navigation Component**:
 
 ## Organizando
 
-Seguindo o que já vinhamos fazendo, vamos criar um novo pacote chamado **navigation**. Mais uma vez, essa organização é opcional e você pode escolher os nomes que preferir. Nesse pacote, crie dois novos arquivos, chamados **AppNavHost** e **Screen**. Veja o exemplo abaixo:
+Seguindo o que já vínhamos fazendo, vamos criar um novo pacote chamado **navigation**. Mais uma vez, essa organização é opcional e você pode escolher os nomes que preferir. Nesse pacote, crie dois novos arquivos, chamados **AppNavHost** e **Screen**. Veja o exemplo abaixo:
 
 ```
 ...
@@ -166,7 +166,7 @@ E é isso! O app já deve se comportar devidamente com a navegação entre as du
 
 ## Usando SavedStateHandle
 
-Atualmente estamos obtendo os argumentos passados da **HomeScreen** diretamente com o **NavBackStackEntry** no **AppNavHost**, mais especificamente na **composable()** da rota da **TrackingScreen**. No entanto, existe também uma outra maneira de obter esses argumentos através do módulo **SavedStateHandle**. Vamos fazer isso e ver como as coisas mudam um pouco.
+Atualmente estamos obtendo os argumentos passados da **HomeScreen** diretamente com o **NavBackStackEntry** no **AppNavHost**, mais especificamente na **composable()** da rota da **TrackingScreen**. No entanto, existe também uma outra maneira de obter esses argumentos através do módulo [**SavedStateHandle**](https://developer.android.com/topic/libraries/architecture/viewmodel/viewmodel-savedstate). Vamos fazer isso e ver como as coisas mudam um pouco.
 
 #### Modificando o TrackingViewModel
 
@@ -247,3 +247,77 @@ fun AppNavHost() {
     }
 }
 ```
+
+## Adicionando animação ao navegar entre telas
+
+Se você olhar bem a imagem demonstrando a navegação do app, verá que não há nenhuma grande animação. A função **composable()** possui alguns parâmetros para modificar as animações de transição, que são: **enterTransition**, **exitTransition**, **popEnterTransition** e **popExitTransition**, onde podemos utilizar animações do tipo **EnterTransition** e **ExitTransition**.
+
+Vamos ver um exemplo básico de quando essas animações são usadas. Digamos que a **HomeScreen** navegue para a **TrackingScreen**:
+
+- **TrackingScreen** executa **enterTransition**.
+- **HomeScreen** executa **exitTransition**.
+
+Nós voltamos à tela anterior (**HomeScreen**), seja tocando no botão voltar ou no ícone de arrow back:
+
+- **TrackingScreen** executa **popExitTransition**.
+- **HomeScreen** executa **popEnterTransition**.
+
+Agora que já sabemos como funciona, vamos aplicar uma pequena animação de slide ao abrir e fechar a **TrackingScreen**. Veja como a **composable()** da **TrackingScreen** fica agora:
+
+```kotlin
+private const val ANIMATION_DURATION = 700
+
+@Composable
+fun AppNavHost() {
+    val navController = rememberNavController()
+    NavHost(
+        ...
+    ) {
+        ...
+        composable(
+            route = Screen.TrackingScreen.route,
+            arguments = listOf(
+                navArgument(name = TRACKING_CODE) {
+                    type = NavType.StringType
+                },
+                navArgument(name = TRACKING_CEP) {
+                    type = NavType.IntType
+                }
+            ),
+            enterTransition = {
+                slideIntoContainer(
+                    towards = AnimatedContentTransitionScope.SlideDirection.Right,
+                    animationSpec = tween(durationMillis = ANIMATION_DURATION)
+                )
+            },
+            popExitTransition = {
+                slideOutOfContainer(
+                    towards = AnimatedContentTransitionScope.SlideDirection.Left,
+                    animationSpec = tween(durationMillis = ANIMATION_DURATION)
+                )
+            }
+        ) {
+            TrackingScreen(onNavigateBack = { navController.popBackStack() })
+        }
+    }
+}
+```
+
+Usamos as funções **slideIntoContainer()** e **slideOutOfContainer()** fornecidas pelo Compose para criar uma animação de slide com uma direção. Veja o resultado:
+
+<img src="../navigation/img-02.gif" alt="Navigation com animação" width="50%" height="20%"/>
+
+Modificando para **SlideDirection.Up** na **slideIntoContainer()** e **SlideDirection.Down** na **slideOutOfContainer()**:
+
+<img src="../navigation/img-03.gif" alt="Navigation com animação" width="50%" height="20%"/>
+
+E claro, também é possível utilizar animações personalizadas, bem como outros tipos de animação, mas para não se estender muito, vamos ficando por aqui nesse tópico.
+
+## Conclusão
+
+Há vários outros pontos que não foram abordados nessa seção sobre **Navigation Component**. Você pode ver alguns deles na documentação oficial, como [**argumentos opcionais**](https://developer.android.com/jetpack/compose/navigation#optional-args) e [**deep links**](https://developer.android.com/jetpack/compose/navigation#deeplinks).
+
+## :link: Conteúdos auxiliares:
+- [Navigation with Compose (documentação)](https://developer.android.com/jetpack/compose/navigation)
+- [Jetpack Compose Navigation (codelab)](https://developer.android.com/codelabs/jetpack-compose-navigation)
+- [Navigation in Jetpack compose. Full guide Beginner to Advanced (artigo)](https://medium.com/@KaushalVasava/navigation-in-jetpack-compose-full-guide-beginner-to-advanced-950c1133740)
