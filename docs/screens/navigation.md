@@ -248,7 +248,7 @@ fun AppNavHost() {
 }
 ```
 
-## Adicionando animação ao navegar entre telas
+## Adicionando animação ao navegar entre as telas
 
 Se você olhar bem a imagem demonstrando a navegação do app, verá que não há nenhuma grande animação. A função **composable()** possui alguns parâmetros para modificar as animações de transição, que são: **enterTransition**, **exitTransition**, **popEnterTransition** e **popExitTransition**, onde podemos utilizar animações do tipo **EnterTransition** e **ExitTransition**.
 
@@ -312,6 +312,65 @@ Modificando para **SlideDirection.Up** na **slideIntoContainer()** e **SlideDire
 <img src="../navigation/img-03.gif" alt="Navigation com animação" width="50%" height="20%"/>
 
 E claro, também é possível utilizar animações personalizadas, bem como outros tipos de animação, mas para não se estender muito, vamos ficando por aqui nesse tópico.
+
+## Resolvendo um problema comum de navegação
+
+Existe um problema bem antigo e conhecido no **Navigation Component** da navegação abrindo múltiplas telas ou telas em branco ao voltar com **navController.popBackStack()**. No nosso código atual, se o usuário tocar o botão de "rastrear" na **HomeScreen** múltiplas vezes em um curto período de tempo, a **TrackingScreen** será aberta múltiplas vezes. Um outro problema similar acontece quando o ícone de arrow back é tocado múltiplas vezes na **TrackingScreen** e uma tela em branco é exibida. Isso também pode acontecer com dispositivos mais lentos, onde às vezes dão duplo clique acidental.
+
+Você pode checar essa [issue](https://github.com/google/accompanist/issues/1320) e [essa](https://github.com/google/accompanist/issues/1408) para referência. Como antigamente só era possível navegar com animação através da **Navigation-Animation** da [**Acompannist**](https://github.com/google/accompanist), essas issues se encontram no repositório dela.
+
+Veja a imagem abaixo para ter ideia do problema:
+
+<img src="../navigation/img-04.gif" alt="Navigation com problemas" width="50%" height="20%"/>
+
+Existem algumas formas de resolver isso. Uma delas seria desabilitar múltiplos cliques do componente em um curto período de tempo, mas isso pode ser complicado e não atinge diretamente o problema, já que se trata de um problema de navegação. Uma opção mais recomendada para esse caso é criar uma função auxiliar que verifica se podemos navegar ou não, checando se o status atual do **Lifecycle** é **Lifecycle.State.RESUMED**, pois se o **Lifecycle** não for "resumed", significa que este **NavBackStackEntry** já processou um evento de navegação. Veja o código abaixo:
+
+```kotlin
+private fun NavBackStackEntry.canNavigate() =
+        this.lifecycle.currentState == Lifecycle.State.RESUMED
+```
+
+Agora basta fazer uma verificação com essa função antes de navegar:
+
+```kotlin
+@Composable
+fun AppNavHost() {
+    ...
+    NavHost(
+       ...
+    ) {
+        composable(
+            route = Screen.HomeScreen.route,
+            ...
+        ) { navBackStackEntry ->
+            HomeScreen(
+                onNavigateToTracking = { code, cep ->
+                    if (navBackStackEntry.canNavigate()) {
+                        navController.navigate(
+                            Screen.TrackingScreen.routeWithArgs(code, cep)
+                        )
+                    }
+                },
+            )
+        }
+
+        composable(
+            route = Screen.TrackingScreen.route,
+            ...
+        ) { navBackStackEntry ->
+            TrackingScreen(
+                onNavigateBack = {
+                    if (navBackStackEntry.canNavigate()) {
+                        navController.popBackStack()
+                    }
+                }
+            )
+        }
+    }
+}
+```
+
+<img src="../navigation/img-05.gif" alt="Navigation sem problemas" width="50%" height="20%"/>
 
 ## Conclusão
 
