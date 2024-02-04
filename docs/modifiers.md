@@ -12,7 +12,7 @@ Os modificadores são praticamente onipresentes e permitem decorar as funções 
 
 Você já deve ter notado que praticamente todo componente no Compose possui um parâmetro **Modifier** opcional, certo? Isso acontece porque **é uma boa prática sempre adicionar um parâmetro Modifier opcional aos Composables**, pois como já foi discutido antes, com ele você pode alterar alguns comportamentos do Composable sem muito esforço.
 
-Portanto, quando estiver criando seu componente, é recomendável sempre colocar um parâmetro Modifier opcional. É importante ser opcional pois nem sempre o chamador irá usar o Modifier. **Ele deve ser o primeiro parâmetro opcional**. Veja o exemplo abaixo, os parâmetros **text** e **onClick** não são opcionais, portanto, ele fica logo abaixo deles:
+Portanto, quando estiver criando seu componente, é recomendável sempre colocar um parâmetro Modifier opcional. É importante ser opcional porque o chamador nem sempre irá usar o Modifier. **Ele deve ser o primeiro parâmetro opcional**. Veja o exemplo abaixo, os parâmetros **text** e **onClick** não são opcionais, portanto, ele fica logo abaixo deles:
 
 ```kotlin
 @Composable
@@ -184,6 +184,161 @@ private fun Item() {
 ![Modifiers](modifiers/img-02.png)
 
 Isso aconteceu porque no primeiro exemplo definimos a cor de fundo antes de definirmos um espaçamento, o que fez com que a cor preenchesse todo o Box. Já no segundo exemplo, definimos um padding antes e, por consequência, a cor de fundo só preencheu o espaço já modificado com padding.
+
+## Margin no Compose
+
+![Margin e Padding](modifiers/img-03.png)
+
+Diferente do sistema de Views, o Compose não possui uma opção para **margin** como no XML. Essa funcionalidade pode ser obtida com ```Modifier.padding()``` utilizando o mesmo princípio da ordem de modificadores que vimos acima.
+
+Vamos ver um pequeno exemplo. Veja o código abaixo:
+
+```kotlin
+@Composable
+private fun MarginAndPadding() {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
+            .background(Color.Black)
+            .width(150.dp)
+    ) {
+        Text(
+            text = "Texto 1",
+            color = Color.White,
+            modifier = Modifier
+                .background(Color(0xFF004D40))
+        )
+        Text(
+            text = "Texto 2",
+            color = Color.White,
+            modifier = Modifier
+                .background(Color(0xFF004D40))
+        )
+    }
+}
+```
+
+![Modifier](modifiers/img-04.png)
+
+Agora vamos aplicar uma **margin** em ambos os textos utilizando ```Modifier.padding()```:
+
+```kotlin
+@Composable
+private fun MarginAndPadding() {
+    Column(
+       ...
+    ) {
+        Text(
+            ...
+            modifier = Modifier
+                .padding(6.dp) // Margin
+                .background(Color(0xFF004D40))
+        )
+        Text(
+            ...
+            modifier = Modifier
+                .padding(6.dp) // Margin
+                .background(Color(0xFF004D40))
+        )
+    }
+}
+```
+
+![Modifier](modifiers/img-05.png)
+
+Agora vamos adicionar um **padding**:
+
+```kotlin
+@Composable
+private fun MarginAndPadding() {
+    Column(
+       ...
+    ) {
+        Text(
+            ...
+            modifier = Modifier
+                .padding(6.dp) // Margin
+                .background(Color(0xFF004D40))
+                .padding(6.dp) // Padding
+        )
+        Text(
+            ...
+            modifier = Modifier
+                .padding(6.dp) // Margin
+                .background(Color(0xFF004D40))
+                .padding(6.dp) // Padding
+        )
+    }
+}
+```
+
+![Modifier](modifiers/img-06.png)
+
+Como você pode ver, ambas as funcionalidades de **margin** e **padding** podem ser atingidas com ```Modifier.padding()```, apenas tendo em mente a ordem dos modificadores. Note que da forma que estamos usando, o **padding** será aplicado em todas as direções (left, right, top e bottom), pois o argumento padrão é **all**. Existem outras funções ```Modifier.padding()``` que aceitam argumentos diferentes, como direções (start, end, top e bottom) ou orientações (vertical e horizontal). Por exemplo:
+
+```kotlin
+@Composable
+private fun MarginAndPadding() {
+    Column(
+       ...
+    ) {
+        Text(
+            ...
+             modifier = Modifier
+                .padding(bottom = 6.dp) // Margin
+                .background(Color(0xFF004D40))
+                .padding(
+                    start = 4.dp,
+                    end = 4.dp,
+                    top = 8.dp,
+                    bottom = 8.dp
+                ) // Padding
+        )
+        Text(
+            ...
+             modifier = Modifier
+                .padding(top = 6.dp) // Margin
+                .background(Color(0xFF004D40))
+                .padding(
+                    start = 4.dp,
+                    end = 4.dp,
+                    top = 8.dp,
+                    bottom = 8.dp
+                ) // Padding
+        )
+    }
+}
+```
+
+![Modifier](modifiers/img-07.png)
+
+Como usamos os mesmos valores para as direções com a mesma orientação, podemos apenas utilizar **horizontal** e **vertical** para atingir o mesmo resultado:
+
+```kotlin
+@Composable
+private fun MarginAndPadding() {
+    Column(
+       ...
+    ) {
+        Text(
+            ...
+            modifier = Modifier
+                .padding(bottom = 6.dp) // Margin
+                .background(Color(0xFF004D40))
+                .padding(horizontal = 4.dp, vertical = 8.dp) // Padding
+        )
+        Text(
+            ...
+            modifier = Modifier
+                .padding(top = 6.dp) // Margin
+                .background(Color(0xFF004D40))
+                .padding(horizontal = 4.dp, vertical = 8.dp) // Padding
+        )
+    }
+}
+```
+
+![Modifier](modifiers/img-07.png)
 
 ## Segurança de escopo no Compose
 
