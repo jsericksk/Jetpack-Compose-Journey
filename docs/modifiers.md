@@ -340,6 +340,56 @@ private fun MarginAndPadding() {
 
 ![Modifier](modifiers/img-07.png)
 
+Se tudo que você precisa é de uma **margin** em um componente para criar um espaço em relação ao outro, como um **marginTop** do XML, você pode utilizar o componente **Spacer()** com ```Modifier.height()``` ou ```Modifier.width()```, que pode ser um pouco mais intuitivo. Por exemplo, ao invés disso:
+
+```kotlin
+@Composable
+private fun MarginAndPadding() {
+    Column(
+       ...
+    ) {
+        Text(
+            ...
+            modifier = Modifier
+                .background(Color(0xFF004D40))
+                .padding(horizontal = 4.dp, vertical = 8.dp) // Padding
+        )
+        Text(
+            ...
+            modifier = Modifier
+                .padding(top = 8.dp) // Equivalente ao marginTop do XML
+                .background(Color(0xFF004D40))
+                .padding(horizontal = 4.dp, vertical = 8.dp) // Padding
+        )
+    }
+}
+```
+
+Você pode fazer isso:
+
+```kotlin
+@Composable
+private fun MarginAndPadding() {
+    Column(
+       ...
+    ) {
+        Text(
+            ...
+            modifier = Modifier
+                .background(Color(0xFF004D40))
+                .padding(horizontal = 4.dp, vertical = 8.dp) // Padding
+        )
+        Spacer(Modifier.height(8.dp))
+        Text(
+            ...
+            modifier = Modifier
+                .background(Color(0xFF004D40))
+                .padding(horizontal = 4.dp, vertical = 8.dp) // Padding
+        )
+    }
+}
+```
+
 ## Segurança de escopo no Compose
 
 No Compose, há modificadores que só podem ser usados ​​quando aplicados a filhos de determinados Composables. O Compose impõe isso por meio de escopos personalizados.
