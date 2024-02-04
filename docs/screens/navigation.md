@@ -323,10 +323,10 @@ Veja a imagem abaixo para ter ideia do problema:
 
 <img src="../navigation/img-04.gif" alt="Navigation com problemas" width="50%" height="20%"/>
 
-Existem algumas formas de resolver isso. Uma delas seria desabilitar múltiplos cliques do componente em um curto período de tempo, mas isso pode ser complicado e não atinge diretamente o problema, já que se trata de um problema de navegação. Uma opção mais recomendada para esse caso é criar uma função auxiliar que verifica se podemos navegar ou não, checando se o status atual do **Lifecycle** é **Lifecycle.State.RESUMED**, pois se o **Lifecycle** não for "resumed", significa que este **NavBackStackEntry** já processou um evento de navegação. Veja o código abaixo:
+Existem algumas formas de resolver isso. Uma delas seria desabilitar múltiplos cliques no componente em um curto período de tempo, mas isso pode ser complicado e não atinge diretamente o problema, já que se trata de um problema de navegação. Uma opção mais recomendada para esse caso é criar uma função auxiliar que se o status atual do **Lifecycle** é **Lifecycle.State.RESUMED**, pois se o **Lifecycle** não for "resumed", significa que este **NavBackStackEntry** já processou um evento de navegação. Veja o código abaixo:
 
 ```kotlin
-private fun NavBackStackEntry.canNavigate() =
+private fun NavBackStackEntry.lifecycleIsResumed() =
         this.lifecycle.currentState == Lifecycle.State.RESUMED
 ```
 
@@ -345,7 +345,7 @@ fun AppNavHost() {
         ) { navBackStackEntry ->
             HomeScreen(
                 onNavigateToTracking = { code, cep ->
-                    if (navBackStackEntry.canNavigate()) {
+                    if (navBackStackEntry.lifecycleIsResumed()) {
                         navController.navigate(
                             Screen.TrackingScreen.routeWithArgs(code, cep)
                         )
@@ -360,7 +360,7 @@ fun AppNavHost() {
         ) { navBackStackEntry ->
             TrackingScreen(
                 onNavigateBack = {
-                    if (navBackStackEntry.canNavigate()) {
+                    if (navBackStackEntry.lifecycleIsResumed()) {
                         navController.popBackStack()
                     }
                 }
@@ -371,6 +371,41 @@ fun AppNavHost() {
 ```
 
 <img src="../navigation/img-05.gif" alt="Navigation sem problemas" width="50%" height="20%"/>
+
+
+#### Problema de argumento com URL
+
+Outro problema comum que pode ocorrer é um **java.lang.IllegalArgumentException** ao tentar passar URLs como argumento. Digamos que tentássemos passar uma URL **https://site.com** como **code** e **123456** como **cep** no código do projeto atual, teríamos a seguinte mensagem de erro crashando o app: ```java.lang.IllegalArgumentException: Navigation destination that matches request NavDeepLinkRequest{ uri=android-app://androidx.navigation/tracking_screen/https://site.com/123456 } cannot be found in the navigation graph ComposeNavGraph```.
+
+O erro é bem claro: a rota não foi encontrada no gráfico de navegação. Isso não é um problema particular de URLs, mas da **barra (/)**. Como as rotas no **Navigation Component** funcionam num padrão de URLs, a barra acaba interferindo na rota esperada. Pensando num conceito de navegação web, é como se a nossa URL fosse **https://trackingscreen.com/CODE/CEP** e tentássemos navegar para **https://trackingscreen.com/CODE///CEP**, que claramente é uma URL inválida.
+
+Para resolver isso, você pode codificar a URL antes de passá-la como argumento. Por exemplo:
+
+```kotlin
+@Composable
+fun AppNavHost() {
+    ...
+    NavHost(
+        ...
+    ) {
+        composable(route = Screen.HomeScreen.route ) { navBackStackEntry ->
+            HomeScreen(
+                onNavigateToPage = { url ->
+                    if (navBackStackEntry.lifecycleIsResumed()) {
+                        val encodedUrl = URLEncoder.encode(url, "utf-8")
+                        navController.navigate(
+                            Screen.PageScreen.routeWithArgs(encodedUrl)
+                        )
+                    }
+                }
+            )
+        }
+        ...
+    }
+}
+```
+
+Não é necessário usar ```URLDecoder.decode()``` na **composable()** da **PageScreen**, pois o argumento será decodificado automaticamente na navegação.
 
 ## Conclusão
 
