@@ -55,6 +55,7 @@ nav:
     - 'Switch': components/switch.md
     - 'Checkbox': components/checkbox.md
     - 'Slider': components/slider.md
+    - 'Surface': components/surface.md
     - 'Scaffold': components/scaffold.md
     - 'Navigation Drawer': components/navigationdrawer.md
     - 'Outros componentes': components/others.md
