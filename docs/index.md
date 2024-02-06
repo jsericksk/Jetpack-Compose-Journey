@@ -1,12 +1,15 @@
 # Introdução
 
-Esse conteúdo foi planejado para ser algo direto ao ponto para iniciantes, mas em alguns momentos você poderá ver diversas informações importantes que podem tornar alguns tópicos relativamente extensos. Cada seção abordará temas específicos, sendo como espécie de capítulos, e terá referências tanto à documentação quanto a conteúdos que eu achar interessantes referenciar.
+Esse conteúdo foi planejado para ser algo direto ao ponto para iniciantes, mas em alguns momentos você poderá ver diversas informações importantes que podem tornar alguns tópicos relativamente extensos. Cada seção abordará temas específicos, sendo como espécie de capítulos, e terá referências tanto à documentação quanto a conteúdos que eu achar interessantes.
 
-As seções estão organizadas numa ordem cronológica do que acredito ser interessante aprender primeiro, mas essa ordem pode mudar ou não ter grande eficiência. Se você não for um completo iniciante no Compose, não precisa se prender a essa ordem, caso contrário, é recomendável segui-la.
+As seções estão organizadas numa ordem cronológica do que acredito ser interessante aprender primeiro, mas essa ordem pode mudar ou não ter grande eficiência. Se você não for um completo iniciante no Compose, não precisa se prender a ela, caso contrário, é recomendável segui-la.
+
+Os códigos de exemplos usados em cada seção podem ser encontrados no repositório [Compose Journey Samples
+](https://github.com/jsericksk/Compose-Journey-Samples).
 
 ## Requisitos mínimos
 
-É necessário que você conheça a linguagem [Kotlin](https://kotlinlang.org/docs/home.html) e de preferência, tenha familiaridade com Android nativo. Todas as seções cobrem apenas conteúdos relacionados ao Jetpack Compose. Conteúdos específicos do Android, como **Activities, Services, ViewModels** etc., não são explorados aqui.
+É necessário que você conheça a linguagem [Kotlin](https://kotlinlang.org/docs/home.html) e, de preferência, tenha familiaridade com Android nativo. Todas as seções cobrem apenas conteúdos relacionados ao Jetpack Compose. Conteúdos específicos do Android, como **Activities** e **Services**, por exemplo, não são explorados aqui.
 
 Para fins de compatibilidade e evitar problemas, é recomendável que você esteja usando:
 
