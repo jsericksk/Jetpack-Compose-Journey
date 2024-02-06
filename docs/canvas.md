@@ -302,6 +302,50 @@ private fun Path() {
 
 <img src="../canvas/img-10.png" alt="Path" width="40%" height="20%"/>
 
+## Desenhando sobre o conteúdo
+
+Já vimos o uso da ```Modifier.drawBehind()``` e ```Modifier.drawWithCache()```, agora veremos a ```Modifier.drawWithContent()``` em prática. A ```Modifier.drawWithContent()``` permite executar operações **DrawScope** antes ou depois do conteúdo do Composable. É necessário chamar a função **drawContent()** para renderizar o conteúdo Composable, caso contrário ele não será desenhado. Você pode escolher a ordem de chamada dele, influenciando na UI final.
+
+Veja o exemplo abaixo, com 2 **Text()**. No primeiro, o retângulo é desenhado antes do conteúdo do **Text()** (o texto em si, nesse caso), pois chamamos **drawContent()** antes da operação de desenho **drawRect()**. Já no segundo **Text()**, o retângulo é desenhado por trás, pois chamamos **drawContent()** depois de **drawRect()**.
+
+```kotlin
+@Composable
+private fun DrawWithContent() {
+    Column(modifier = Modifier.padding(12.dp)) {
+        Text(
+            text = "Jetpack Compose Journey",
+            color = Color.Black,
+            fontSize = 24.sp,
+            modifier = Modifier.drawWithContent {
+                drawContent()
+                drawRect(
+                    color = Color.Red,
+                    topLeft = Offset(x = 0f, y = size.height / 2),
+                    size = Size(width = size.width, height = 5.dp.toPx()),
+                    style = Fill
+                )
+            }
+        )
+        Spacer(Modifier.height(12.dp))
+        Text(
+            text = "Jetpack Compose Journey",
+            color = Color.Black,
+            fontSize = 24.sp,
+            modifier = Modifier.drawWithContent {
+                drawRect(
+                    color = Color.Red,
+                    topLeft = Offset(x = 0f, y = size.height / 2),
+                    size = Size(width = size.width, height = 5.dp.toPx()),
+                    style = Fill
+                )
+                drawContent()
+            }
+        )
+    }
+}
+```
+
+<img src="../canvas/img-11.png" alt="Modifier.drawWithContent()" width="80%" height="50%"/>
 
 ## Tela de Login com decorações
 
@@ -407,13 +451,13 @@ fun LoginScreen() {
 }
 ```
 
-<img src="../canvas/img-11.png" alt="Path" width="40%" height="20%"/>
+<img src="../canvas/img-12.png" alt="Path" width="40%" height="20%"/>
 
-Como é possível observar, as decorações aplicada dão um visual mais interessante à tela.
+Como é possível observar, as decorações dão um visual mais interessante à tela.
 
 ## Conclusão
 
-**Canvas** é uma ferramenta muito poderosa e entender sua utilização é importante para criar componentes e uma UI mais personalizada. Assim como praticamente tudo em relação ao XML, Compose simplifica muito o desenho na tela com **Canvas**, como foi possível ver ao longo dessa seção. Você pode ler mais na documentação para ver algumas outras coisas que não foram abordadas aqui, como por exemplo, [**transformações básicas**](https://developer.android.com/jetpack/compose/graphics/draw/overview#basic-transformations).
+**Canvas** é uma ferramenta muito poderosa e entender sua utilização é importante para criar componentes e uma UI mais personalizada. Assim como praticamente tudo em relação ao XML, Compose simplifica muito o desenho na tela com **Canvas**, como foi possível ver ao longo dessa seção. Você pode ler mais na documentação para descobrir algumas outras funcionalidades que não foram abordadas aqui, como por exemplo, [**transformações básicas**](https://developer.android.com/jetpack/compose/graphics/draw/overview#basic-transformations).
 
 ## :link: Conteúdos auxiliares:
 - [Graphics in Compose (documentação)](https://developer.android.com/jetpack/compose/graphics/draw/overview)
