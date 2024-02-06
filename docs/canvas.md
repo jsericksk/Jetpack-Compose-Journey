@@ -214,23 +214,28 @@ private fun Path() {
 
 <img src="../canvas/img-06.png" alt="Path" width="40%" height="20%"/>
 
-Vamos por partes. Primeiro de tudo, dessa vez estamos utilizando a função **Modifier.drawWithCache()** em um **Spacer()**. Ela mantém os objetos criados dentro dela em cache. Os objetos são armazenados em cache desde que o tamanho da área de desenho seja o mesmo ou que quaisquer objetos de estado lidos não tenham sido alterados. Esse modificador é útil para melhorar o desempenho das chamadas de desenho, pois evita a necessidade de realocar objetos (como **Brush**, **Shader**, ***Path*** etc.) que são criados no desenho. Use **Modifier.drawWithCache()** apenas quando estiver criando objetos que devem ser armazenados em cache. Usar esse modificador sem a necessidade de armazenar objetos em cache pode resultar em alocações lambda desnecessárias.
+Vamos por partes. Dessa vez estamos utilizando a função **Modifier.drawWithCache()** em um **Spacer()**. Ela mantém os objetos criados dentro dela em cache. Os objetos são armazenados em cache desde que o tamanho da área de desenho seja o mesmo ou que quaisquer objetos de estado lidos não tenham sido alterados. Esse modificador é útil para melhorar o desempenho das chamadas de desenho, pois evita a necessidade de realocar objetos (como **Brush**, **Shader**, ***Path*** etc.) que são criados no desenho. Use **Modifier.drawWithCache()** apenas quando estiver criando objetos que devem ser armazenados em cache. Usar esse modificador sem a necessidade de armazenar objetos em cache pode resultar em alocações lambda desnecessárias.
 
 Como última chamada, ela espera um **onDrawWithContent** ou **onDrawBehind**, que é o que estamos utilizando.
 
 Agora vamos à explicação do **Path** criado:
 
-- **moveTo(x = 0f, y = size.height / 2)**: Inicia um subpath com a coordenada indicada, ou seja, **x** e **y**. No nosso código, estamos "se movendo" para **0f** e **size.height / 2**, que significa o início da tela horizontalmente (**x = 0f**) e o centro da tela verticalmente (**size.height / 2**). Como dito antes, dentro de um **DrawScope** temos acesso a algumas propriedades, como **size**, que é o **Size** do Canvas atual. Ou seja, **size.height** = tamanho em pixels do Canvas.
+- **moveTo(x = 0f, y = size.height / 2)**: Inicia um subpath com a coordenada indicada, ou seja, **x** e **y**. No nosso código, estamos "se movendo" para **0f** e **size.height / 2**, que significa o início da tela horizontalmente (**x = 0f**) e o centro da tela verticalmente (**size.height / 2**). Como dito antes, dentro de um **DrawScope** temos acesso a algumas propriedades, como **size**. Ou seja, **size.height** = tamanho em pixels desse **DrawScope**.
 
-- **lineTo(x = size.width / 2, y = 0f)**: Adiciona um segmento de linha reta do ponto atual ao ponto determinado. No nosso código, o **ponto atual** é o início da tela horizontalmente e o centro da tela verticalmente **(x = 0f, y = size.height / 2)**, como já definimos com **moveTo()**. Como usamos **lineTo(x = size.width / 2, y = 0f)**, criamos uma linha reta desse ponto atual até a coordenada indicada, ou seja, o centro da tela horizontalmente e o topo da tela verticalmente **(x = size.width / 2, y = 0f)**.
+- **lineTo(x = size.width / 2, y = 0f)**: Adiciona um segmento de linha reta do ponto atual ao ponto determinado. No nosso código, o **ponto atual** é **(x = 0f, y = size.height / 2)**, como já definimos antes com **moveTo()**. Como usamos **lineTo(x = size.width / 2, y = 0f)**, criamos uma linha reta desse ponto atual até a coordenada indicada, ou seja, o centro da tela horizontalmente e o topo da tela verticalmente **(x = size.width / 2, y = 0f)**.
 
 - **lineTo(x = size.width, y = size.height / 2)**: Como usamos **lineTo()** anteriormente, o nosso ponto atual agora é **(x = size.width / 2, y = 0f)**. Portanto, criamos uma linha desse ponto até o final da tela horizontalmente e o centro tela verticalmente **(x = size.width / 2, y = 0f)**.
 
 - **close()**: Fecha o último subpath, como se uma linha reta tivesse sido desenhada do ponto atual até o primeiro ponto do subpath. Em resumo, usando **close()** no final criaremos uma linha do ponto atual **(x = size.width / 2, y = 0f)** até o primeiro subpath que criamos, que foi definido com o **moveTo(x = 0f, y = size.height / 2)**. Você não verá nenhuma grande diferença se estiver usando o **style** como **Fill**, mas se utilizar **Stroke**, poderá notar o que acontece mais claramente. Veja as imagens abaixo utilizando **style = Stroke(width = 8.dp.toPx())** com e sem **close()** no final.
 
-<img src="../canvas/img-07.png" alt="Path" width="40%" height="20%"/>
+<p align="center">
+    <img src="../canvas/img-07.png" alt="Path" width="40%" height="20%"/>
+    <img src="../canvas/img-08.png" alt="Path" width="40%" height="20%"/>
+</p>
 
-<img src="../canvas/img-08.png" alt="Path" width="40%" height="20%"/>
+Veja a imagem abaixo para ver um exemplo mais visual do que foi dito acima:
+
+<img src="../canvas/img-13.png" alt="Path"/>
 
 #### Desenhando uma curva de Bézier
 
