@@ -457,4 +457,4 @@ Existe uma pequena observação sobre a **TrackingUiState**. Como pode ver, ela 
 
 ## Conclusão
 
-Chegamos ao fim sobre o tópico sobre telas e **ViewModels**. No próximo tópico dessa seção, veremos finalmente a navegação entre essas duas telas, onde a **HomeScreen** irá passar os dados **code** e **cep** para a **TrackingScreen**.
+Chegamos ao fim do tópico sobre telas e **ViewModels**. No próximo tópico dessa seção, veremos finalmente a navegação entre essas duas telas, onde a **HomeScreen** irá passar os dados **code** e **cep** para a **TrackingScreen**.

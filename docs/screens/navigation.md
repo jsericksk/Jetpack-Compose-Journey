@@ -317,7 +317,7 @@ E claro, também é possível utilizar animações personalizadas, bem como outr
 
 Existe um problema bem antigo e conhecido no **Navigation Component** da navegação abrindo múltiplas telas ou telas em branco ao voltar com **navController.popBackStack()**. No nosso código atual, se o usuário tocar o botão de "rastrear" na **HomeScreen** múltiplas vezes em um curto período de tempo, a **TrackingScreen** será aberta múltiplas vezes. Um outro problema similar acontece quando o ícone de arrow back é tocado múltiplas vezes na **TrackingScreen** e uma tela em branco é exibida. Isso também pode acontecer com dispositivos mais lentos, onde às vezes dão duplo clique acidental.
 
-Você pode checar essa [issue](https://github.com/google/accompanist/issues/1320) e [essa](https://github.com/google/accompanist/issues/1408) para referência. Como antigamente só era possível navegar com animação através da **Navigation-Animation** da [**Acompannist**](https://github.com/google/accompanist), essas issues se encontram no repositório dela.
+Você pode checar essa [issue](https://github.com/google/accompanist/issues/1320) e [essa](https://github.com/google/accompanist/issues/1408) para referência. Como antigamente só era possível navegar com animação através da **Navigation-Animation** da [**Accompanist**](https://github.com/google/accompanist), essas issues se encontram no repositório dela.
 
 Veja a imagem abaixo para ter ideia do problema:
 
