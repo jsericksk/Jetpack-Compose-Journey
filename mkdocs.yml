@@ -23,6 +23,8 @@ theme:
   language: pt-BR
   font:
     code: Jetbrains Mono
+  features:
+    - navigation.footer
   palette:
     # Light mode
     - scheme: default
