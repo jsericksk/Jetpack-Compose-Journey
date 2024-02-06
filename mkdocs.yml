@@ -71,6 +71,7 @@ nav:
     - 'Outros side effects': side-effects/others.md
   - 'Animações': animations.md
   - 'Interoperabilidade: Usando Views no Compose': interoperability.md
+  - 'Canvas e UI personalizada': canvas.md
   - 'Telas, ViewModels e navegação':
     - 'Telas e ViewModels': screens/screens.md
     - 'Navegação': screens/navigation.md
