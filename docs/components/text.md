@@ -38,11 +38,11 @@ private fun Text() {
 
 ![Text](text/img-01.png)
 
-## Propriedade overflow e Modifier.basicMarquee()
+## Parâmetro overflow e Modifier.basicMarquee()
 
-Às vezes, temos textos longos demais e queremos aplicar algum pequeno efeito para indicar isso. A propriedade **overlow** no **Text()** pode ser usada para aplicar o efeito de reticências (**...**) quando o texto for muito extenso e não couber na tela, definindo com ***TextOverflow.Ellipsis***. Seguindo a mesma ideia, temos o ```Modifier.basicMarquee()```, que pode ser usado para aplicar uma animação de rolagem de texto. Ele não necessariamente funciona apenas com textos e ainda é **experimental**, por isso devemos usar a anotação no código abaixo, porém, pode ser bastante útil em alguns casos.
+Às vezes, temos textos longos demais e queremos aplicar algum pequeno efeito para indicar isso. O parâmetro **overlow** no **Text()** pode ser usada para aplicar o efeito de reticências (**...**) quando o texto for muito extenso e não couber na tela, se definirmos ele com ***TextOverflow.Ellipsis***. Seguindo a mesma ideia, temos o ```Modifier.basicMarquee()```, que pode ser usado para aplicar uma animação de rolagem de texto. Ele não necessariamente funciona apenas com textos e ainda é **experimental**, por isso devemos usar a anotação no código abaixo, porém, pode ser bastante útil em alguns casos.
 
-Para que ambos façam sentido, é necessário também definir o número máximo de linhas do **Text()** com a propriedade **maxLines**. Veja o pequeno exemplo abaixo:
+Para que ambos façam sentido, é necessário também definir o número máximo de linhas do **Text()** com o parâmetro **maxLines**. Veja o pequeno exemplo abaixo:
 
 ```kotlin
 @OptIn(ExperimentalFoundationApi::class)
@@ -78,7 +78,7 @@ private fun LongText() {
 
 <img src="../text/img-02.gif" alt="LongText" width="80%" height="30%"/>
 
-- ```Modifier.basicMarquee()``` possui algumas propriedades interessantes, como mudar o número máximo de iterações, velocidade etc. No exemplo não definimos nenhuma delas para fins de conveniência, mas você pode explorar mais esse **modificador**.
+- ```Modifier.basicMarquee()``` possui alguns outros parâmetros interessantes, como mudar o número máximo de iterações, velocidade etc. No exemplo, não definimos nenhum deles para fins de conveniência.
 
 ## :link: Conteúdos auxiliares:
 - [Style text (documentação)](https://developer.android.com/jetpack/compose/text/style-text)

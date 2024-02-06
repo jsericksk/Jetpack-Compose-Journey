@@ -68,7 +68,7 @@ private fun RangeSlider() {
 
 ![RangeSlider](slider/img-03.png)
 
-Ambos têm outras propriedades úteis, como a **colors** para modificar as cores e **onValueChangeFinished**, que é acionada quando o usuário finaliza a seleção. Podemos usar **onValueChangeFinished** para chamar alguma lógica de negócio ou algo do tipo.
+Ambos têm outros parâmetros úteis, como a **colors** para modificar as cores e **onValueChangeFinished**, que é acionada quando o usuário finaliza a seleção. Podemos usar **onValueChangeFinished** para chamar alguma lógica de negócio ou algo do tipo.
 
 ## :link: Conteúdos auxiliares:
 - [Slider (documentação)](https://developer.android.com/jetpack/compose/components/slider)

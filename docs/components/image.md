@@ -4,7 +4,7 @@ Praticamente todo app tem imagens. Essa seção abordará algumas das funções 
 
 ## Icon
 
-Antes de falarmos sobre o componente **Image()**, vamos falar sobre o [Icon()](https://developer.android.com/jetpack/compose/graphics/images/material). Você pode obter o mesmo comportamento usando Image(), mas Icon() é uma forma mais conveniente para carregar ícones, como drawables vetoriais. Isso porque ele fornece uma propriedade **tint** que pode ser usada para mudar a cor do ícone facilmente. Já usamos ele em seções anteriores, mas vamos ver mais um exemplo:
+Antes de falarmos sobre o componente **Image()**, vamos falar sobre o [Icon()](https://developer.android.com/jetpack/compose/graphics/images/material). Você pode obter o mesmo comportamento usando **Image()**, mas **Icon()** é uma forma mais conveniente para carregar ícones, como drawables vetoriais. Isso porque ele fornece um parâmetro **tint** que pode ser usado para mudar a cor do ícone facilmente. Já usamos ele em seções anteriores, mas vamos ver mais um exemplo:
 
 Compose possui alguns ícones padrão fornecido através de **Icons**, como por exemplo: ```Icons.Default.Delete```. Você pode usar ícones tanto com ***imageVector*** quanto ***painter***, como no exemplo abaixo, que utiliza um ícone de **Icons** e um ícone criado com o [**Asset Studio**](https://developer.android.com/studio/write/create-app-icons) do **Android Studio**:
 

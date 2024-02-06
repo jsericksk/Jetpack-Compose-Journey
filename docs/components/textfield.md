@@ -30,7 +30,7 @@ private fun TextField() {
 
 ![TextField](textfield/img-01.png)
 
-Se trocarmos a propriedade **label** por **placeholder**, quando digitarmos algo, o **placeholder** não irá aparecer:
+Se trocarmos o parâmetro **label** por **placeholder**, quando digitarmos algo, o **placeholder** não irá aparecer:
 
 ![TextField com placeholder](textfield/img-02.png)
 
@@ -74,7 +74,7 @@ private fun TextField() {
 ![TextField](textfield/img-03.png)
 
 #### É bom lembrar...
-Veja que usamos 2 ícones. Nós poderíamos definir as cores desses ícones com a propriedade **tint**, mas não fizemos isso no exemplo acima. No TextField, evite modificar as cores de componentes como esse diretamente. Através da opção **colors** do TextField, você pode alterar as cores do **leadingIcon** e **trailingIcon**, tanto nos estados ***focused*** quanto ***unfocused***, assim como foi feito na **unfocusedIndicatorColor**. Se adicionarmos uma cor manualmente ao **Icon()**, perderemos essa função de cores dinâmicas nesses 2 estados do TextField.
+Veja que usamos 2 ícones. Nós poderíamos definir as cores desses ícones com o parâmetro **tint**, mas não fizemos isso no exemplo acima. No TextField, evite modificar as cores de componentes como esse diretamente. Através da opção **colors** do TextField, você pode alterar as cores do **leadingIcon** e **trailingIcon**, tanto nos estados ***focused*** quanto ***unfocused***, assim como foi feito na **unfocusedIndicatorColor**. Se adicionarmos uma cor manualmente ao **Icon()**, perderemos essa função de cores dinâmicas nesses 2 estados do TextField.
 
 ## OutlinedTextField
 
@@ -105,7 +105,7 @@ private fun OutlinedTextField() {
 
 ![OutlinedTextField](textfield/img-04.png)
 
-Você também pode mudar o shape do TextField com a propriedade **shape**, como por exemplo: ```shape = CircleShape```.
+Você também pode mudar o shape do TextField com o parâmetro **shape**, como por exemplo: ```shape = CircleShape```.
 
 ![OutlinedTextField CircleShape](textfield/img-05.png)
 
