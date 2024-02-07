@@ -12,36 +12,29 @@ Algumas notas importantes:
 - A [convenção](https://github.com/androidx/androidx/blob/androidx-main/compose/docs/compose-api-guidelines.md#naming-unit-composable-functions-as-entities) de nomenclatura para funções Composable que não retornam nada (Unit) é a **PascalCase** e devem ser substantivos, como é o caso de **Greeting()**. Já funções Composable que retornam algo devem estar no formato **camelCase**, como **stringResource()**.
 - São [idempotentes](https://en.wikipedia.org/wiki/Idempotence#Computer_science_meaning) e livres de efeitos colaterais.
 
+## Fases do Jetpack Compose
+
+O Compose tem três fases principais:
+
+1. **Composição**: ***Qual*** UI mostrar. O Compose executa funções Composable e cria uma descrição da sua IU.
+2. **Layout**: ***Onde*** colocar a UI. Esta fase consiste em duas etapas: ***medição*** e ***posicionamento***. Os elementos de layout medem e posicionam a si mesmos e a quaisquer elementos filhos em coordenadas 2D, para cada nó na árvore de layout.
+3. **Desenho**: ***Como*** é renderizado. Os elementos da UI são desenhados em um **Canvas**, geralmente uma tela de dispositivo.
+
+![Fases do Jetpack Compose](basic/img-01.png)
+
+A ordem dessas fases é geralmente a mesma, permitindo que os dados fluam em uma direção, da **composição** ao **layout** e ao **desenho**, para produzir um quadro (também conhecido como **fluxo de dados unidirecional**). [**BoxWithConstraints**](https://developer.android.com/jetpack/compose/layouts/basics#constraints) e [**LazyColumn/LazyRow**](../lists) são exceções notáveis, onde a composição de seus filhos depende da fase de layout dos pais.
+
+Você pode presumir com segurança que essas três fases acontecem virtualmente para cada quadro, mas, por uma questão de desempenho, o Compose evita repetir o trabalho que calcularia os mesmos resultados a partir das mesmas entradas em todas essas fases. O Compose ignora a execução de uma função Composable se puder reutilizar um resultado anterior, e a UI do Compose não reorganiza ou redesenha a árvore inteira se não for necessário. Ele executa apenas a quantidade mínima de trabalho necessária para atualizar a IU. Essa otimização é possível porque o Compose rastreia leituras de estado nas diferentes fases.
+
+As informações acima foram retiradas diretamente da [documentação sobre esse tópico](https://developer.android.com/jetpack/compose/phases). Leia mais no link referenciado para ver mais detalhadamente sobre as fases do Compose, se desejar.
+
 ## Recomposição
 
-Diferente do sistema de Views que usa o paradigma imperativo, o Compose utiliza o paradigma declarativo. Em um modelo de UI imperativo, para alterar um widget, você chama um setter no widget para alterar seu estado interno. Por exemplo: ```textView.setText("Texto do TextView")```. O Compose funciona de forma diferente. Ao invés de setarmos o valor do texto diretamente no componente Text (o equivalente ao TextView aqui), o nosso componente Text recebe o texto (**estado**) e sempre que esse texto for modificado (por conta de algum **evento**), Text() é chamada novamente com esse novo valor. Esse processo que ocorre quando um estado muda e o Compose atualiza a UI é chamado de **recomposição**.
+Diferente do sistema de Views que usa o paradigma imperativo, o Compose utiliza o paradigma declarativo. Em um modelo de UI imperativo, para alterar um widget, você chama um setter no widget para alterar seu estado interno. Por exemplo: ```textView.setText("Texto do TextView")```. O Compose funciona de forma diferente. Ao invés de setarmos o valor do texto diretamente no componente **Text()** (o equivalente ao **TextView** aqui), o nosso componente **Text()** recebe o texto (**estado**) e sempre que esse texto for modificado (por conta de algum **evento**), **Text()** é chamada novamente com esse novo valor. Esse processo que ocorre quando um estado muda e o Compose atualiza a UI é chamado de **recomposição**.
 
-Compose trabalha com **estados e eventos**. Um estado é qualquer valor que pode mudar com o tempo. Já um evento é tudo aquilo que acontece que pode modificar a UI, ou seja, os estados. Por exemplo, um click em algum componente.
+Compose trabalha com **estados e eventos**. Um estado é qualquer valor que pode mudar com o tempo. Já um evento é tudo aquilo que acontece que pode modificar a UI, ou seja, os estados. Por exemplo, um clique em algum componente.
 
-Portanto, recomposição é o processo de chamar suas funções Composable novamente quando as entradas mudam. Isso é feito pelo Compose. Quando o Compose recompõe com base em novas entradas, ele chama apenas as funções ou lambdas que podem ter sido alteradas e ignora o restante. Ao ignorar todas as funções ou lambdas que não possuem parâmetros alterados, o Compose pode recompor com eficiência.
-
-Em termos práticos, isso significa que não podemos fazer com funções Composable o que normalmente poderia ser feito com funções "normais". Por exemplo, vamos ver um código simples que obtém uma lista de arquivos e posteriormente muda o texto de um **TextView** com o nome do primeiro arquivo da lista:
-
-```kotlin
-private fun fileItem() {
-    val files = getFiles()
-    textView.setText("Nome do primeiro arquivo: ${files.first().name}")
-    // Outras configurações
-}
-```
-
-Isso funcionaria sem problemas no cenário do XML. Agora veja um código similar no Compose:
-
-```kotlin
-@Composable
-private fun FileItem() {
-    val files = getFiles()
-    Text(text = "Nome do primeiro arquivo: ${files.first().name}")
-    // Outras configurações
-}
-```
-
-Isso até funciona no Compose, porém, há um grande problema. **FileItem()** pode **recompor** várias vezes, o que significa que **getFiles()** também seria chamada inúmeras vezes desnecessariamente, pois a **recomposição** causaria isso. Você lerá um pouco mais sobre isso na seção sobre [**side effects (efeitos colaterais)**](../side-effects/launchedeffect).
+Portanto, recomposição é o processo de chamar suas funções Composable novamente quando as entradas mudam. Esse processo é feito pelo Compose. Quando o Compose recompõe com base em novas entradas, ele chama apenas as funções ou lambdas que podem ter sido alteradas e ignora o restante. Ao ignorar todas as funções ou lambdas que não possuem parâmetros alterados, o Compose pode recompor com eficiência.
 
 #### Não espere uma ordem na chamada de funções Composable
 
@@ -59,22 +52,6 @@ fun MyScreen() {
 ```
 
 Não espere que TopComponent() será chamada primeiro, ItemList() depois e, por fim, BottomComponent(). Isso nem sempre pode ser verdade e essas funções devem ser independentes uma da outra.
-
-## Fases do Jetpack Compose
-
-O Compose tem três fases principais:
-
-1. **Composição**: ***Qual*** UI mostrar. O Compose executa funções que podem ser compostas e cria uma descrição da sua IU.
-2. **Layout**: ***Onde*** colocar a UI. Esta fase consiste em duas etapas: ***medição*** e ***posicionamento***. Os elementos de layout medem e posicionam a si mesmos e a quaisquer elementos filhos em coordenadas 2D, para cada nó na árvore de layout.
-3. **Desenho**: ***Como*** é renderizado. Os elementos da UI são desenhados em um **Canvas**, geralmente uma tela de dispositivo.
-
-![Fases do Jetpack Compose](basic/img-01.png)
-
-A ordem dessas fases é geralmente a mesma, permitindo que os dados fluam em uma direção, da **composição** ao **layout** e ao **desenho**, para produzir um quadro (também conhecido como **fluxo de dados unidirecional**). [**BoxWithConstraints**](https://developer.android.com/jetpack/compose/layouts/basics#constraints) e [**LazyColumn/LazyRow**](../lists) são exceções notáveis, onde a composição de seus filhos depende da fase de layout dos pais.
-
-Você pode presumir com segurança que essas três fases acontecem virtualmente para cada quadro, mas, por uma questão de desempenho, o Compose evita repetir o trabalho que calcularia os mesmos resultados a partir das mesmas entradas em todas essas fases. O Compose ignora a execução de uma função Composable se puder reutilizar um resultado anterior, e a UI do Compose não reorganiza ou redesenha a árvore inteira se não for necessário. Ele executa apenas a quantidade mínima de trabalho necessária para atualizar a IU. Essa otimização é possível porque o Compose rastreia leituras de estado nas diferentes fases.
-
-As informações acima foram retiradas diretamente da [documentação sobre esse tópico](https://developer.android.com/jetpack/compose/phases). Leia mais no link referenciado para ver mais detalhadamente sobre as fases do Compose, se desejar.
 
 ## Compose utiliza muito do poder do Kotlin
 
@@ -101,7 +78,7 @@ Ao invés disso: ```Profile("John", 20, true)```
 
 Faça isso: ```Profile(name = "John", age = 20, online = true)```
 
-Isso obviamente nem sempre é necessário, quando a função tem apenas 1 ou 2 parâmetros, por exemplo, mas na maioria das vezes é uma boa prática para fins de legibilidade.
+Essa não é uma boa prática exclusiva no contexto do Compose, mas no código Kotlin no geral, porém, como normalmente as funções Composable têm diversos parâmetros, essa prática acaba sendo vantajosa. Obviamente isso nem sempre é necessário, quando a função tem apenas 1 ou 2 parâmetros, por exemplo, mas na maioria das vezes é uma boa prática para fins de legibilidade.
 
 ## Funções Composable com sua devida visibilidade
 
