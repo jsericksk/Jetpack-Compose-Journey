@@ -275,7 +275,11 @@ private fun Path2() {
 <img src="../canvas/img-09.png" alt="Path" width="40%" height="20%"/>
 
 - **moveTo(x = 0f, y = size.height / 2)**: Já explicamos sobre essa função e estamos usando os exatos mesmos valores de antes.
-- **quadraticBezierTo()**: Adiciona um segmento bézier quadrático que faz uma curva do ponto atual até o ponto determinado **(x2, y2)**, usando o ponto de controle **(x1, y1)**. Olhando para o nosso código, o ponto atual é **(x = 0f, y = size.height / 2)**, ou seja, o início da tela horizontalmente e o centro da tela verticalmente. A curva que criamos vai do ponto atual até a coordenada **x2 = size.width** e **y2 = size.height / 2**, que significa o fim da tela horizontalmente e o centro da tela verticalmente. Já os valores **x1 = size.width / 2** e **y1 = 0f** são usados para criar o ponto de controle da curva, em outras palavras, aplicar o efeito na curva. Com os valores fornecidos, é o centro da tela horizontalmente e o início da tela verticalmente. O **close()** segue o mesmo princípio que já falamos antes.
+- **quadraticBezierTo()**: Adiciona um segmento bézier quadrático que faz uma curva do ponto atual até o ponto determinado **(x2, y2)**, usando o ponto de controle **(x1, y1)**. Olhando para o nosso código, o ponto atual é **(x = 0f, y = size.height / 2)**, ou seja, o início da tela horizontalmente e o centro da tela verticalmente. A curva que criamos vai do ponto atual até a coordenada **x2 = size.width** e **y2 = size.height / 2**, que significa o fim da tela horizontalmente e o centro da tela verticalmente. Já os valores **x1 = size.width / 2** e **y1 = 0f** são usados para criar o ponto de controle da curva, em outras palavras, aplicar o efeito na curva. Com os valores fornecidos, é o centro da tela horizontalmente e o início da tela verticalmente (o centro no topo). O **close()** segue o mesmo princípio que já falamos antes.
+
+Veja a imagem abaixo para ver um exemplo mais visual do que foi dito acima:
+
+<img src="../canvas/img-14.png" alt="Path" width="40%" height="20%"/>
 
 ```kotlin
 @Composable
