@@ -44,6 +44,7 @@ theme:
 nav:
   - 'Conteúdo':
     - 'Guia de Contribuição': content-info/contributing.md
+    - 'Histórico de alterações': content-info/changelog.md
   - 'Introdução': index.md
   - 'Conhecimentos básicos iniciais': basic.md
   - 'Layouts':
