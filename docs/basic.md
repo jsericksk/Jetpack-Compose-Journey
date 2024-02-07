@@ -58,7 +58,23 @@ fun MyScreen() {
 }
 ```
 
-Não espere que TopComponent() será chamada primeiro, ItemList() depois e, por fim, BottomComponent(). Isso nem sempre pode ser verdade e essas funções devem ser independentes uma da outra. 
+Não espere que TopComponent() será chamada primeiro, ItemList() depois e, por fim, BottomComponent(). Isso nem sempre pode ser verdade e essas funções devem ser independentes uma da outra.
+
+## Fases do Jetpack Compose
+
+O Compose tem três fases principais:
+
+1. **Composição**: ***Qual*** UI mostrar. O Compose executa funções que podem ser compostas e cria uma descrição da sua IU.
+2. **Layout**: ***Onde*** colocar a UI. Esta fase consiste em duas etapas: ***medição*** e ***posicionamento***. Os elementos de layout medem e posicionam a si mesmos e a quaisquer elementos filhos em coordenadas 2D, para cada nó na árvore de layout.
+3. **Desenho**: ***Como*** é renderizado. Os elementos da UI são desenhados em um **Canvas**, geralmente uma tela de dispositivo.
+
+![Fases do Jetpack Compose](basic/img-01.png)
+
+A ordem dessas fases é geralmente a mesma, permitindo que os dados fluam em uma direção, da **composição** ao **layout** e ao **desenho**, para produzir um quadro (também conhecido como **fluxo de dados unidirecional**). [**BoxWithConstraints**](https://developer.android.com/jetpack/compose/layouts/basics#constraints) e [**LazyColumn/LazyRow**](../lists) são exceções notáveis, onde a composição de seus filhos depende da fase de layout dos pais.
+
+Você pode presumir com segurança que essas três fases acontecem virtualmente para cada quadro, mas, por uma questão de desempenho, o Compose evita repetir o trabalho que calcularia os mesmos resultados a partir das mesmas entradas em todas essas fases. O Compose ignora a execução de uma função Composable se puder reutilizar um resultado anterior, e a UI do Compose não reorganiza ou redesenha a árvore inteira se não for necessário. Ele executa apenas a quantidade mínima de trabalho necessária para atualizar a IU. Essa otimização é possível porque o Compose rastreia leituras de estado nas diferentes fases.
+
+As informações acima foram retiradas diretamente da [documentação sobre esse tópico](https://developer.android.com/jetpack/compose/phases). Leia mais no link referenciado para ver mais detalhadamente sobre as fases do Compose, se desejar.
 
 ## Compose utiliza muito do poder do Kotlin
 
