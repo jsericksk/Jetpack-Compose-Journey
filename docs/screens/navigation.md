@@ -204,7 +204,7 @@ fun TrackingScreen(
     }
 ) {
     val uiState by trackingViewModel.uiState.collectAsStateWithLifecycle()
-    TrackingScreen(
+    TrackingContent(
         uiState = uiState,
         onNavigateBack = onNavigateBack
     )
