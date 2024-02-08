@@ -35,7 +35,6 @@ Dessa vez não usaremos hardcoded strings, mas colocaremos todos os textos em [*
     <string name="track">Rastrear</string>
     <string name="tracking">Rastreamento</string>
     <string name="order_status">Status: Em trânsito</string>
-
 </resources>
 ```
 
@@ -204,14 +203,14 @@ Estamos utilizando **StateFlow** para armazenar o estado da UI. Poderia ser feit
 
 ## Refazendo a HomeScreen
 
-Como agora o estado da tela está no **HomeViewModel**, temos que fazer algumas alterações na **HomeScreen**. A primeira delas é criar uma nova função **HomeScreen** que terá um código bem similar ao que já vimos antes, porém, dessa vez utilizando a **HomeUiState** e **HomeUiEvent**.
+Como agora o estado da tela está no **HomeViewModel**, temos que fazer algumas alterações na **HomeScreen**. A primeira delas é criar uma nova função chamada **HomeContent** que terá um código bem similar ao que já vimos antes, porém, dessa vez utilizando a **HomeUiState** e **HomeUiEvent**. Basicamente ela terá o conteúdo principal da **HomeScreen**, recebendo o estado e expondo os eventos.
 
 <details>
-  <summary>Ver código da HomeScreen</summary>
+  <summary>Ver código da HomeContent</summary>
 
 ```kotlin
 @Composable
-fun HomeScreen(
+fun HomeContent(
     uiState: HomeUiState,
     onUiEvent: (HomeUiEvent) -> Unit,
     onNavigateToTracking: () -> Unit
@@ -268,7 +267,10 @@ fun HomeScreen(
 ```
 </details>
 
-Como pode ver, não estamos usando o **HomeViewModel** ainda. Agora vamos criar uma nova função **HomeScreen** que usará o **HomeViewModel**. Veja o código:
+Como pode ver, não estamos usando o **HomeViewModel** ainda. Agora vamos refazer a **HomeScreen** que usará o **HomeViewModel** e a **HomeContent**. Veja o código completo:
+
+<details>
+  <summary>Ver código da HomeScreen</summary>
 
 ```kotlin
 @Composable
@@ -277,7 +279,7 @@ fun HomeScreen(
     homeViewModel: HomeViewModel = viewModel()
 ) {
     val uiState by homeViewModel.uiState.collectAsStateWithLifecycle()
-    HomeScreen(
+    HomeContent(
         uiState = uiState,
         onUiEvent = homeViewModel::onUiEvent,
         onNavigateToTracking = {
@@ -285,15 +287,100 @@ fun HomeScreen(
         }
     )
 }
-```
 
-Nela, instanciamos o **HomeViewModel** e observamos o estado da UI coletando o **StateFlow** de **uiState** com a função **collectAsStateWithLifecycle()**. Qualquer alteração no estado da UI irá refletir na **HomeScreenContent**. Lembre-se que para utilizar essa função, é necessário importar a dependência abaixo (cheque a versão atual na [documentação](https://developer.android.com/jetpack/androidx/releases/lifecycle)):
+@Composable
+fun HomeContent(
+    uiState: HomeUiState,
+    onUiEvent: (HomeUiEvent) -> Unit,
+    onNavigateToTracking: () -> Unit
+) {
+    Column(
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(24.dp)
+    ) {
+        val verticalSpacing = 14.dp
+        Text(
+            text = stringResource(id = R.string.tracker),
+            color = MaterialTheme.colorScheme.primary,
+            fontSize = 34.sp,
+            fontWeight = FontWeight.Bold
+        )
+        Spacer(Modifier.height(verticalSpacing + verticalSpacing))
+        CommonTextField(
+            text = uiState.code,
+            onTextChange = {
+                onUiEvent.invoke(HomeUiEvent.CodeChanged(it))
+            },
+            label = stringResource(id = R.string.tracking_code),
+            leadingIcon = Icons.Default.Info
+        )
+        Spacer(Modifier.height(verticalSpacing))
+        CommonTextField(
+            text = uiState.cepText,
+            onTextChange = { updatedCep ->
+                updatedCep.toIntOrNull()?.let { cep ->
+                    onUiEvent.invoke(HomeUiEvent.CepChanged(cep))
+                }
+                if (updatedCep.isBlank()) {
+                    onUiEvent.invoke(HomeUiEvent.CepChanged(UndefinedCep))
+                }
+            },
+            label = stringResource(id = R.string.cep),
+            leadingIcon = Icons.Default.LocationOn,
+            keyboardType = KeyboardType.Number
+        )
+        Spacer(Modifier.height(verticalSpacing + verticalSpacing))
+        Button(
+            onClick = onNavigateToTracking,
+            contentPadding = PaddingValues(16.dp),
+            enabled = uiState.canNavigateToTrackingScreen,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text(text = stringResource(id = R.string.track))
+        }
+    }
+}
+
+@Composable
+private fun CommonTextField(
+    text: String,
+    onTextChange: (String) -> Unit,
+    label: String,
+    leadingIcon: ImageVector,
+    modifier: Modifier = Modifier,
+    keyboardType: KeyboardType = KeyboardType.Text
+) {
+    OutlinedTextField(
+        value = text,
+        onValueChange = onTextChange,
+        label = {
+            Text(text = label)
+        },
+        leadingIcon = {
+            Icon(
+                imageVector = leadingIcon,
+                contentDescription = null
+            )
+        },
+        shape = RoundedCornerShape(16.dp),
+        singleLine = true,
+        keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
+        modifier = modifier.fillMaxWidth()
+    )
+}
+```
+</details>
+
+Na função **HomeScreen**, instanciamos o **HomeViewModel** e observamos o estado da UI coletando o **StateFlow** de **uiState** com a função **collectAsStateWithLifecycle()**. Qualquer alteração no estado da UI irá refletir na **HomeContent**. Lembre-se que para utilizar essa função, é necessário importar a dependência abaixo (cheque a versão atual na [documentação](https://developer.android.com/jetpack/androidx/releases/lifecycle)):
 
 ```gradle
 implementation("androidx.lifecycle:lifecycle-runtime-compose:$version")
 ```
 
-#### Por que criar duas funções HomeScreen?
+#### Por que criar duas funções, HomeScreen e HomeContent?
 
 Não é o caso nesse projeto, mas normalmente o **ViewModel** usa algumas classes com **injeção de dependências**, utilizando alguma biblioteca para isso, como [**Hilt**](https://developer.android.com/training/dependency-injection/hilt-android). Por exemplo, o nosso **HomeViewModel** poderia ser algo como abaixo:
 
@@ -306,7 +393,7 @@ class HomeViewModel @Inject constructor(
 }
 ```
 
-Nesse cenário bem comum, [**Previews** têm uma limitação em relação a **ViewModels**](https://developer.android.com/jetpack/compose/tooling/previews#preview-viewmodel). Se criarmos todo o conteúdo da tela e ao mesmo tempo instanciarmos o **ViewModel** na mesma função, nós obteríamos um erro ao tentar visualizar o layout com **Preview** e o layout não seria exibido. Em resumo, isso é feito principalmente para tornar as **Previews** acessíveis e também facilitar passar dados mais controlados para a tela, já que temos uma função que só recebe o estado.
+Nesse cenário bem comum, [**Previews** têm uma limitação em relação a **ViewModels**](https://developer.android.com/jetpack/compose/tooling/previews#preview-viewmodel). Se criarmos todo o conteúdo da tela e ao mesmo tempo instanciarmos o **ViewModel** na mesma função, nós obteríamos um erro ao tentar visualizar o layout com **Preview** e o layout não seria exibido. Em resumo, isso é feito principalmente para tornar as **Previews** acessíveis e também facilitar passar dados mais controlados para a tela em outros casos, como testes e as próprias **Previews**.
 
 O [**Now in Android**](https://github.com/android/nowinandroid/blob/main/feature/interests/src/main/kotlin/com/google/samples/apps/nowinandroid/feature/interests/InterestsScreen.kt) segue um padrão similar, mas tendo nomenclaturas com sufixo **Route** e **Screen**. Por exemplo, **HomeRoute** e **HomeScreen**. Os nomes das funções ficam a seu critério, é claro.
 
@@ -329,7 +416,7 @@ fun TrackingScreen(
     LaunchedEffect(Unit) {
         trackingViewModel.getTrackingInfo(code = code, cep = cep)
     }
-    TrackingScreen(
+    TrackingContent(
         uiState = uiState,
         onNavigateBack = onNavigateBack
     )
@@ -337,7 +424,7 @@ fun TrackingScreen(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun TrackingScreen(
+private fun TrackingContent(
     uiState: TrackingUiState,
     onNavigateBack: () -> Unit
 ) {
@@ -463,7 +550,7 @@ data class TrackingUiState(
 )
 ```
 
-Existe uma pequena observação sobre a **TrackingUiState**. Como pode ver, ela é bastante parecida com a **HomeUiState**. Normalmente ela teria mais propriedades, como por exemplo, uma para especificar o estado atual da tela, seja **loading**, **success** ou **error**, já que na teoria essa tela iria buscar informações de algum dado remoto e isso demoraria um pouco para ser exibido e poderia ocasionar em erro. Mas para fins de simplificação, não teremos nada disso. Como também não teremos nenhum evento muito importante e esses dados não vão mudar, não teremos uma **TrackingUiEvent** aqui.
+Existe uma pequena observação sobre a **TrackingUiState**. Como pode ver, ela é bastante parecida com a **HomeUiState**. Normalmente ela teria mais propriedades, como por exemplo, uma para especificar o estado atual da tela, seja **loading**, **success** ou **error**, já que na teoria essa tela iria buscar informações de algum dado remoto e isso demoraria um pouco para ser exibido, podendo também ocasionar em erro. Mas para fins de simplificação, não teremos nada disso. Como também não teremos nenhum evento muito importante e esses dados não vão mudar, não faremos uma **TrackingUiEvent** aqui.
 
 ## Conclusão
 
