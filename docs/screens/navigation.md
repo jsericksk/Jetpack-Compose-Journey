@@ -65,8 +65,7 @@ Vamos então criar o **AppNavHost**, inicialmente apenas com a **HomeScreen** pa
 
 ```kotlin
 @Composable
-fun AppNavHost() {
-    val navController = rememberNavController()
+fun AppNavHost(navController: NavHostController) {
     NavHost(
         navController = navController,
         startDestination = Screen.HomeScreen.route
@@ -86,16 +85,15 @@ fun AppNavHost() {
 
 Vamos aos pontos importantes:
 
-- Nosso **AppNavHost** faz uso da função **NavHost**, que possui como argumentos obrigatórios um **navController** e um **startDestination**. É através do **NavHostController** criado com **rememberNavController()** que podemos navegar de uma tela à outra, por exemplo. Já o **startDestination**, como o próprio nome diz, é o destino inicial que será usado por esse **NavHost**, que no nosso caso é a **HomeScreen**.
+- Nosso **AppNavHost** faz uso da função **NavHost**, que possui como argumentos obrigatórios um **navController** e um **startDestination**. É através do **NavHostController** que podemos navegar de uma tela à outra, por exemplo. Já o **startDestination**, como o próprio nome diz, é o destino inicial que será usado por esse **NavHost**, que no nosso caso é a **HomeScreen**.
 - Dentro do **NavHost**, podemos utilizar a função **composable()**, responsável por definir a nossa tela. É preciso especificar uma rota, o que fazemos definindo com a rota da **HomeScreen**. Ela também possui vários outros parâmetros, como **arguments** e algumas opções de animação, que vamos ver mais a frente.
-- Como **content** da **composable()**, usamos a nossa **HomeScreen** de fato. Quando **onNavigateToTracking** for acionada, navegamos da **HomeScreen** para a **TrackingScreen**. Para isso utilizamos a função **navigate()** do **NavHostController** que criamos inicialmente.
+- Como **content** da **composable()**, usamos a nossa **HomeScreen** de fato. Quando **onNavigateToTracking** for acionada, navegamos da **HomeScreen** para a **TrackingScreen**. Para isso utilizamos a função **navigate()** do **NavHostController**.
 
 Agora que já vimos os principais pontos, vamos finalizar o **AppNavHost** com a **composable()** da **TrackingScreen**:
 
 ```kotlin
 @Composable
-fun AppNavHost() {
-    val navController = rememberNavController()
+fun AppNavHost(navController: NavHostController) {
     NavHost(
         navController = navController,
         startDestination = Screen.HomeScreen.route
@@ -152,7 +150,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    AppNavHost()
+                    val navController = rememberNavController()
+                    AppNavHost(navController)
                 }
             }
         }
@@ -225,8 +224,7 @@ Agora também precisamo fazer leves alterações no **AppNavHost**, removendo os
 
 ```kotlin
 @Composable
-fun AppNavHost() {
-    val navController = rememberNavController()
+fun AppNavHost(navController: NavHostController) {
     NavHost(
         navController = navController,
         startDestination = Screen.HomeScreen.route
@@ -270,8 +268,7 @@ Agora que já sabemos como funciona, vamos aplicar uma pequena animação de sli
 private const val ANIMATION_DURATION = 700
 
 @Composable
-fun AppNavHost() {
-    val navController = rememberNavController()
+fun AppNavHost(navController: NavHostController) {
     NavHost(
         ...
     ) {
@@ -336,8 +333,7 @@ Agora basta fazer uma verificação com essa função antes de navegar:
 
 ```kotlin
 @Composable
-fun AppNavHost() {
-    ...
+fun AppNavHost(navController: NavHostController) {
     NavHost(
        ...
     ) {
@@ -385,8 +381,7 @@ Para resolver isso, você pode codificar a URL antes de passá-la como argumento
 
 ```kotlin
 @Composable
-fun AppNavHost() {
-    ...
+fun AppNavHost(navController: NavHostController) {
     NavHost(
         ...
     ) {
