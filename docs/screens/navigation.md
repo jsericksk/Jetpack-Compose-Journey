@@ -325,7 +325,7 @@ Veja a imagem abaixo para ter ideia do problema:
 
 <img src="../navigation/img-04.gif" alt="Navigation com problemas" width="50%" height="20%"/>
 
-Existem algumas formas de resolver isso. Uma delas seria desabilitar múltiplos cliques no componente em um curto período de tempo, mas isso pode ser complicado e não atinge diretamente o problema, já que se trata de um problema na navegação. Uma outra opção para esse caso é criar uma função auxiliar que verifica se o status atual do **Lifecycle** é **Lifecycle.State.RESUMED**, pois caso contrário, significa que esse **NavBackStackEntry** já processou um evento de navegação. Veja o código abaixo:
+Existem algumas formas de resolver isso. Uma delas seria desabilitar múltiplos cliques no componente em um curto período de tempo, mas isso pode ser complicado e não atinge diretamente o problema, já que se trata de um problema na navegação. Uma outra opção para esse caso é criar uma [função auxiliar](https://github.com/android/compose-samples/issues/456#issuecomment-886944725) que verifica se o status atual do **Lifecycle** é **Lifecycle.State.RESUMED**, pois caso contrário, significa que esse **NavBackStackEntry** já processou um evento de navegação. Veja o código abaixo:
 
 ```kotlin
 private fun NavBackStackEntry.lifecycleIsResumed() =
