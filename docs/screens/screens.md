@@ -21,6 +21,24 @@ screens:
 ...
 ```
 
+## Criando as strings
+
+Dessa vez não usaremos hardcoded strings, mas colocaremos todos os textos em [**res/strings.xml**](https://developer.android.com/guide/topics/resources/localization). Abaixo estão todas as strings que usaremos nessa seção.
+
+```xml
+<resources>
+    <string name="app_name">Compose Journey</string>
+
+    <string name="tracker">Rastreador</string>
+    <string name="tracking_code">Código de rastreio</string>
+    <string name="cep">CEP</string>
+    <string name="track">Rastrear</string>
+    <string name="tracking">Rastreamento</string>
+    <string name="order_status">Status: Em trânsito</string>
+
+</resources>
+```
+
 ## Criando a HomeScreen
 
 Vamos começar criando a **HomeScreen**:
@@ -47,7 +65,7 @@ fun HomeScreen(onNavigateToTracking: (code: String, cep: Int) -> Unit) {
     ) {
         val verticalSpacing = 14.dp
         Text(
-            text = "Rastreador",
+            text = stringResource(id = R.string.tracker),
             color = MaterialTheme.colorScheme.primary,
             fontSize = 34.sp,
             fontWeight = FontWeight.Bold
@@ -58,7 +76,7 @@ fun HomeScreen(onNavigateToTracking: (code: String, cep: Int) -> Unit) {
             onTextChange = {
                 code = it
             },
-            label = "Código de rastreio",
+            label = stringResource(id = R.string.tracking_code),
             leadingIcon = Icons.Default.Info
         )
         Spacer(Modifier.height(verticalSpacing))
@@ -72,7 +90,7 @@ fun HomeScreen(onNavigateToTracking: (code: String, cep: Int) -> Unit) {
                     cepNumber = UndefinedCep
                 }
             },
-            label = "CEP",
+            label = stringResource(id = R.string.cep),
             leadingIcon = Icons.Default.LocationOn,
             keyboardType = KeyboardType.Number
         )
@@ -84,7 +102,7 @@ fun HomeScreen(onNavigateToTracking: (code: String, cep: Int) -> Unit) {
             contentPadding = PaddingValues(16.dp),
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text("Rastrear")
+            Text(stringResource(id = R.string.track))
         }
     }
 }
@@ -186,14 +204,14 @@ Estamos utilizando **StateFlow** para armazenar o estado da UI. Poderia ser feit
 
 ## Refazendo a HomeScreen
 
-Como agora o estado da tela está no **HomeViewModel**, temos que fazer algumas alterações na **HomeScreen**. A primeira delas é criar uma **HomeScreenContent** que terá um código bem similar ao que já vimos antes, porém, dessa vez utilizando a **HomeUiState** e **HomeUiEvent**.
+Como agora o estado da tela está no **HomeViewModel**, temos que fazer algumas alterações na **HomeScreen**. A primeira delas é criar uma nova função **HomeScreen** que terá um código bem similar ao que já vimos antes, porém, dessa vez utilizando a **HomeUiState** e **HomeUiEvent**.
 
 <details>
-  <summary>Ver código da HomeScreenContent</summary>
+  <summary>Ver código da HomeScreen</summary>
 
 ```kotlin
 @Composable
-fun HomeScreenContent(
+fun HomeScreen(
     uiState: HomeUiState,
     onUiEvent: (HomeUiEvent) -> Unit,
     onNavigateToTracking: () -> Unit
@@ -207,7 +225,7 @@ fun HomeScreenContent(
     ) {
         val verticalSpacing = 14.dp
         Text(
-            text = "Rastreador",
+            text = stringResource(id = R.string.tracker),
             color = MaterialTheme.colorScheme.primary,
             fontSize = 34.sp,
             fontWeight = FontWeight.Bold
@@ -218,7 +236,7 @@ fun HomeScreenContent(
             onTextChange = {
                 onUiEvent.invoke(HomeUiEvent.CodeChanged(it))
             },
-            label = "Código de rastreio",
+            label = stringResource(id = R.string.tracking_code),
             leadingIcon = Icons.Default.Info
         )
         Spacer(Modifier.height(verticalSpacing))
@@ -232,7 +250,7 @@ fun HomeScreenContent(
                     onUiEvent.invoke(HomeUiEvent.CepChanged(UndefinedCep))
                 }
             },
-            label = "CEP",
+            label = stringResource(id = R.string.cep),
             leadingIcon = Icons.Default.LocationOn,
             keyboardType = KeyboardType.Number
         )
@@ -243,28 +261,28 @@ fun HomeScreenContent(
             enabled = uiState.canNavigateToTrackingScreen,
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text("Rastrear")
+            Text(text = stringResource(id = R.string.track))
         }
     }
 }
 ```
 </details>
 
-Como pode ver, não estamos usando o **HomeViewModel** ainda. Agora vamos criar uma nova função que será de fato a nossa **HomeScreen**. Veja o código:
+Como pode ver, não estamos usando o **HomeViewModel** ainda. Agora vamos criar uma nova função **HomeScreen** que usará o **HomeViewModel**. Veja o código:
 
 ```kotlin
 @Composable
 fun HomeScreen(
-    onNavigateToTracking: (code: String, cep: Int) -> Unit
+    onNavigateToTracking: (code: String, cep: Int) -> Unit,
+    homeViewModel: HomeViewModel = viewModel()
 ) {
-    val homeViewModel: HomeViewModel = viewModel()
     val uiState by homeViewModel.uiState.collectAsStateWithLifecycle()
-    HomeScreenContent(
+    HomeScreen(
+        uiState = uiState,
+        onUiEvent = homeViewModel::onUiEvent,
         onNavigateToTracking = {
             onNavigateToTracking.invoke(uiState.code, uiState.cep)
-        },
-        uiState = uiState,
-        onUiEvent = homeViewModel::onUiEvent
+        }
     )
 }
 ```
@@ -275,9 +293,9 @@ Nela, instanciamos o **HomeViewModel** e observamos o estado da UI coletando o *
 implementation("androidx.lifecycle:lifecycle-runtime-compose:$version")
 ```
 
-#### Por que criar duas funções separadas, HomeScreen e HomeScreenContent?
+#### Por que criar duas funções HomeScreen?
 
-Não é o caso nesse projeto, mas normalmente o **ViewModel** utiliza algumas classes com **injeção de dependências**, utilizando alguma biblioteca para isso, como [**Hilt**](https://developer.android.com/training/dependency-injection/hilt-android). Por exemplo, o nosso **HomeViewModel** poderia ser algo como abaixo:
+Não é o caso nesse projeto, mas normalmente o **ViewModel** usa algumas classes com **injeção de dependências**, utilizando alguma biblioteca para isso, como [**Hilt**](https://developer.android.com/training/dependency-injection/hilt-android). Por exemplo, o nosso **HomeViewModel** poderia ser algo como abaixo:
 
 ```kotlin
 @HiltViewModel
@@ -288,9 +306,9 @@ class HomeViewModel @Inject constructor(
 }
 ```
 
-Nesse cenário bem comum, [**Previews** têm uma limitação em relação a **ViewModels**](https://developer.android.com/jetpack/compose/tooling/previews#preview-viewmodel). Se criarmos todo o conteúdo da tela e ao mesmo tempo instanciarmos o **ViewModel** na mesma função, nós obteríamos um erro ao tentar visualizar o layout com **Preview** e o layout não seria exibido. Em resumo, isso é feito principalmente para tornar as **Previews** acessíveis e ao mesmo tempo separar um pouco o conteúdo da tela.
+Nesse cenário bem comum, [**Previews** têm uma limitação em relação a **ViewModels**](https://developer.android.com/jetpack/compose/tooling/previews#preview-viewmodel). Se criarmos todo o conteúdo da tela e ao mesmo tempo instanciarmos o **ViewModel** na mesma função, nós obteríamos um erro ao tentar visualizar o layout com **Preview** e o layout não seria exibido. Em resumo, isso é feito principalmente para tornar as **Previews** acessíveis e também facilitar passar dados mais controlados para a tela, já que temos uma função que só recebe o estado.
 
-Como sempre, existem algumas outras abordagens para resolver esse problema, mas vamos utilizar esta por ser simples e de fácil entendimento. Os nomes das funções fica a seu critério, é claro.
+O [**Now in Android**](https://github.com/android/nowinandroid/blob/main/feature/interests/src/main/kotlin/com/google/samples/apps/nowinandroid/feature/interests/InterestsScreen.kt) segue um padrão similar, mas tendo nomenclaturas com sufixo **Route** e **Screen**. Por exemplo, **HomeRoute** e **HomeScreen**. Os nomes das funções ficam a seu critério, é claro.
 
 ## Criando a TrackingScreen, TrackingViewModel e TrackingUiState
 
@@ -304,14 +322,14 @@ Agora que já vimos alguns dos conceitos básicos que estamos usando, vamos cria
 fun TrackingScreen(
     code: String,
     cep: Int,
-    onNavigateBack: () -> Unit
+    onNavigateBack: () -> Unit,
+    trackingViewModel: TrackingViewModel = viewModel()
 ) {
-    val trackingViewModel: TrackingViewModel = viewModel()
     val uiState by trackingViewModel.uiState.collectAsStateWithLifecycle()
     LaunchedEffect(Unit) {
         trackingViewModel.getTrackingInfo(code = code, cep = cep)
     }
-    TrackingScreenContent(
+    TrackingScreen(
         uiState = uiState,
         onNavigateBack = onNavigateBack
     )
@@ -319,14 +337,14 @@ fun TrackingScreen(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun TrackingScreenContent(
+private fun TrackingScreen(
     uiState: TrackingUiState,
     onNavigateBack: () -> Unit
 ) {
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
-                title = { Text(text = "Rastreamento") },
+                title = { Text(text = stringResource(id = R.string.tracking)) },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primary,
                     titleContentColor = MaterialTheme.colorScheme.onPrimary,
@@ -371,7 +389,7 @@ private fun MainContent(
                 modifier = Modifier.padding(24.dp)
             ) {
                 Text(
-                    text = "Código de rastreio",
+                    text = stringResource(id = R.string.tracking_code),
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Normal
                 )
@@ -384,7 +402,7 @@ private fun MainContent(
                 )
                 Spacer(Modifier.height(16.dp))
                 Text(
-                    text = "CEP",
+                    text = stringResource(id = R.string.cep),
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Normal
                 )
@@ -405,7 +423,7 @@ private fun MainContent(
             )
             Spacer(Modifier.width(6.dp))
             Text(
-                text = "Status: Em trânsito",
+                text = stringResource(id = R.string.order_status),
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Normal,
                 textAlign = TextAlign.Center
@@ -418,12 +436,9 @@ private fun MainContent(
 
 <img src="../screens/img-02.png" alt="HomeScreen" width="50%" height="20%"/>
 
-A **TrackingScreen** não possui nada do que não já vimos antes, mas como destaque, é possível perceber que ela possui 2 parâmetros, **code** e **cep**, que são os que iremos passar quando navegar da **HomeScreen**, além do **onNavigateBack**, que será acionado quando o ícone de arrow back for tocado para voltar à tela anterior. Ela também utiliza uma função do **TrackingViewModel** chamada **getTrackingInfo()**, que veremos posteriormente que é apenas uma forma de inicializar o estado da tela. Estamos usando **LaunchedEffect(Unit)** para que essa função seja chamada apenas na primeira composição da tela.
+A **TrackingScreen** não possui nada do que já não vimos antes, mas como destaque, é possível perceber que ela possui 2 parâmetros, **code** e **cep**, que são os que iremos passar quando navegar da **HomeScreen**, além do **onNavigateBack**, que será acionado quando o ícone de arrow back for tocado para voltar à tela anterior. Ela também utiliza uma função do **TrackingViewModel** chamada **getTrackingInfo()**, que veremos posteriormente que é apenas uma forma de inicializar o estado da tela. Estamos usando **LaunchedEffect(Unit)** para que essa função seja chamada apenas na primeira composição da tela.
 
 É importante notar que em um cenário real, onde **getTrackingInfo()** fosse uma função que busca informações em um repositório com base no código de rastreio e cep e devesse ser chamada apenas na primeira vez que a tela é exibida, chamá-la dessa forma com **LaunchedEffect(Unit)** talvez não fosse o mais ideal, pois a função ainda seria chamada em rotações de tela e buscaria os dados novamente. Mas funciona bem como exemplo.
-
-<details>
-  <summary>Ver código da TrackingViewModel</summary>
 
 ```kotlin
 class TrackingViewModel : ViewModel() {
@@ -438,12 +453,8 @@ class TrackingViewModel : ViewModel() {
     }
 }
 ```
-</details>
 
 **TrackingViewModel** também não tem nada demais, então pouparei os comentários.
-
-<details>
-  <summary>Ver código da TrackingUiState</summary>
 
 ```kotlin
 data class TrackingUiState(
@@ -451,7 +462,6 @@ data class TrackingUiState(
     val cep: Int = 0
 )
 ```
-</details>
 
 Existe uma pequena observação sobre a **TrackingUiState**. Como pode ver, ela é bastante parecida com a **HomeUiState**. Normalmente ela teria mais propriedades, como por exemplo, uma para especificar o estado atual da tela, seja **loading**, **success** ou **error**, já que na teoria essa tela iria buscar informações de algum dado remoto e isso demoraria um pouco para ser exibido e poderia ocasionar em erro. Mas para fins de simplificação, não teremos nada disso. Como também não teremos nenhum evento muito importante e esses dados não vão mudar, não teremos uma **TrackingUiEvent** aqui.
 
