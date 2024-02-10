@@ -1,10 +1,10 @@
 # Image
 
-Praticamente todo app tem imagens. Essa seção abordará algumas das funções principais das imagens no Compose.
+Praticamente todo app tem imagens. Essa seção abordará um pouco sobre como utilizar imagens no Compose, bem como algumas pequenas personalizações.
 
 ## Icon
 
-Antes de falarmos sobre o componente **Image()**, vamos falar sobre o [Icon()](https://developer.android.com/jetpack/compose/graphics/images/material). Você pode obter o mesmo comportamento usando **Image()**, mas **Icon()** é uma forma mais conveniente para carregar ícones, como drawables vetoriais. Isso porque ele fornece um parâmetro **tint** que pode ser usado para mudar a cor do ícone facilmente. Já usamos ele em seções anteriores, mas vamos ver mais um exemplo:
+Antes de falarmos sobre o componente **Image()**, vamos falar sobre o [Icon()](https://developer.android.com/jetpack/compose/graphics/images/material). Você pode obter o mesmo comportamento usando **Image()**, mas **Icon()** é uma forma mais conveniente para carregar ícones, como drawables vetoriais. Isso porque ele fornece um parâmetro **tint** que pode ser usado para mudar a cor do ícone facilmente. Já usamos ele em seções anteriores, mas vamos ver mais um exemplo.
 
 Compose possui alguns ícones padrão fornecido através de **Icons**, como por exemplo: ```Icons.Default.Delete```. Você pode usar ícones tanto com ***imageVector*** quanto ***painter***, como no exemplo abaixo, que utiliza um ícone de **Icons** e um ícone criado com o [**Asset Studio**](https://developer.android.com/studio/write/create-app-icons) do **Android Studio**:
 
@@ -37,18 +37,23 @@ Vamos começar carregando imagens que estão na pasta ***res/drawable***. Veja o
 ```kotlin
 @Composable
 private fun Image() {
-    Image(
-        painter = painterResource(id = R.drawable.img_nature),
-        contentDescription = "Image",
-        contentScale = ContentScale.Crop,
-        modifier = Modifier.size(width = 200.dp, height = 150.dp)
-    )
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier.fillMaxSize()
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.img_nature),
+            contentDescription = "Image",
+            contentScale = ContentScale.Crop,
+            modifier = Modifier.size(width = 300.dp, height = 250.dp)
+        )
+    }
 }
 ```
 
-![Image](image/img-02.png)
+<img src="../image/img-02.png" alt="Image" width="40%" height="20%"/>
 
-Adicionamos um ***ContentScale.Crop*** e mudamos o tamanho da imagem com o ***Modifier.size(width = 200.dp, height = 150.dp)***. Veja a [documentação](https://developer.android.com/jetpack/compose/graphics/images/customize#content-scale) para ter mais noção sobre o **ContentScale** e como ele modifica a exibição da imagem.
+Adicionamos um ```ContentScale.Crop``` e mudamos o tamanho da imagem com o ```Modifier.size(width = 300.dp, height = 250.dp)```. Veja a [documentação](https://developer.android.com/jetpack/compose/graphics/images/customize#content-scale) para ter mais noção sobre o **ContentScale** e como ele modifica a exibição da imagem.
 
 ## Carregando imagens da internet
 
@@ -78,7 +83,7 @@ private fun Image() {
 
 ## Customizando images
 
-Você também pode personalizar a exibição da imagem. Por exemplo, tornando ela circular ou com um shape personalizado. Basta utilizar o poder do ```Modifier.clip()```. Essa função não é do componente Image() em si, mas pode ser aplicada em qualquer Composable (quando fizer sentido, claro). Vamos ver mais sobre o **Modifier** em sua própria seção.
+Você também pode personalizar a exibição da imagem. Por exemplo, tornando ela circular ou com um shape personalizado. Basta utilizar o poder do ```Modifier.clip()```. Essa função não é do componente **Image()** em si, mas pode ser aplicada em qualquer Composable (quando fizer sentido, claro). Vamos ver mais sobre o **Modifier** em sua própria seção.
 
 === "CircleShape"
 
