@@ -72,9 +72,9 @@ val brush = remember {
 }
 ```
 
-#### remember com keys
+#### remember com chaves (keys)
 
-Também é possível passar alguns argumentos para ***remember***, nomeados como **keys**. Você pode usar um número variável de **keys**, ou até mesmo nenhum, como já fizemos acima. Quando o valor de uma das **keys** muda, o código do **remember** é reexecutado para obter o novo valor. Vamos ver um exemplo prático disso.
+Também é possível passar alguns argumentos para ***remember***, nomeados como **keys (chaves)**. Você pode usar um número variável de **keys**, ou até mesmo nenhuma, como já fizemos acima. Quando o valor de uma das **keys** muda, o código do **remember** é reexecutado para obter o novo valor. Vamos ver um exemplo prático disso.
 
 Temos a função abaixo para destacar em negrito um texto de uma String que esteja entre ```<b>``` e ```</b>``` (esse parser não funciona em textos muito complexos e serve apenas de exemplo). Adicionei um ```Log.d()``` para exibir posteriormente quantas vezes essa função é chamada.
 
@@ -231,16 +231,16 @@ fun MyTextField(
 
 ## Elevação de estado (state hoisting)
 
-A elevação de estado no Compose é um padrão de movimentação de estado para o chamador do Composable para torná-lo sem estado. O padrão geral para elevação de estado no Jetpack Compose é substituir a variável de estado por dois parâmetros:
+A elevação de estado no Compose é um padrão de movimentação de estado para o chamador do Composable para torná-lo sem estado, como vimos no exemplo acima. O padrão geral para elevação de estado no Compose é substituir a variável de estado por dois parâmetros:
 
-- ```value: T```: O valor atual a ser exibido
-- ```onValueChange: (T) -> Unit```: Um evento que solicita a alteração do valor, onde **T** é o novo valor
+- ```value: T```: O valor atual a ser exibido.
+- ```onValueChange: (T) -> Unit```: Um evento que solicita a alteração do valor, onde **T** é o novo valor.
 
 Você já viu isso em diversos componentes na seção sobre componentes, como o ***TextField***. 
 
 Vale lembrar que você não está limitado a **onValueChange**. Se eventos mais específicos forem apropriados para o Composable, você deverá defini-los usando lambdas.
 
-Você pode ler mais sobre state hoisting na [documentação](https://developer.android.com/jetpack/compose/state#state-hoisting). Veja um pequeno exemplo retirado da própria documentação:
+Você pode ler mais sobre **state hoisting** na [documentação](https://developer.android.com/jetpack/compose/state#state-hoisting). Além do pequeno exemplo que já vimos, veja também um pequeno exemplo retirado da própria documentação:
 
 ```kotlin
 @Composable
@@ -267,9 +267,9 @@ fun HelloContent(name: String, onNameChange: (String) -> Unit) {
 
 ## Detentores de estado (state holders)
 
-Para não tornar essa seção extremamente longa e como esse conteúdo não está sendo feito para substituir a documentação oficial, vou mencionar apenas mais um tema importante que faz um pouco parte dos estados no Compose: ***state holders***. Leia mais sobre eles na [documentação](https://developer.android.com/topic/architecture/ui-layer/stateholders). Em resumo, ao invés de gerenciar o estado internamento nos Composables, você delega as funções de alterar e armazenar os estados a outras classes, que nesse caso se tornam as ditas ***state holders***. 
+Para não tornar essa seção extremamente longa e como esse conteúdo não está sendo feito para substituir a documentação oficial, vou mencionar apenas mais um tema importante que faz um pouco parte dos estados no Compose: **state holders**. Leia mais sobre eles na [documentação](https://developer.android.com/topic/architecture/ui-layer/stateholders). Em resumo, ao invés de gerenciar o estado internamento nos Composables, você delega as funções de alterar e armazenar os estados a outras classes, que nesse caso se tornam as ditas **state holders**.
 
-Se você está iniciando no Compose e seguindo esse conteúdo por ordem cronológica, não precisa se preocupar com isso por enquanto. Apenas saiba que é um recurso útil e você usará bastante.
+Você verá um exemplo simples de um **ViewModel** servindo de **state holder** na seção sobre [telas, ViewModels e navegação](../screens/screens).
 
 ## Conclusão
 
