@@ -20,7 +20,7 @@ fun Profile() {
 
 ## Alinhamento de uma Row
 
-Assim como a Column, Row possui mais 2 parâmetros que podem ser usados para alinhar o conteúdo. Vamos modificar o **horizontalArrangement** e ver como fica:
+Assim como a **Column**, **Row** possui mais 2 parâmetros que podem ser usados para alinhar o conteúdo. Vamos modificar o **horizontalArrangement** e ver como fica:
 
 === "Arrangement.Start" 
 
@@ -102,9 +102,7 @@ Assim como a Column, Row possui mais 2 parâmetros que podem ser usados para ali
     }
     ```
 
-Também podemos fazer uma combinações de **horizontalArrangement** e **verticalAlignment** para deixar todo o conteúdo centralizado verticalmente e horizontalmente, por exemplo.
-
-![Row centralizada](row/img-07.png)
+Também podemos fazer uma combinação de **horizontalArrangement** e **verticalAlignment** para deixar todo o conteúdo centralizado, por exemplo.
 
 ```kotlin
 @Composable
@@ -118,6 +116,8 @@ fun Profile() {
     }
 }
 ```
+
+![Row centralizada](row/img-07.png)
 
 ## :link: Conteúdos auxiliares:
 - [Compose layout basics (documentação)](https://developer.android.com/jetpack/compose/layouts/basics)
