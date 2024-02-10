@@ -6,9 +6,9 @@ No entanto, **efeitos colaterais às vezes são necessários**. Por exemplo, par
 
 ## LaunchedEffect
 
-Para chamar **suspend functions** dentro de uma função Composable, podemos utilizar o **LaunchedEffect**. Quando LaunchedEffect entrar na composição, ele lança uma coroutine com o bloco de código passado como parâmetro. A coroutine será cancelada se LaunchedEffect sair da composição.
+Para chamar **suspend functions** dentro de uma função Composable, podemos utilizar o **LaunchedEffect**. Quando **LaunchedEffect** entrar na composição, ele lança uma coroutine com o bloco de código passado como parâmetro. A coroutine será cancelada se o **LaunchedEffect** sair da composição.
 
-Vamos ver um exemplo simples, que não é o ideal no "mundo real", mas ainda pode exemplificar bem um uso do LaunchedEffect. Temos uma classe **ProfileDataSource** com uma **suspend function getProfileName()**. Por fim, temos uma Composable **Profile()** responsável por exibir um loading ou texto de sucesso, exibindo o nome de perfil obtido através da **getProfileName()**, ou um texto de erro. Obviamente, isso não é possível no cenário comum de uma função Composable, pois não podemos simplesmente chamar **getProfileName()** na **Profile()**. Primeiro, porque é uma suspend function, e, segundo, porque ela seria chamada inúmeras vezes devido a recomposição. Veja o exemplo de código:
+Vamos ver um exemplo simples, que pode não ser o mais ideal em um projeto "real", mas que pode exemplificar bem um uso do **LaunchedEffect**. Temos uma classe **ProfileDataSource** com uma **suspend function getProfileName()**. Por fim, temos uma Composable **Profile()** responsável por exibir um loading ou texto de sucesso, exibindo o nome de perfil obtido através da **getProfileName()**, ou um texto de erro. Obviamente, isso não é possível no cenário comum de uma função Composable, pois não podemos simplesmente chamar **getProfileName()** na **Profile()**. Primeiro, porque é uma suspend function, e, segundo, porque ela seria chamada inúmeras vezes devido a recomposição. Veja o exemplo de código:
 
 ```kotlin
 class ProfileDataSource {
@@ -54,7 +54,7 @@ private fun Profile() {
 }
 ```
 
-Para resolver esse problema, podemos utilizar **LaunchedEffect**:
+Para resolver esse problema, podemos utilizar o **LaunchedEffect**:
 
 ```kotlin
 @Composable
@@ -72,9 +72,13 @@ private fun Profile() {
 }
 ```
 
-Dessa forma, obtemos o nome do perfil e fazemos a atualização necessária em **state**. **Unit** aqui é usado como **key**, pois queremos executar esse trecho do LaunchedEffect apenas na primeira composição. LaunchedEffect aceita um número variável de **keys**. Quando o valor de uma das keys muda, a coroutine existente será cancelada e o trecho de LaunchedEffect será iniciado em uma nova coroutine.
+Dessa forma, obtemos o nome do perfil e fazemos a atualização necessária em **state**. 
 
-Veja um pequeno código de **timer** abaixo que exemplifica o LaunchedEffect reagindo com as mudanças de valores de uma **key**. Poderíamos fazer o código abaixo de inúmeras formas diferentes, mas novamente, serve como um exemplo.
+## Chaves
+
+O argumento **Unit** que passamos no código que vimos antes é uma **chave (key)**. **LaunchedEffect** aceita um número variável de chaves. Quando o valor de uma das chaves muda, a coroutine existente será cancelada e o trecho de **LaunchedEffect** será iniciado em uma nova coroutine. Basicamente é um mecanismo parecido com o **remember()** e também vemos isso em outros side effects. Passamos **Unit** como chave porque queremos executar o trecho de código apenas na primeira composição, já que **Unit** serve como uma constante.
+
+Veja um pequeno código de **timer** abaixo que exemplifica o **LaunchedEffect** reagindo com as mudanças de valores de uma chave. Poderíamos fazer o código abaixo de inúmeras formas diferentes, mas novamente, serve como um exemplo.
 
 ```kotlin
 @Composable
@@ -112,7 +116,7 @@ private fun CountdownTimer() {
 
 <img src="../launchedeffect/img-01.gif" alt="LaunchedEffect" width="50%" height="30%"/>
 
-No exemplo acima, estamos usando a suspend function **delay()** e o LaunchedEffect irá atualizar **currentTime** enquanto ele for maior que 0. Uma vez que ele atualiza **currentTime** para 4 na primeira execução após 1 segundo do delay, o valor da key muda e o LaunchedEffect reinicia.
+No exemplo acima, estamos usando a suspend function **delay()** e o **LaunchedEffect** irá atualizar **currentTime** enquanto ele for maior que 0. Uma vez que ele atualiza **currentTime** para 4 na primeira execução após 1 segundo do delay, o valor da chave muda e o **LaunchedEffect** reinicia.
 
 ## :link: Conteúdos auxiliares:
 - [Side-effects in Compose (documentação)](https://developer.android.com/jetpack/compose/side-effects)
