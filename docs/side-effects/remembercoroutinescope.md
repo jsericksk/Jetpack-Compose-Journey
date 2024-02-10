@@ -1,7 +1,7 @@
 
 # rememberCoroutineScope
 
-rememberCoroutineScope é uma função Composable que retorna um CoroutineScope vinculada ao ponto da composição onde é chamada. O escopo será cancelado quando a chamada sair da composição.
+**rememberCoroutineScope** é uma função Composable que retorna um **CoroutineScope** vinculada ao ponto da composição onde é chamada. O escopo será cancelado quando a chamada sair da composição.
 
 Diferente da **LaunchedEffect** que só pode ser usada dentro de uma outra função Composable por ser uma função Composable, **rememberCoroutineScope** é útil para iniciar uma coroutine fora de uma Composable, mas com escopo para que seja cancelada automaticamente ao sair da composição.
 
