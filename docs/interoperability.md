@@ -35,7 +35,7 @@ private fun ComposeTextView() {
 
 <img src="../interoperability/img-01.gif" alt="AndroidView" width="80%" height="40%"/>
 
-Temos duas propriedades importantes aqui:
+Temos dois parâmetros importantes:
 
 - **factory** é onde inicializamos a View a ser utilizada. O trecho de código em **factory** será executado exatamente uma vez e é o lugar ideal para inicializar propriedades importantes iniciais. No código acima, definimos algumas pequenas propriedades do **TextView** e também adicionamos um **setOnClickListener()**, que será acionado sempre que o **TextView** for tocado.
 - **update** será chamado múltiplas vezes e é o lugar certo para realizar atualizações de propriedades da View com base em alguma mudança de estado. Como ele é chamado múltiplas vezes nas recomposições, é importante estar atento para não realizar operações muito caras aqui.
@@ -99,7 +99,7 @@ fun FragmentInComposeExample() {
 
 ## Conclusão
 
-Evitei exemplos mais elaborados nos tópicos de **AndroidViewBinding** e **Fragments** porque precisaria usar XML para ter algo mais prático. Como não é a intenção desse conteúdo abordar XML, achei melhor utilizar apenas os exemplos da própria documentação, pois caso você de fato precise disso, já deve estar familiarizado com XML para tal e essa pequena introdução pode ser o suficiente até ler a documentação.
+Evitei exemplos mais elaborados nos tópicos de **AndroidViewBinding** e **Fragments** porque precisaria usar XML para ter algo mais prático. Como não é a intenção desse conteúdo abordar XML, achei melhor utilizar apenas os exemplos da própria documentação, pois caso você de fato precise disso, já deve estar familiarizado com XML para tal e essa pequena introdução pode ser o suficiente para saber que é possível.
 
 Vimos apenas o uso de Views no Compose, mas como dito antes, também podemos utilizar Compose em Views. Pelos mesmos motivos citados acima, evitarei falar sobre esse tópico nessa seção e você pode ler mais sobre isso na documentação.
 
