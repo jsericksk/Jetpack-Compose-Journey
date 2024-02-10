@@ -1,13 +1,11 @@
 # Card
 
-Cards também são bastante importantes e nessa seção vamos ver um pouco sobre eles. Assim como outros components que já vimos, Card tem diversas variações. Veja uma implementação básica:
+**Cards** também são bastante importantes e nessa seção vamos ver um pouco sobre eles. Assim como outros components que já vimos, **Card** tem diversas variações. Veja uma implementação básica:
 
 ```kotlin
 @Composable
 private fun Card() {
-    Card(
-        shape = RoundedCornerShape(16.dp)
-    ) {
+    Card(shape = RoundedCornerShape(16.dp)) {
         Image(
             painter = painterResource(id = R.drawable.img_nature),
             contentDescription = "Image",
@@ -30,9 +28,9 @@ private fun Card() {
 }
 ```
 
-![Card](card/img-01.png)
+<img src="../card/img-01.png" alt="Card" width="50%" height="30%"/>
 
-Um ***ElevatedCard***, que como o nome diz, possui uma elevação e shadow de acordo com a elevação.
+Um ***ElevatedCard***, que como o nome diz, possui uma elevação e shadow de acordo com a elevação:
 
 ```kotlin
 @Composable
@@ -51,7 +49,7 @@ private fun Card() {
 }
 ```
 
-![ElevatedCard](card/img-02.png)
+<img src="../card/img-02.png" alt="ElevatedCard" width="50%" height="30%"/>
 
 E também temos o ***OutlinedCard***:
 
@@ -67,7 +65,7 @@ private fun Card() {
 }
 ```
 
-![OutlinedCard](card/img-03.png)
+<img src="../card/img-03.png" alt="OutlinedCard" width="50%" height="30%"/>
 
 ## :link: Conteúdos auxiliares:
 - [Card (documentação)](https://developer.android.com/jetpack/compose/components/card)
