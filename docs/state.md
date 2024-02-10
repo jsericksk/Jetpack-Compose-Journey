@@ -258,7 +258,11 @@ fun HelloContent(name: String, onNameChange: (String) -> Unit) {
             modifier = Modifier.padding(bottom = 8.dp),
             style = MaterialTheme.typography.bodyMedium
         )
-        OutlinedTextField(value = name, onValueChange = onNameChange, label = { Text("Name") })
+        OutlinedTextField(
+            value = name, 
+            onValueChange = onNameChange, 
+            label = { Text("Name") }
+        )
     }
 }
 ```
@@ -267,7 +271,7 @@ fun HelloContent(name: String, onNameChange: (String) -> Unit) {
 
 ## Detentores de estado (state holders)
 
-Para não tornar essa seção extremamente longa e como esse conteúdo não está sendo feito para substituir a documentação oficial, vou mencionar apenas mais um tema importante que faz um pouco parte dos estados no Compose: **state holders**. Leia mais sobre eles na [documentação](https://developer.android.com/topic/architecture/ui-layer/stateholders). Em resumo, ao invés de gerenciar o estado internamento nos Composables, você delega as funções de alterar e armazenar os estados a outras classes, que nesse caso se tornam as ditas **state holders**.
+Para não tornar essa seção mais longa e como esse conteúdo não está sendo feito para substituir a documentação oficial, vou mencionar apenas mais um tema importante sobre esse tópico: **state holders**. Leia mais sobre eles na [documentação](https://developer.android.com/topic/architecture/ui-layer/stateholders). Em resumo, ao invés de gerenciar o estado internamento nos Composables (com várias variáveis com **remember()** e **mutableState()**), você delega a função de gerenciar os estados a outras classes, que nesse caso se tornam as ditas **state holders**.
 
 Você verá um exemplo simples de um **ViewModel** servindo de **state holder** na seção sobre [telas, ViewModels e navegação](../screens/screens).
 
