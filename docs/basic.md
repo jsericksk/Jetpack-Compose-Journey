@@ -98,7 +98,6 @@ Use:
 private fun ImageList() {...}
 ```
 
-
 ## :link: Conteúdos auxiliares:
 - [Thinking in Compose (documentação)](https://developer.android.com/jetpack/compose/mental-model)
 - [Thinking in Compose (artigo)](https://medium.com/androiddevelopers/thinking-in-compose-c4ef150bb7cf)
