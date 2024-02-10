@@ -1,12 +1,10 @@
 # Testes de interface
 
-Testes são essenciais em qualquer app. Essa seção fará uma pequena introdução aos testes de interface com Jetpack Compose. É importante ressaltar que não teremos nada relacionado a testes unitários que envolvam lógicas de negócios, **ViewModels** ou coisas do tipo, pois esse conteúdo não é sobre isso. Essa seção também não é sobre **o que testar**, pois cada app e UI têm suas particularidades e os testes devem ser pensados em tal.
-
-
+Testes são essenciais em qualquer app. Essa seção fará uma pequena introdução aos testes de interface com Jetpack Compose. É importante ressaltar que não teremos nada relacionado a testes unitários que envolvam lógicas de negócios, **ViewModels** ou coisas do tipo. Essa seção também não é sobre **o que testar**, pois cada app e UI têm suas particularidades.
 
 ## Local dos testes
 
-Como testes de interface do Compose são **testes instrumentados**, eles ficam localizados no módulo de **androidTest**. Também por esse motivo, os testes dependem de um **emulador** ou dispositivo físico para rodarem.
+Como testes de interface do Compose são **testes instrumentados**, eles ficam localizados na pasta **androidTest**. Também por esse motivo, **os testes dependem de um emulador ou dispositivo físico para rodarem**.
 
 <img src="../testing/img-01.png" alt="Local dos testes" width="50%" height="30%"/>
 
@@ -43,7 +41,7 @@ Abaixo nós temos uma imagem retirada da [documentação](https://developer.andr
 
 ## Estrutura básica de um teste
 
-Abaixo nós temos um código com uma estrutura básica de teste:
+Abaixo nós temos um código com uma estrutura básica de teste.
 
 ```kotlin
 class MyComposeTest {
@@ -69,23 +67,23 @@ class MyComposeTest {
 }
 ```
 
-No código acima, temos um teste básico onde um Composable com o texto "Continuar" é buscado e um clique nele é simulado. Após isso, espera-se que um texto "Bem-vindo" seja exibido na tela.
+**composeTestRule.setContent(composable: @Composable () -> Unit)** nos fornece um escopo onde podemos chamar funções Composable, onde inserimos a função Composable que vamos testar. No entanto, **ele só pode ser usado uma vez em cada função de teste**. Não podemos definir 2 conteúdos com **composeTestRule.setContent()** por teste.
 
-**composeTestRule.setContent(composable: @Composable () -> Unit)** nos fornece um escopo onde podemos chamar funções Composable, no entanto, **ele só pode ser usado uma vez em cada função de teste**. Não podemos definir 2 conteúdos com **composeTestRule.setContent()** por teste.
+No código acima, temos um teste básico onde o texto "Continuar" é buscado no Composable da **HomeScreen** e um clique nele é simulado. Após isso, espera-se que um texto "Bem-vindo" seja exibido na tela. Lembrando que **MyAppTheme** não seria obrigatório nesse contexto de teste.
 
 #### Modifier.semantics() e Modifier.testTag()
 
 Normalmente, para encontrar um componente, você pode utilizar **localizadores** como **onNodeWithText()** ou **onNodeWithContentDescription()**, por exemplo, mas às vezes o componente/Composable que você está tentando encontrar não possui um elemento como **text** ou **contentDescription** na árvore semântica. Existe o ```Modifier.semantics { contentDescription = "Descrição" }``` que pode ser usado para fins de acessibilidade e também de testes, pois ele cria um **contentDescription** e podemos utilizar **onNodeWithContentDescription()** para localizar.
 
-Uma outra forma de fazer essa localização seria utilizar **Modifier.testTag("TAG")** no Composable em questão e utilizar **onNodeWithTag()** no teste. Diferente do ```Modifier.semantics()```, esse Modifier é útil apenas para fins de testes, o que pode poluir seu código de produção se usado em exagero e quando não necessário.
+Uma outra forma seria utilizar **Modifier.testTag("TAG")** no Composable em questão e usar **onNodeWithTag()** no teste. Diferente do ```Modifier.semantics()```, esse Modifier é útil apenas para fins de testes, o que pode poluir seu código de produção se usado em exagero e quando não necessário.
 
-#### Combinações de localizadores
+#### Combinações de condições
 
 Também podemos fazer algumas combinações para garantir o que queremos. Para isso podemos usar a forma ```composeTestRule.onNode()``` (ou **onAllNodes()**). Por exemplo, temos uma tela com um botão de ajuda, mas essa tela tem um **Button()** com um texto "Ajuda" e também um **Text()** com "Ajuda" em outra parte. Escrevemos o seguinte teste:
 
 ```composeTestRule.onNodeWithText("Ajuda").performClick()```
 
-Ele falharia com uma mensagem de erro do tipo **Expected exactly '1' node but found '2' nodes that satisfy...**. Para garantir a asserção, poderíamos usar a combinação abaixo:
+Ele falharia com uma mensagem de erro do tipo **"Expected exactly '1' node but found '2' nodes that satisfy..."**. Para garantir a asserção, poderíamos usar a combinação abaixo:
 
 ```
 composeTestRule
@@ -149,7 +147,7 @@ class HomeScreenTest {
 }
 ```
 
-O método **setUp()** será chamado antes de cada teste. Ele é útil para fazer configurações iniciais que os testes precisam. Nesse caso, apenas inicializamos as strings que vamos usar ao longo dessa classe para facilitar o uso posterior.
+O método **setUp()** será chamado antes de cada teste. Ele é útil para fazer configurações iniciais que os métodos de testes precisam. No código acima, apenas inicializamos as strings que vamos usar ao longo dessa classe para facilitar.
 
 Você deve ter notado que estamos testando a **HomeContent()** e não a **HomeScreen()**. A **HomeScreen()** tem uma dependência com **ViewModel**. Não é o caso do projeto que criamos, mas normalmente **ViewModels** possuem diversas dependências extras, como repositórios, use cases, entre outras. Ao isolar essas duas funções e ter uma função que depende apenas do estado, podemos testar facilmente como o conteúdo da tela reage a diferentes estados. Também não é o caso do projeto que criamos por fins de simplicidade, mas é comum que as telas possuam muitos dados. Testar o estado dela de acordo com os dados passados é bem útil. Como a **HomeContent()** só precisa dos dados (**HomeUiState**), podemos passar os dados que quisermos para fins de testes.
 
@@ -274,7 +272,7 @@ class HomeScreenTest {
 }
 ```
 
-Utilizamos ```var homeUiState: HomeUiState by remember { mutableStateOf(HomeUiState()) }``` para manter uma referência ao estado que podemos alterar posteriormente no **onUiEvent**.
+Utilizamos ```var homeUiState: HomeUiState by remember { mutableStateOf(HomeUiState()) }``` para manter uma referência ao estado que podemos alterar posteriormente no **onUiEvent**. Para manipular os inputs, usamos as funções ```performTextInput()``` e ```performTextReplacement()```.
 
 Para não se alongar demais, esses serão os únicos testes que vamos criar da **HomeScreen**. Abaixo você pode ver o código completo da classe.
 
@@ -497,11 +495,11 @@ No primeiro teste, verificamos se o destino inicial é a **HomeScreen**, testand
 
 ## Conclusão
 
-Testes são essenciais e é muito importante saber como implementá-los. Essa seção focou apenas em dar uma pequena introdução e um ponto de partida sobre como os testes de interface funcionam no Compose. Como o projeto de app que criamos na seção anterior é bem simples, talvez não dê para ver uma grande utilidade nos testes feitos nessa seção, e alguns deles parecem de fato inúteis. No entanto, é possível perceber que com a estrutura que foi montada, os testes foram facilitados e pudemos ver isso na prática aqui. É sempre importante pensar se o código que você está criando é fácil de testar.
+Testes são essenciais e é muito importante saber como implementá-los. Essa seção focou apenas em dar uma pequena introdução e um ponto de partida sobre como os testes de interface funcionam no Compose. Como o projeto de app que criamos na seção anterior é bem simples, talvez não dê para ver uma grande utilidade nos testes feitos nessa seção, e alguns deles parecem de fato inúteis. No entanto, é possível perceber que com a estrutura que foi montada, os testes foram facilitados e pudemos ver isso na prática. É sempre importante pensar se o código que você está criando é fácil de testar.
 
 O Compose facilita muito isso, pois podemos criar UIs isoladas e componentizadas com facilidade, além de possuir muitos recursos e métodos de fácil usabilidade que ajudam nos testes, como foi possível observar ao longo da seção.
 
-Você pode ler mais sobre testes na documentação e artigos auxiliares.
+Você pode ler mais sobre testes na documentação.
 
 ## :link: Conteúdos auxiliares:
 - [Testing your Compose layout (documentação)](https://developer.android.com/jetpack/compose/testing)
