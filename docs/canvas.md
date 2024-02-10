@@ -44,7 +44,7 @@ private fun Rect() {
 
 Alguns pontos importantes sobre os parâmetros da função **drawRect()**:
 
-- **topLeft**: Representa a posição do retângulo. A maioria das funções de desenho têm valores padrão para a maioria dos parâmetros, e **drawRect()** tem o valor **Offset.Zero** para **topLeft**, que é o mesmo que **Offset(0f, 0f)** que utilizamos.
+- **topLeft**: Representa a posição do retângulo, um **Offset** do canto superior esquerdo. A maioria das funções de desenho têm valores padrão para a maioria dos parâmetros, e **drawRect()** tem o valor **Offset.Zero** para **topLeft**, que é o mesmo que **Offset(0f, 0f)** que utilizamos.
 - **size**: O nome fala por si só. No nosso caso, estamos usando o mesmo tamanho para altura e largura, o que seria o equivalente a um quadrado.
 - **style**: Representa o estilo do desenho, do tipo **DrawStyle**. **Fill** significa que toda a área será preenchida com a cor fornecida. A outra opção é **Stroke**, que desenha com um traço.
 
@@ -224,9 +224,9 @@ Agora vamos à explicação do **Path** criado:
 
 - **lineTo(x = size.width / 2, y = 0f)**: Adiciona um segmento de linha reta do ponto atual ao ponto determinado. No nosso código, o **ponto atual** é **(x = 0f, y = size.height / 2)**, como já definimos antes com **moveTo()**. Como usamos **lineTo(x = size.width / 2, y = 0f)**, criamos uma linha reta desse ponto atual até a coordenada indicada, ou seja, o centro da tela horizontalmente e o topo da tela verticalmente **(x = size.width / 2, y = 0f)**.
 
-- **lineTo(x = size.width, y = size.height / 2)**: Como usamos **lineTo()** anteriormente, o nosso ponto atual agora é **(x = size.width / 2, y = 0f)**. Portanto, criamos uma linha desse ponto até o final da tela horizontalmente e o centro tela verticalmente **(x = size.width / 2, y = 0f)**.
+- **lineTo(x = size.width, y = size.height / 2)**: Como usamos **lineTo()** anteriormente, o nosso ponto atual agora é **(x = size.width / 2, y = 0f)**. Portanto, criamos uma linha desse ponto até o final da tela horizontalmente e o centro da tela verticalmente **(x = size.width, y = size.height / 2)**.
 
-- **close()**: Fecha o último subpath, como se uma linha reta tivesse sido desenhada do ponto atual até o primeiro ponto do subpath. Em resumo, usando **close()** no final criaremos uma linha do ponto atual **(x = size.width / 2, y = 0f)** até o primeiro subpath que criamos, que foi definido com o **moveTo(x = 0f, y = size.height / 2)**. Você não verá nenhuma grande diferença se estiver usando o **style** como **Fill**, mas se utilizar **Stroke**, poderá notar o que acontece mais claramente. Veja as imagens abaixo utilizando **style = Stroke(width = 8.dp.toPx())** com e sem **close()** no final.
+- **close()**: Fecha o último subpath, como se uma linha reta tivesse sido desenhada do ponto atual até o primeiro ponto do subpath. Em resumo, usando **close()** no final criaremos uma linha do ponto atual **(x = size.width, y = size.height / 2)** até o primeiro subpath que criamos, que foi definido com o **moveTo(x = 0f, y = size.height / 2)**. Você não verá nenhuma grande diferença se estiver usando o **style** como **Fill**, mas se utilizar **Stroke**, poderá notar o que acontece mais claramente. Veja as imagens abaixo utilizando **style = Stroke(width = 8.dp.toPx())** com e sem **close()** no final.
 
 <p align="center">
     <img src="../canvas/img-07.png" alt="Path" width="40%" height="20%"/>
@@ -275,7 +275,7 @@ private fun Path2() {
 <img src="../canvas/img-09.png" alt="Path" width="40%" height="20%"/>
 
 - **moveTo(x = 0f, y = size.height / 2)**: Já explicamos sobre essa função e estamos usando os exatos mesmos valores de antes.
-- **quadraticBezierTo()**: Adiciona um segmento bézier quadrático que faz uma curva do ponto atual até o ponto determinado **(x2, y2)**, usando o ponto de controle **(x1, y1)**. Olhando para o nosso código, o ponto atual é **(x = 0f, y = size.height / 2)**, ou seja, o início da tela horizontalmente e o centro da tela verticalmente. A curva que criamos vai do ponto atual até a coordenada **x2 = size.width** e **y2 = size.height / 2**, que significa o fim da tela horizontalmente e o centro da tela verticalmente. Já os valores **x1 = size.width / 2** e **y1 = 0f** são usados para criar o ponto de controle da curva, em outras palavras, aplicar o efeito na curva. Com os valores fornecidos, é o centro da tela horizontalmente e o início da tela verticalmente (o centro no topo). O **close()** segue o mesmo princípio que já falamos antes.
+- **quadraticBezierTo()**: Adiciona um segmento bézier quadrático que faz uma curva do ponto atual até o ponto determinado **(x2, y2)**, usando o ponto de controle **(x1, y1)**. Olhando para o nosso código, o ponto atual é **(x = 0f, y = size.height / 2)**. A curva que criamos vai do ponto atual até a coordenada **x2 = size.width** e **y2 = size.height / 2**, que significa o fim da tela horizontalmente e o centro da tela verticalmente. Já os valores **x1 = size.width / 2** e **y1 = 0f** são usados para criar o ponto de controle da curva, em outras palavras, aplicar o efeito na curva. Com os valores fornecidos, é o centro da tela horizontalmente e o início da tela verticalmente (o centro no topo). O **close()** segue o mesmo princípio que já falamos antes.
 
 Veja a imagem abaixo para ver um exemplo mais visual do que foi dito acima:
 
