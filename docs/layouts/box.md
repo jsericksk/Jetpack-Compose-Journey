@@ -1,15 +1,13 @@
 # Box
 
-Diferente de **Column** e **Row**, Box não alinha os elementos em uma direção vertical ou horizontal. Cada elemento será colocado um sobre o outro, semelhante ao que acontece quando não especificamos um layout. Algo também semelhante ao que temos no **FramewLayout**, com cada componente sobrepondo o outro em uma espécie de camadas.
+Diferente de **Column** e **Row**, **Box** não alinha os elementos em uma direção vertical ou horizontal. Cada elemento será colocado um sobre o outro, semelhante ao que acontece quando não especificamos um layout. Algo também similar ao que temos no **FramewLayout**, com cada componente sobrepondo o outro em uma espécie de camadas.
 
 A diferença principal é que você pode aplicar o alinhamento de cada componente manualmente com mais flexibilidade, através do ```Modifier.align()```. Diferente da **Column**, por exemplo, você não está preso a um alinhamento horizontal. Veja:
 
 ```kotlin
 @Composable
 fun BoxExample() {
-    Box(
-        modifier = Modifier.size(200.dp)
-    ) {
+    Box(modifier = Modifier.size(200.dp)) {
         Text(
             text = "Top start",
             modifier = Modifier.align(Alignment.TopStart)
@@ -34,9 +32,9 @@ fun BoxExample() {
 }
 ```
 
-![Box](box/img-01.png)
+<img src="../box/img-01.png" alt="Box" width="50%" height="20%"/>
 
-Veja um exemplo de layout básico que pode ser criado utilizando Box e como ele pode ser útil:
+Veja um exemplo de layout básico que pode ser criado utilizando **Box** e como ele pode ser útil:
 
 ```kotlin
 @Composable
@@ -76,9 +74,9 @@ fun VideoItem() {
 
 ![Box](box/img-02.png)
 
-Lembre-se que a ordem dos componentes importa, pois cada componente será colocado um sobre o outro. Portanto, se trocarmos a posição do Icon() e Image() do exemplo acima, deixando Icon() em primeiro e Image() em segundo, o ícone não será exibido na tela. Isso acontece porque a imagem sobrepões o ícone, já que ela está ocupando todo o espaço com ```Modifier.fillMaxSize()```, enquanto o ícone está usando um tamanho fixo de 50.dp e em uma camada inferior a da imagem.
+Lembre-se que a ordem dos componentes importa, pois cada componente será colocado um sobre o outro. Portanto, se trocarmos a posição do **Icon()** e **Image()** do exemplo acima, deixando **Icon()** em primeiro e **Image()** em segundo, o ícone não será exibido na tela. Isso acontece porque a imagem sobrepões o ícone, já que ela está ocupando todo o espaço com ```Modifier.fillMaxSize()```, enquanto o ícone está usando um tamanho fixo de 50.dp e em uma camada inferior a da imagem.
 
-- Box também tem uma opção de alinhamento: **contentAlignment**. O padrão é ```Alignment.TopStart```. Ao definir contentAlignment como ```Alignment.Center```, por exemplo, os componentes ainda serão colocados uns sobre os outros, mas iniciando no centro.
+- **Box** também tem uma opção de alinhamento: **contentAlignment**. O padrão é ```Alignment.TopStart```. Ao definir **contentAlignment** como ```Alignment.Center```, por exemplo, os componentes ainda serão colocados uns sobre os outros, mas iniciando no centro.
 
 ## :link: Conteúdos auxiliares:
 - [Compose layout basics (documentação)](https://developer.android.com/jetpack/compose/layouts/basics)
