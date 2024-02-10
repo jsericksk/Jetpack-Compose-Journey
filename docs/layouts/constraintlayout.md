@@ -1,6 +1,6 @@
 # ConstraintLayout
 
-ConstraintLayout tem um comportamento similar ao que vemos no ConstraintLayout do XML. Ele permite posicionar Composables em relação a outros Composables. Uma das principais diferenças entre ele e os demais layouts citados anteriormente é que para utilizá-lo você precisa importar sua dependência no **build.gradle (app)**:
+**ConstraintLayout** tem um comportamento similar ao que vemos no **ConstraintLayout** do XML. Ele permite posicionar Composables em relação a outros Composables. Uma das principais diferenças entre ele e os demais layouts citados anteriormente é que para utilizá-lo você precisa importar sua dependência no **build.gradle (app)** (confira a versão atual na [documentação](https://developer.android.com/jetpack/compose/layouts/constraintlayout)):
 
 ```gradle
 implementation("androidx.constraintlayout:constraintlayout-compose:$version")
@@ -17,7 +17,7 @@ De acordo com a documentação oficial, considere usar ConstraintLayout nos segu
 
 ## Utilização
 
-ConstraintLayout no Compose funciona da seguinte forma:
+**ConstraintLayout** no Compose funciona da seguinte forma:
 
 - Você cria referências para cada Composable usando ```createRefs()``` ou ```createRefFor()```;
 - As restrições são fornecidas usando o ```Modifier.constrainAs()``` no Composable desejado, que toma a referência como parâmetro e permite especificar suas restrições no lambda: ```Modifier.constrainAs() { // restrições }```;
@@ -28,7 +28,7 @@ Vamos reutilizar um pouco do que já fizemos nos layouts anteriores e ver isso n
 
 #### Usando como uma Column
 
-O código abaixo terá o mesmo resultado de uma **Column**, como fizemos no exemplo que vimos na seção de Column:
+O código abaixo terá o mesmo resultado de uma **Column**, como fizemos no exemplo que vimos na seção de **Column**:
 
 ```kotlin
 @Composable
@@ -65,7 +65,7 @@ fun Profile() {
 
 #### Usando como uma Row
 
-Se alterarmos a constraint do **Text()** para ```start.linkTo(profileImage.end)``` no código acima, teremos o mesmo resultado de uma Row:
+Se alterarmos a constraint do **Text()** para ```start.linkTo(profileImage.end)``` no código acima, teremos o mesmo resultado de uma **Row**:
 
 ```kotlin
 @Composable
@@ -85,9 +85,9 @@ fun Profile() {
 
 ![ConstraintLayout como Row](constraintlayout/img-02.png)
 
-#### Usando como uma Box
+#### Usando como um Box
 
-Também podemos fazer com o **ConstraintLayout** o mesmo layout que fizemos com **Box** anteriormente. Isso acontece porque ConstraintLayout também não coloca os elementos em uma direção específica, mas uns sobre os outros se não adicionarmos **constraints** que mudem isso. Veja o exemplo:
+Também podemos fazer com o **ConstraintLayout** o mesmo layout que fizemos com **Box** anteriormente. Isso acontece porque **ConstraintLayout** também não coloca os elementos em uma direção específica, mas uns sobre os outros se não adicionarmos **constraints** que mudem isso. Veja o exemplo:
 
 ```kotlin
 @Composable
@@ -139,7 +139,7 @@ fun VideoItem() {
 
 ![ConstraintLayout como Box](constraintlayout/img-03.png)
 
-## Considerações finais
+## Conclusão
 
 Nos exemplos, vimos que em grande parte podemos fazer com **ConstraintLayout** o mesmo que fazemos com outros layouts. Isso não significa que esse seja o objetivo dele e você deva sempre utilizar **ConstraintLayout** para tudo. Sempre considere se é necessário utilizá-lo e se ele atende suas necessidades. Normalmente, na maioria das vezes, você irá utilizar combinações de **Column**, **Row** e **Box**.
 
