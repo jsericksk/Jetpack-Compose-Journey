@@ -83,7 +83,8 @@ nav:
   - 'Telas, ViewModels e navegação':
     - 'Telas e ViewModels': screens/screens.md
     - 'Navegação': screens/navigation.md
-
+  - 'Testes de interface': testing.md
+  
 # Extensions
 markdown_extensions:
   - pymdownx.tasklist
