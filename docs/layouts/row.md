@@ -120,4 +120,4 @@ fun Profile() {
 ![Row centralizada](row/img-07.png)
 
 ## :link: Conteúdos auxiliares:
-- [Compose layout basics (documentação)](https://developer.android.com/jetpack/compose/layouts/basics)
+- [Compose layout basics (documentação)](https://developer.android.com/jetpack/compose/layouts/basics)x

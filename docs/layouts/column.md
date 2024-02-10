@@ -205,7 +205,7 @@ fun Profile() {
 ![Column centralizada](column/img-04.png)
 
 - É importante notar que dentro da Column só podemos modificar o alinhamento horizontal dessa forma. Se tentarmos aplicar ```Alignment.Bottom```, por exemplo, você verá um erro, pois ```Modifier.align()``` espera um ```Alignment.Horizontal``` e não um ```Alignment.Vertical```, como é o caso de ```Alignment.Bottom```.
-Também vale ressaltar que ```Modifier.align()``` tem prioridade sobre o **horizontalAlignment** da Column. Portanto, se você usar ```horizontalAlignment = Alignment.End``` na Column, mas ```Modifier.align(Alignment.Start)``` no componente, ele será alinhado com **Alignment.Start**.
+Também vale ressaltar que ```Modifier.align()``` tem prioridade sobre o **horizontalAlignment** da Column. Portanto, se você usar ```horizontalAlignment = Alignment.End``` na Column, mas ```Modifier.align(Alignment.Start)``` no componente, ele será alinhado com ```Alignment.Start```.
 
 ## :link: Conteúdos auxiliares:
 - [Compose layout basics (documentação)](https://developer.android.com/jetpack/compose/layouts/basics)
