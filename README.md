@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="/images/compose-journey.png" width="100">
+  <img src="/images/compose-journey.png" width="150">
 </p>
 <h1 align="center">
   Jetpack Compose Journey
