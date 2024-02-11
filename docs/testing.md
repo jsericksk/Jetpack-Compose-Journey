@@ -10,7 +10,50 @@ Como testes de interface do Compose são **testes instrumentados**, eles ficam l
 
 ## Semântica
 
-Os testes de UI no Compose usam **semântica** para interagir com a hierarquia da UI. A semântica, como o nome indica, dá significado a uma parte da UI. Uma "parte da UI" (ou elemento) pode significar qualquer coisa, desde um único Composable até uma tela inteira. A **árvore semântica** é gerada junto com a hierarquia da UI e a descreve. A estrutura semântica é usada principalmente para acessibilidade, portanto os testes aproveitam as informações expostas pela semântica sobre a hierarquia da UI. Os desenvolvedores decidem o que e quanto expor.
+Os testes de UI no Compose usam **semântica** para interagir com a hierarquia da UI. A semântica, como o nome indica, dá significado a uma parte da UI. Uma "parte da UI" (ou elemento) pode significar qualquer coisa, desde um único Composable até uma tela inteira. A **árvore semântica** é gerada junto com a hierarquia da UI e a descreve. A estrutura semântica é usada principalmente para acessibilidade, portanto os testes aproveitam as informações expostas pela semântica sobre a hierarquia da UI. Você decide o que e quanto expor.
+
+<img src="../testing/img-02.png" alt="Semântica" width="50%" height="30%"/>
+
+A partir de um teste, podemos usar ```printToLog()``` para mostrar a árvore semântica:
+
+```composeTestRule.onRoot().printToLog("TAG")```
+
+Por exemplo, temos o seguinte código:
+
+```kotlin
+MyButton {
+    Text("Hello")
+    Text("World")
+}
+```
+
+Esse código imprime a seguinte saída:
+
+```
+Node #1 at (...)px
+ |-Node #2 at (...)px
+   Role = 'Button'
+   Text = '[Hello, World]'
+   Actions = [OnClick, GetTextLayoutResult]
+   MergeDescendants = 'true'
+```
+
+Alguns nós mesclam as informações semânticas de seus filhos. Por exemplo, um botão com dois elementos de texto mescla seus rótulos, como vimos acima. Se você precisar corresponder a um nó do que seria a árvore não mesclada, poderá definir ```useUnmergedTree``` como true:
+
+```composeTestRule.onRoot(useUnmergedTree = true).printToLog("TAG")```
+
+E geraria a seguinte saída:
+
+```
+Node #1 at (...)px
+ |-Node #2 at (...)px
+   OnClick = '...'
+   MergeDescendants = 'true'
+    |-Node #3 at (...)px
+    | Text = '[Hello]'
+    |-Node #5 at (83.0, 86.0, 191.0, 135.0)px
+      Text = '[World]'
+```
 
 ## Dependências de teste
 
@@ -37,7 +80,7 @@ Existem três maneiras principais de interagir com os elementos:
 
 Abaixo nós temos uma imagem retirada da [documentação](https://developer.android.com/jetpack/compose/testing-cheatsheet) que demonstra bem as opções acima:
 
-<img src="../testing/img-02.png" alt="Testing cheatsheet" width="70%" height="40%"/>
+<img src="../testing/img-03.png" alt="Testing cheatsheet" width="70%" height="40%"/>
 
 ## Estrutura básica de um teste
 
@@ -99,7 +142,7 @@ Para essa seção, nós usaremos o app que criamos na seção anterior sobre [te
 
 ## Testando a HomeScreen
 
-Como a **HomeScreen** não usa strings literais, mas strings do arquivo **strings.xml**, é necessário utilizar **createAndroidComposeRule<MyActivity>()** para ser capaz de obter essas strings de recursos. Vamos criar o primeiro teste básico que apenas testa se todos os dados estão sendo exibidos, inclusive os inseridos através da classe de estado:
+Como a **HomeScreen** não usa strings literais, mas strings do arquivo **strings.xml**, é necessário utilizar ```createAndroidComposeRule<Activity>()``` para ser capaz de obter strings de recursos. Vamos criar o primeiro teste básico que apenas testa se todos os dados estão sendo exibidos, inclusive os inseridos através da classe de estado:
 
 ```kotlin
 class HomeScreenTest {
@@ -149,7 +192,7 @@ class HomeScreenTest {
 
 O método **setUp()** será chamado antes de cada teste. Ele é útil para fazer configurações iniciais que os métodos de testes precisam. No código acima, apenas inicializamos as strings que vamos usar ao longo dessa classe para facilitar.
 
-Você deve ter notado que estamos testando a **HomeContent()** e não a **HomeScreen()**. A **HomeScreen()** tem uma dependência com **ViewModel**. Não é o caso do projeto que criamos, mas normalmente **ViewModels** possuem diversas dependências extras, como repositórios, use cases, entre outras. Ao isolar essas duas funções e ter uma função que depende apenas do estado, podemos testar facilmente como o conteúdo da tela reage a diferentes estados. Também não é o caso do projeto que criamos por fins de simplicidade, mas é comum que as telas possuam muitos dados. Testar o estado dela de acordo com os dados passados é bem útil. Como a **HomeContent()** só precisa dos dados (**HomeUiState**), podemos passar os dados que quisermos para fins de testes.
+Você deve ter notado que estamos testando a **HomeContent()** e não a **HomeScreen()**. A **HomeScreen()** tem uma dependência com **ViewModel**. Não é o caso do projeto que criamos, mas normalmente **ViewModels** possuem diversas dependências extras, como repositórios, use cases, entre outras. Ao isolar essas duas funções e ter uma função que depende apenas do estado, podemos testar facilmente como o conteúdo da tela reage a diferentes estados. Também não é o caso do projeto que criamos por fins de simplicidade, mas é comum que as telas possuam muitos dados. Testar o estado dela de acordo com os dados passados é bem útil. Como a **HomeContent()** só precisa do estado (**HomeUiState**), podemos passar os dados que quisermos para fins de testes.
 
 Agora que já criamos e vemos um pouco da explicação do primeiro teste, vamos criar mais 2 testes básicos que verificam se o botão de rastrear está sendo ativado/desativado de acordo com os dados de rastreamento:
 
