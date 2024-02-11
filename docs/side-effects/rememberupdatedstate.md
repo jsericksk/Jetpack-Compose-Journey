@@ -121,13 +121,13 @@ private fun DownloadScreen() {
 
 É uma tela simples que simula um download de arquivo. Quando tocamos no botão de baixar, definimos **isDownloadingFile** como true, fazendo então nossa **FileDownload()** entrar na composição e iniciar o download. Como já vimos na **FileDownload()**, antes mesmo do download iniciar, **fileName** é atualizado de **"???"** para o nome real obtido a partir da URL, que no caso é **"video-123.mp4"**.
 
-O resultado que esperamos é que um Toast com a mensagem **"Arquivo "video-123.mp4" baixado com sucesso!"** seja exibido na tela após 3 segundos, quando o download finalizar. Veja o resultado real:
+O resultado que esperamos é que um **Toast** com a mensagem **"Arquivo "video-123.mp4" baixado com sucesso!"** seja exibido na tela após 3 segundos, quando o download finalizar. Veja o resultado real:
 
-<img src="../rememberupdatedstate/img-01.gif" alt="rememberUpdatedState" width="50%" height="30%"/>
+<img src="../rememberupdatedstate/img-01.gif" alt="rememberUpdatedState" width="40%" height="20%"/>
 
-Claramente não funcionou. Mas o que aconteceu? Vamos reler o que foi afirmado antes sobre o LaunchedEffect na nossa FileDownload(): **Não queremos que ele seja reiniciado quando o valor de alguma key muda, por isso passamos Unit como key, informando que o ___nosso código no LaunchedEffect só será executado uma vez na composição___.**
+Claramente não funcionou. Mas o que aconteceu? Vamos reler o que foi afirmado antes sobre o **LaunchedEffect** na nossa **FileDownload()**: **Não queremos que ele seja reiniciado quando o valor de alguma key muda, por isso passamos Unit como key, informando que o ___nosso código no LaunchedEffect só será executado uma vez na composição___.**
 
-**fileName** até é atualizado com sucesso ao obter o nome real do arquivo e isso acontece bem antes do download finalizar, porém, o código no nosso LaunchedEffect não saberá disso, pois ele não será reiniciado. Significa que quando usamos o trecho a seguir no **onDownloadFinished**:
+**fileName** até é atualizado com sucesso ao obter o nome real do arquivo e isso acontece bem antes do download finalizar (o delay de 3 segundos), porém, o código no **LaunchedEffect** não saberá disso, pois ele não será reiniciado. Significa que quando usamos o trecho a seguir no **onDownloadFinished**:
 
 ```kotlin
 Toast.makeText(
@@ -137,7 +137,7 @@ Toast.makeText(
 ).show()
 ```
 
-A referência que temos de **fileName** ainda é a primeira antes de entrarmos no LaunchedEffect, ou seja, na primeira composição. Após entrarmos, mesmo que **onFileNameObtained()** seja invocado logo no início e atualize com sucesso o **fileName**, o que ainda temos é **???** como o valor de **fileName**.
+A referência que temos de **fileName** ainda é a primeira antes de entrarmos no **LaunchedEffect**, ou seja, na primeira composição. Após entrarmos, mesmo que **onFileNameObtained()** seja invocado logo no início e atualize com sucesso o **fileName**, o que ainda temos é **???** como o valor de **fileName**.
 
 Nesse tipo de situação, podemos utilizar **rememberUpdatedState**. Vamos fazer apenas uma pequena alteração na **FileDownload()**:
 
@@ -167,9 +167,9 @@ private fun FileDownload(
 }
 ```
 
-<img src="../rememberupdatedstate/img-02.gif" alt="rememberUpdatedState" width="50%" height="30%"/>
+<img src="../rememberupdatedstate/img-02.gif" alt="rememberUpdatedState" width="40%" height="20%"/>
 
-Agora temos o trecho mágico ```val realFileName by rememberUpdatedState(newValue = fileName)``` que usa **fileName** para se manter atualizada. Dessa forma, ao usarmos ela no Toast, obteremos o resultado desejado, pois **realFileName** agora terá o valor atualizado de **fileName**, mesmo sem precisarmos reiniciar o **LaunchedEffect** e consequentemente o download.
+Agora temos o trecho mágico ```val realFileName by rememberUpdatedState(newValue = fileName)``` que usa **fileName** para se manter atualizada. Dessa forma, ao usarmos ela no Toast, obteremos o resultado desejado, pois **realFileName** agora terá o valor atualizado de **fileName**, mesmo sem precisarmos reiniciar o **LaunchedEffect** e consequentemente o "download".
 
 É claro que todo esse exemplo foi criado apenas com o intuito de ilustrar a funcionalidade do **rememberUpdatedState**. Para fins práticos, a função **FileDownload()** não precisaria existir e poderíamos ter o seguinte código na **DownloadScreen()**:
 
@@ -199,7 +199,7 @@ private fun DownloadScreen() {
 }
 ```
 
-O resultado seria o mesmo que a nossa **FileDownload()** com **rememberUpdatedState**, pois agora estamos alterando o valor de **fileName** de fato antes de ser usado pelo Toast, dentro do mesmo escopo, o que não acontece no caso da FileDownload(), que delega essa função para seu chamador e o LaunchedEffect/Toast não tem mais ciência sobre a atualização.
+O resultado seria o mesmo, pois agora estamos alterando o valor de **fileName** de fato antes de ser usado pelo Toast, dentro do mesmo escopo, o que não acontece no caso da **FileDownload()**, que delega essa função para seu chamador e o **LaunchedEffect/Toast** não tem mais ciência sobre a atualização após a primeira composição.
 
 ## :link: Conteúdos auxiliares:
 - [Side-effects in Compose (documentação)](https://developer.android.com/jetpack/compose/side-effects)
