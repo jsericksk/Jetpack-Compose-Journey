@@ -6,7 +6,7 @@ Animações são fundamentais e deixam nossos apps com um visual mais interessan
 
 Antes de começar a utilizar uma animação, é útil primeiro saber qual API utilizar para isso. A [documentação](https://developer.android.com/jetpack/compose/animation/choose-api) fornece um guia simples que você pode consultar rapidamente e ficar por dentro das principais opções e casos de uso. Abaixo temos um diagrama retirado da própria documentação para demonstrar isso.
 
-<img src="../animations/img-01.jpg" alt="LazyVerticalGrid Adaptive" width="80%" height="50%"/>
+<img src="../animations/img-01.jpg" alt="Guia de animação" width="60%" height="50%"/>
 
 ## Animar Composable aparecendo/desaparecendo
 
@@ -166,7 +166,7 @@ private enum class State {
 ```
 </details>
 
-<img src="../animations/img-03.gif" alt="AnimatedContent" width="50%" height="20%"/>
+<img src="../animations/img-03.gif" alt="AnimatedContent" width="40%" height="20%"/>
 
 ## Animar mudanças de tamanho de um Composable
 
@@ -232,7 +232,7 @@ private const val loremIpsumText = "Lorem ipsum dolor sit amet, consectetur adip
                 " deserunt mollit anim id est laborum."
 ```
 
-<img src="../animations/img-04.gif" alt="Modifier.animateContentSize()" width="50%" height="20%"/>
+<img src="../animations/img-04.gif" alt="Modifier.animateContentSize()" width="40%" height="20%"/>
 
 ## Animar padding e rotação
 
@@ -290,7 +290,7 @@ private fun Info() {
 }
 ```
 
-<img src="../animations/img-05.gif" alt="animateDpAsState() e animateFloatAsState()" width="50%" height="20%"/>
+<img src="../animations/img-05.gif" alt="animateDpAsState() e animateFloatAsState()" width="40%" height="20%"/>
 
 Como pode ver, no caso do padding, usamos o ```Modifier.padding()``` no **Text()** como faríamos normalmente, mas dessa vez usando o valor de **animateDpAsState()**. No caso da rotação do ícone, usamos o ```Modifier.rotate()``` no **Icon()**, com o valor de **animateFloatAsState()**. Ambos utilizam um **targetValue** que varia dependendo do valor da variável **expanded**, além de uma **animationSpec** levemente personalizada.
 
@@ -331,7 +331,7 @@ fun LoadingAnimation() {
 }
 ```
 
-<img src="../animations/img-06.gif" alt="Lottie animation" width="50%" height="20%"/>
+<img src="../animations/img-06.gif" alt="Lottie animation" width="40%" height="20%"/>
 
 Como pode ver, é bem simples utilizar animações Lottie no Compose. Você pode conferir a [documentação da biblioteca](https://github.com/airbnb/lottie/blob/master/android-compose.md) para ver outros tipos de implementações.
 
