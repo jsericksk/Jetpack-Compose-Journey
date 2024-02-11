@@ -1,0 +1,2152 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Conteúdo sobre Jetpack Compose voltado para iniciantes">
+      
+      
+        <meta name="author" content="Jesus Ericks">
+      
+      
+        <link rel="canonical" href="https://github.com/jsericksk/Jetpack-Compose-Journey/screens/screens/">
+      
+      
+        <link rel="prev" href="../../canvas/">
+      
+      
+        <link rel="next" href="../navigation/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.3">
+    
+    
+      
+        <title>Telas e ViewModels - Jetpack Compose Journey</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.50c56a3b.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CJetbrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Jetbrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#telas-viewmodels-e-navegacao" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href="../.." title="Jetpack Compose Journey" class="md-header__button md-logo" aria-label="Jetpack Compose Journey" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Jetpack Compose Journey
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Telas e ViewModels
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo"  aria-label="Mudar para tema dark"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Mudar para tema dark" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="indigo"  aria-label="Mudar para tema light"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Mudar para tema light" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/jsericksk/Jetpack-Compose-Journey" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Jetpack Compose Journey
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Jetpack Compose Journey" class="md-nav__button md-logo" aria-label="Jetpack Compose Journey" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Jetpack Compose Journey
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/jsericksk/Jetpack-Compose-Journey" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Jetpack Compose Journey
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Conteúdo
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Conteúdo
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../content-info/contributing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Guia de Contribuição
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../content-info/changelog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Histórico de alterações
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introdução
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Conhecimentos básicos iniciais
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Layouts
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Layouts
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../layouts/column/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Column
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../layouts/row/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Row
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../layouts/box/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Box
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../layouts/constraintlayout/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ConstraintLayout
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../previews/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Previews: Visualize seus layouts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../theme/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Theme: Modificando o tema do app
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Componentes importantes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Componentes importantes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/text/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Text
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/textfield/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TextField
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/button/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Button
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/image/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Image
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/card/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Card
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/switch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Switch
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/checkbox/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Checkbox
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/slider/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Slider
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/surface/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Surface
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/scaffold/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Scaffold
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/navigationdrawer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Navigation Drawer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/others/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Outros componentes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modifiers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modifier: Um modificador onipresente
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../state/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Estado no Compose
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lists/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Listas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Side Effects
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            Side Effects
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../side-effects/launchedeffect/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LaunchedEffect
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../side-effects/remembercoroutinescope/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rememberCoroutineScope
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../side-effects/rememberupdatedstate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rememberUpdatedState
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../side-effects/disposableeffect/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DisposableEffect
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../side-effects/sideeffect/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SideEffect
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../side-effects/others/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Outros side effects
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../animations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Animações
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interoperability/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Interoperabilidade: Usando Views no Compose
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../canvas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Canvas e UI personalizada
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_15" id="__nav_15_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Telas, ViewModels e navegação
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            Telas, ViewModels e navegação
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Telas e ViewModels
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Telas e ViewModels
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#o-que-faremos" class="md-nav__link">
+    <span class="md-ellipsis">
+      O que faremos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#criando-as-strings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Criando as strings
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#criando-a-homescreen" class="md-nav__link">
+    <span class="md-ellipsis">
+      Criando a HomeScreen
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#viewmodel-e-state-holder" class="md-nav__link">
+    <span class="md-ellipsis">
+      ViewModel e state holder
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uistate-e-uievent" class="md-nav__link">
+    <span class="md-ellipsis">
+      UiState e UiEvent
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#criando-o-homeviewmodel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Criando o HomeViewModel
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#refazendo-a-homescreen" class="md-nav__link">
+    <span class="md-ellipsis">
+      Refazendo a HomeScreen
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Refazendo a HomeScreen">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#por-que-criar-duas-funcoes-homescreen-e-homecontent" class="md-nav__link">
+    <span class="md-ellipsis">
+      Por que criar duas funções, HomeScreen e HomeContent?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#criando-a-trackingscreen-trackingviewmodel-e-trackinguistate" class="md-nav__link">
+    <span class="md-ellipsis">
+      Criando a TrackingScreen, TrackingViewModel e TrackingUiState
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusão
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../navigation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Navegação
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../testing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Testes de interface
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../conclusion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Conclusão
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#o-que-faremos" class="md-nav__link">
+    <span class="md-ellipsis">
+      O que faremos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#criando-as-strings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Criando as strings
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#criando-a-homescreen" class="md-nav__link">
+    <span class="md-ellipsis">
+      Criando a HomeScreen
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#viewmodel-e-state-holder" class="md-nav__link">
+    <span class="md-ellipsis">
+      ViewModel e state holder
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uistate-e-uievent" class="md-nav__link">
+    <span class="md-ellipsis">
+      UiState e UiEvent
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#criando-o-homeviewmodel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Criando o HomeViewModel
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#refazendo-a-homescreen" class="md-nav__link">
+    <span class="md-ellipsis">
+      Refazendo a HomeScreen
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Refazendo a HomeScreen">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#por-que-criar-duas-funcoes-homescreen-e-homecontent" class="md-nav__link">
+    <span class="md-ellipsis">
+      Por que criar duas funções, HomeScreen e HomeContent?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#criando-a-trackingscreen-trackingviewmodel-e-trackinguistate" class="md-nav__link">
+    <span class="md-ellipsis">
+      Criando a TrackingScreen, TrackingViewModel e TrackingUiState
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusão
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="telas-viewmodels-e-navegacao">Telas, ViewModels e navegação</h1>
+<p>Na grande maioria das vezes, os aplicativos possuem mais de uma tela e uma navegação entre elas. Nessa seção veremos um pouco sobre a construção de um app simples com telas, uma navegação entre elas e também um componente muito conhecido e utilizado no Android, que é o <strong>ViewModel</strong>.</p>
+<h2 id="o-que-faremos">O que faremos</h2>
+<p>Vamos construir um app bem básico com apenas duas telas. Será um app do tipo rastreador de encomendas, com uma tela inicial e uma tela de informações sobre o rastreio. Para não tornar as coisas muito complexas e como esse não é o objetivo dessa seção, não há uma funcionalidade real no app, nem conexão com a internet ou coisas do tipo.</p>
+<p>Diferente das seções anteriores, dessa vez teremos uma pequena organização a mais. Você pode fazer da forma que preferir, mas vamos utilizar um padrão bem utilizado, que é o de um nome de pacote por tela. Primeiro criaremos um pacote <strong>screens</strong> onde terá mais dois pacotes representando as duas telas, <strong>home</strong> e <strong>tracking</strong>. Cada pacote terá um arquivo relacionado aquela tela. Veja o exemplo abaixo:</p>
+<div class="highlight"><pre><span></span><code>...
+screens:
+    home:
+        HomeScreen.kt
+        HomeViewModel.kt
+        ...
+    tracking:
+        TrackingScreen.kt
+        ...
+...
+</code></pre></div>
+<h2 id="criando-as-strings">Criando as strings</h2>
+<p>Dessa vez não usaremos hardcoded strings, mas colocaremos todos os textos em <a href="https://developer.android.com/guide/topics/resources/localization"><strong>res/strings.xml</strong></a>. Abaixo estão todas as strings que usaremos nessa seção.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;resources&gt;</span>
+<span class="w">    </span><span class="nt">&lt;string</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;app_name&quot;</span><span class="nt">&gt;</span>Compose<span class="w"> </span>Journey<span class="nt">&lt;/string&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;string</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;tracker&quot;</span><span class="nt">&gt;</span>Rastreador<span class="nt">&lt;/string&gt;</span>
+<span class="w">    </span><span class="nt">&lt;string</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;tracking_code&quot;</span><span class="nt">&gt;</span>Código<span class="w"> </span>de<span class="w"> </span>rastreio<span class="nt">&lt;/string&gt;</span>
+<span class="w">    </span><span class="nt">&lt;string</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;cep&quot;</span><span class="nt">&gt;</span>CEP<span class="nt">&lt;/string&gt;</span>
+<span class="w">    </span><span class="nt">&lt;string</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;track&quot;</span><span class="nt">&gt;</span>Rastrear<span class="nt">&lt;/string&gt;</span>
+<span class="w">    </span><span class="nt">&lt;string</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;tracking&quot;</span><span class="nt">&gt;</span>Rastreamento<span class="nt">&lt;/string&gt;</span>
+<span class="w">    </span><span class="nt">&lt;string</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;order_status&quot;</span><span class="nt">&gt;</span>Status:<span class="w"> </span>Em<span class="w"> </span>trânsito<span class="nt">&lt;/string&gt;</span>
+<span class="nt">&lt;/resources&gt;</span>
+</code></pre></div>
+<h2 id="criando-a-homescreen">Criando a HomeScreen</h2>
+<p>Vamos começar criando a <strong>HomeScreen</strong>:</p>
+<details>
+  <summary>Ver código da HomeScreen</summary>
+
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">UndefinedCep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="m">1</span>
+
+<span class="nd">@Composable</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">HomeScreen</span><span class="p">(</span><span class="n">onNavigateToTracking</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="n">code</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="n">cep</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Unit</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">code</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">remember</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateOf</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">cepNumber</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">remember</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableIntStateOf</span><span class="p">(</span><span class="n">UndefinedCep</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">cepText</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">remember</span><span class="p">(</span><span class="n">cepNumber</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">cepNumber</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">UndefinedCep</span><span class="p">)</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="n">cepNumber</span><span class="p">.</span><span class="na">toString</span><span class="p">()</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">Column</span><span class="p">(</span>
+<span class="w">        </span><span class="n">verticalArrangement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arrangement</span><span class="p">.</span><span class="na">Center</span><span class="p">,</span>
+<span class="w">        </span><span class="n">horizontalAlignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="na">CenterHorizontally</span><span class="p">,</span>
+<span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span>
+<span class="w">            </span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">()</span>
+<span class="w">            </span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="m">24.</span><span class="n">dp</span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">verticalSpacing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14.</span><span class="n">dp</span>
+<span class="w">        </span><span class="n">Text</span><span class="p">(</span>
+<span class="w">            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">tracker</span><span class="p">),</span>
+<span class="w">            </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MaterialTheme</span><span class="p">.</span><span class="na">colorScheme</span><span class="p">.</span><span class="na">primary</span><span class="p">,</span>
+<span class="w">            </span><span class="n">fontSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">34.</span><span class="n">sp</span><span class="p">,</span>
+<span class="w">            </span><span class="n">fontWeight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FontWeight</span><span class="p">.</span><span class="na">Bold</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">        </span><span class="n">Spacer</span><span class="p">(</span><span class="n">Modifier</span><span class="p">.</span><span class="na">height</span><span class="p">(</span><span class="n">verticalSpacing</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">verticalSpacing</span><span class="p">))</span>
+<span class="w">        </span><span class="n">CommonTextField</span><span class="p">(</span>
+<span class="w">            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">code</span><span class="p">,</span>
+<span class="w">            </span><span class="n">onTextChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">it</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">tracking_code</span><span class="p">),</span>
+<span class="w">            </span><span class="n">leadingIcon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Icons</span><span class="p">.</span><span class="na">Default</span><span class="p">.</span><span class="na">Info</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">        </span><span class="n">Spacer</span><span class="p">(</span><span class="n">Modifier</span><span class="p">.</span><span class="na">height</span><span class="p">(</span><span class="n">verticalSpacing</span><span class="p">))</span>
+<span class="w">        </span><span class="n">CommonTextField</span><span class="p">(</span>
+<span class="w">            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cepText</span><span class="p">,</span>
+<span class="w">            </span><span class="n">onTextChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">updatedCep</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">                </span><span class="n">updatedCep</span><span class="p">.</span><span class="na">toIntOrNull</span><span class="p">()</span><span class="o">?.</span><span class="na">let</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">cep</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">                    </span><span class="n">cepNumber</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cep</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">updatedCep</span><span class="p">.</span><span class="na">isBlank</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">cepNumber</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UndefinedCep</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">cep</span><span class="p">),</span>
+<span class="w">            </span><span class="n">leadingIcon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Icons</span><span class="p">.</span><span class="na">Default</span><span class="p">.</span><span class="na">LocationOn</span><span class="p">,</span>
+<span class="w">            </span><span class="n">keyboardType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">KeyboardType</span><span class="p">.</span><span class="na">Number</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">        </span><span class="n">Spacer</span><span class="p">(</span><span class="n">Modifier</span><span class="p">.</span><span class="na">height</span><span class="p">(</span><span class="n">verticalSpacing</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">verticalSpacing</span><span class="p">))</span>
+<span class="w">        </span><span class="n">Button</span><span class="p">(</span>
+<span class="w">            </span><span class="n">onClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">onNavigateToTracking</span><span class="p">.</span><span class="na">invoke</span><span class="p">(</span><span class="n">code</span><span class="p">,</span><span class="w"> </span><span class="n">cepNumber</span><span class="p">)</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="n">contentPadding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PaddingValues</span><span class="p">(</span><span class="m">16.</span><span class="n">dp</span><span class="p">),</span>
+<span class="w">            </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">fillMaxWidth</span><span class="p">()</span>
+<span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">Text</span><span class="p">(</span><span class="n">stringResource</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">track</span><span class="p">))</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nd">@Composable</span>
+<span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">CommonTextField</span><span class="p">(</span>
+<span class="w">    </span><span class="n">text</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">    </span><span class="n">onTextChange</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Unit</span><span class="p">,</span>
+<span class="w">    </span><span class="n">label</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">    </span><span class="n">leadingIcon</span><span class="p">:</span><span class="w"> </span><span class="n">ImageVector</span><span class="p">,</span>
+<span class="w">    </span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">,</span>
+<span class="w">    </span><span class="n">keyboardType</span><span class="p">:</span><span class="w"> </span><span class="n">KeyboardType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">KeyboardType</span><span class="p">.</span><span class="na">Text</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">OutlinedTextField</span><span class="p">(</span>
+<span class="w">        </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">text</span><span class="p">,</span>
+<span class="w">        </span><span class="n">onValueChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">onTextChange</span><span class="p">,</span>
+<span class="w">        </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">Text</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">label</span><span class="p">)</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="n">leadingIcon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">Icon</span><span class="p">(</span>
+<span class="w">                </span><span class="n">imageVector</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">leadingIcon</span><span class="p">,</span>
+<span class="w">                </span><span class="n">contentDescription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">            </span><span class="p">)</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="n">shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RoundedCornerShape</span><span class="p">(</span><span class="m">16.</span><span class="n">dp</span><span class="p">),</span>
+<span class="w">        </span><span class="n">singleLine</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="n">keyboardOptions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">KeyboardOptions</span><span class="p">(</span><span class="n">keyboardType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">keyboardType</span><span class="p">),</span>
+<span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modifier</span><span class="p">.</span><span class="na">fillMaxWidth</span><span class="p">()</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+</details>
+
+<p><img src="../screens/img-01.png" alt="HomeScreen" width="50%" height="20%"/></p>
+<p>É uma tela comum sem muitos segredos. Criamos a função <strong>CommonTextField()</strong>, sendo uma forma de componentizar o <strong>OutlinedTextField</strong> expondo apenas algumas das opções de personalizações que fazem sentido pra gente nesse contexto, além de usar o padrão de <strong>state hoisting</strong> que já vimos antes. Um destaque que vale a pena mencionar na <strong>HomeScreen()</strong> é o uso da <strong>CommonTextField()</strong> de <strong>CEP</strong> com uma pequena lógica para impedir a inserção de outros caracteres que não sejam números para um <strong>CEP</strong>. Mesmo definindo <code>keyboardType = KeyboardType.Number</code>, o usuário ainda pode colar ou digitar caracteres como pontos (.), vírgulas (,) etc., então desejamos evitar isso.</p>
+<p>Outro ponto importante é o lambda <strong>onNavigateToTracking</strong> como parâmetro da <strong>HomeScreen()</strong>. Você verá mais sobre ele mais a frente, quando chegarmos no tópico sobre navegação. Mas a princípio, a utilidade dele é ser invocado quando quisermos navegar da <strong>HomeScreen()</strong> para a <strong>TrackingScreen()</strong>, que também criaremos mais a frente. Como pode ver, ele é invocado no <strong>onClick</strong> do <strong>Button()</strong> de rastrear.</p>
+<h2 id="viewmodel-e-state-holder">ViewModel e state holder</h2>
+<p>Digamos que você precise validar o CEP ou até mesmo o código de rastreio, seja verificando se possuem determinada quantidade de caracteres ou se são válidos de acordo com alguma lógica de negócios vinda de uma <strong>API</strong>, por exemplo. Uma solução bem comum seria fazer isso através de um <a href="https://developer.android.com/topic/libraries/architecture/viewmodel"><strong>ViewModel</strong></a>.</p>
+<p>Um <strong>ViewModel</strong> ajuda a abstrair a lógica de negócios e também pode ser detentora de estado (state holder) no nível de tela. Ele expõe o estado à UI e encapsula a lógica de negócios relacionada. Sua principal vantagem é que ele armazena em cache o estado e o persiste durante alterações de configuração, como rotação de tela.</p>
+<p>Pensando na nossa ideia de app, em outras palavras o <strong>ViewModel</strong> seria uma ponte entre os dados da tela e uma lógica de negócios, em, por exemplo, um esquema do tipo: <strong>HomeScreen &lt;--&gt; HomeViewModel &lt;--&gt; TrackingRepository</strong>, onde ao tocar no botão rastrear da <strong>HomeScreen</strong>, chamaríamos uma função do <strong>HomeViewModel</strong>, que por sua vez chamaria uma função do <strong>TrackingRepository</strong> para obter alguma informação, retornando essa informação para o <strong>HomeViewModel</strong> e posteriormente atualizando a UI da <strong>HomeScreen</strong>. No projeto que vamos fazer, esse "esquema" não faz muito sentido, pois ao tocar no botão rastrear, vamos navegar para a <strong>TrackingScreen</strong>.</p>
+<ul>
+<li>É provável que você já tenha conhecimento sobre <strong>ViewModel</strong> e algum padrão de arquitetura, como <strong>MVVM</strong>, porém, achei interessante deixar essa pequena introdução. Não teremos nada relacionado a repositórios ou busca de dados em uma API nessa seção, pois esse não é o objetivo.</li>
+</ul>
+<h2 id="uistate-e-uievent">UiState e UiEvent</h2>
+<p>Antes de tudo, precisamos elevar o estado da nossa <strong>HomeScreen</strong> para que possa ser usado posteriormente pelo <strong>HomeViewModel</strong>. Vamos fazer isso criando uma <strong>data class HomeUiState</strong> e, além dela, uma <strong>sealed class HomeUiEvent</strong>, representando os dados e eventos úteis da tela. Veja o código de ambas abaixo:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">UndefinedCep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="m">1</span>
+
+<span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">HomeUiState</span><span class="p">(</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">code</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">cep</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UndefinedCep</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">cepText</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">cep</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">UndefinedCep</span><span class="p">)</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="n">cep</span><span class="p">.</span><span class="na">toString</span><span class="p">()</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">canNavigateToTrackingScreen</span><span class="p">:</span><span class="w"> </span><span class="kt">Boolean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">code</span><span class="p">.</span><span class="na">isNotBlank</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">cepText</span><span class="p">.</span><span class="na">isNotBlank</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="kd">sealed</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">HomeUiEvent</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">CodeChanged</span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">code</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">HomeUiEvent</span><span class="p">()</span>
+<span class="w">    </span><span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">CepChanged</span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">cep</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">HomeUiEvent</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Na <strong>HomeUiState</strong>, nós temos mais uma propriedade a mais do que vimos antes, que é a <strong>canNavigateToTrackingScreen</strong>. O nome dela diz tudo, mas basicamente será usada apenas para habilitar ou desabilitar o botão de rastrear, responsável por navegar para a próxima tela. Precisamos de um cep do tipo <strong>String</strong> porque <strong>TextField</strong> só funciona com <strong>Strings</strong> (<strong>cep</strong> poderia ser do tipo <strong>String</strong> e evitaríamos ter <strong>cepText</strong>, mas para fins de exemplo, vamos manter como está). Também inicializamos <strong>code</strong> e <strong>cep</strong> com valores padrão. <strong>É útil sempre inicializar os dados com valores padrão para facilitar a criação posteriormente</strong>.</p>
+<p>Já a <strong>HomeUiEvent</strong> será útil para encapsular a lógica de eventos que podem acontecer na nossa tela. No caso, a mudança nos valores de <strong>code</strong> e <strong>cep</strong>. Também há o evento de <strong>navegar para a próxima tela</strong> que ocorre com o toque no botão de rastrear, mas não vamos incluir ele por aqui. Essa classe fará mais sentido quando criarmos o <strong>HomeViewModel</strong> e reconstruir a <strong>HomeScreen</strong> logo abaixo.</p>
+<h2 id="criando-o-homeviewmodel">Criando o HomeViewModel</h2>
+<p>Agora vamos criar o <strong>HomeViewModel</strong> que serve como o state holder da nossa <strong>HomeScreen</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">HomeViewModel</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ViewModel</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">_uiState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MutableStateFlow</span><span class="p">(</span><span class="n">HomeUiState</span><span class="p">())</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">uiState</span><span class="p">:</span><span class="w"> </span><span class="n">StateFlow</span><span class="o">&lt;</span><span class="n">HomeUiState</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_uiState</span><span class="p">.</span><span class="na">asStateFlow</span><span class="p">()</span>
+
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onUiEvent</span><span class="p">(</span><span class="n">event</span><span class="p">:</span><span class="w"> </span><span class="n">HomeUiEvent</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">when</span><span class="w"> </span><span class="p">(</span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">is</span><span class="w"> </span><span class="n">HomeUiEvent</span><span class="p">.</span><span class="na">CodeChanged</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">_uiState</span><span class="p">.</span><span class="na">update</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">it</span><span class="p">.</span><span class="na">copy</span><span class="p">(</span><span class="n">code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="na">code</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="k">is</span><span class="w"> </span><span class="n">HomeUiEvent</span><span class="p">.</span><span class="na">CepChanged</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">_uiState</span><span class="p">.</span><span class="na">update</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">it</span><span class="p">.</span><span class="na">copy</span><span class="p">(</span><span class="n">cep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="na">cep</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Estamos utilizando <strong>StateFlow</strong> para armazenar o estado da UI. Poderia ser feito de diversas outras formas, inclusive com <strong>mutableState()</strong>, mas vamos usar a abordagem com <strong>Flow</strong>. Como única função, temos <strong>onUiEvent()</strong>. Como não podemos modificar o estado da UI diretamente pela <strong>HomeScreen</strong> ao utilizarmos essa abordagem, encapsulamos essa lógica no <strong>ViewModel</strong> e tornamos essa tarefa um pouco mais fácil. Outro padrão comum poderia ser criar uma função para modificar cada estado, como <strong>onCodeChanged(newCode: String)</strong>, mas também não vamos por esse caminho, já que é praticamente o mesmo com pequenas diferenças. Chamaremos <strong>onUiEvent</strong> sempre que necessário na <strong>HomeScreen</strong>.</p>
+<h2 id="refazendo-a-homescreen">Refazendo a HomeScreen</h2>
+<p>Como agora o estado da tela está no <strong>HomeViewModel</strong>, temos que fazer algumas alterações na <strong>HomeScreen</strong>. A primeira delas é criar uma nova função chamada <strong>HomeContent</strong> que terá um código bem similar ao que já vimos antes, porém, dessa vez utilizando a <strong>HomeUiState</strong> e <strong>HomeUiEvent</strong>. Basicamente ela terá o conteúdo principal da <strong>HomeScreen</strong>, recebendo o estado e expondo os eventos.</p>
+<details>
+  <summary>Ver código da HomeContent</summary>
+
+<div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">HomeContent</span><span class="p">(</span>
+<span class="w">    </span><span class="n">uiState</span><span class="p">:</span><span class="w"> </span><span class="n">HomeUiState</span><span class="p">,</span>
+<span class="w">    </span><span class="n">onUiEvent</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="n">HomeUiEvent</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Unit</span><span class="p">,</span>
+<span class="w">    </span><span class="n">onNavigateToTracking</span><span class="p">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Unit</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Column</span><span class="p">(</span>
+<span class="w">        </span><span class="n">verticalArrangement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arrangement</span><span class="p">.</span><span class="na">Center</span><span class="p">,</span>
+<span class="w">        </span><span class="n">horizontalAlignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="na">CenterHorizontally</span><span class="p">,</span>
+<span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span>
+<span class="w">            </span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">()</span>
+<span class="w">            </span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="m">24.</span><span class="n">dp</span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">verticalSpacing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14.</span><span class="n">dp</span>
+<span class="w">        </span><span class="n">Text</span><span class="p">(</span>
+<span class="w">            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">tracker</span><span class="p">),</span>
+<span class="w">            </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MaterialTheme</span><span class="p">.</span><span class="na">colorScheme</span><span class="p">.</span><span class="na">primary</span><span class="p">,</span>
+<span class="w">            </span><span class="n">fontSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">34.</span><span class="n">sp</span><span class="p">,</span>
+<span class="w">            </span><span class="n">fontWeight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FontWeight</span><span class="p">.</span><span class="na">Bold</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">        </span><span class="n">Spacer</span><span class="p">(</span><span class="n">Modifier</span><span class="p">.</span><span class="na">height</span><span class="p">(</span><span class="n">verticalSpacing</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">verticalSpacing</span><span class="p">))</span>
+<span class="w">        </span><span class="n">CommonTextField</span><span class="p">(</span>
+<span class="w">            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uiState</span><span class="p">.</span><span class="na">code</span><span class="p">,</span>
+<span class="w">            </span><span class="n">onTextChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">onUiEvent</span><span class="p">.</span><span class="na">invoke</span><span class="p">(</span><span class="n">HomeUiEvent</span><span class="p">.</span><span class="na">CodeChanged</span><span class="p">(</span><span class="nb">it</span><span class="p">))</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">tracking_code</span><span class="p">),</span>
+<span class="w">            </span><span class="n">leadingIcon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Icons</span><span class="p">.</span><span class="na">Default</span><span class="p">.</span><span class="na">Info</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">        </span><span class="n">Spacer</span><span class="p">(</span><span class="n">Modifier</span><span class="p">.</span><span class="na">height</span><span class="p">(</span><span class="n">verticalSpacing</span><span class="p">))</span>
+<span class="w">        </span><span class="n">CommonTextField</span><span class="p">(</span>
+<span class="w">            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uiState</span><span class="p">.</span><span class="na">cepText</span><span class="p">,</span>
+<span class="w">            </span><span class="n">onTextChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">updatedCep</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">                </span><span class="n">updatedCep</span><span class="p">.</span><span class="na">toIntOrNull</span><span class="p">()</span><span class="o">?.</span><span class="na">let</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">cep</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">                    </span><span class="n">onUiEvent</span><span class="p">.</span><span class="na">invoke</span><span class="p">(</span><span class="n">HomeUiEvent</span><span class="p">.</span><span class="na">CepChanged</span><span class="p">(</span><span class="n">cep</span><span class="p">))</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">updatedCep</span><span class="p">.</span><span class="na">isBlank</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">onUiEvent</span><span class="p">.</span><span class="na">invoke</span><span class="p">(</span><span class="n">HomeUiEvent</span><span class="p">.</span><span class="na">CepChanged</span><span class="p">(</span><span class="n">UndefinedCep</span><span class="p">))</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">cep</span><span class="p">),</span>
+<span class="w">            </span><span class="n">leadingIcon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Icons</span><span class="p">.</span><span class="na">Default</span><span class="p">.</span><span class="na">LocationOn</span><span class="p">,</span>
+<span class="w">            </span><span class="n">keyboardType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">KeyboardType</span><span class="p">.</span><span class="na">Number</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">        </span><span class="n">Spacer</span><span class="p">(</span><span class="n">Modifier</span><span class="p">.</span><span class="na">height</span><span class="p">(</span><span class="n">verticalSpacing</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">verticalSpacing</span><span class="p">))</span>
+<span class="w">        </span><span class="n">Button</span><span class="p">(</span>
+<span class="w">            </span><span class="n">onClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">onNavigateToTracking</span><span class="p">,</span>
+<span class="w">            </span><span class="n">contentPadding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PaddingValues</span><span class="p">(</span><span class="m">16.</span><span class="n">dp</span><span class="p">),</span>
+<span class="w">            </span><span class="n">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uiState</span><span class="p">.</span><span class="na">canNavigateToTrackingScreen</span><span class="p">,</span>
+<span class="w">            </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">fillMaxWidth</span><span class="p">()</span>
+<span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">Text</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">track</span><span class="p">))</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</details>
+
+<p>Como pode ver, não estamos usando o <strong>HomeViewModel</strong> ainda. Agora vamos refazer a <strong>HomeScreen</strong> que usará o <strong>HomeViewModel</strong> e a <strong>HomeContent</strong>. Veja o código completo:</p>
+<details>
+  <summary>Ver código da HomeScreen</summary>
+
+<div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">HomeScreen</span><span class="p">(</span>
+<span class="w">    </span><span class="n">onNavigateToTracking</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="n">code</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="n">cep</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Unit</span><span class="p">,</span>
+<span class="w">    </span><span class="n">homeViewModel</span><span class="p">:</span><span class="w"> </span><span class="n">HomeViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModel</span><span class="p">()</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">uiState</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">homeViewModel</span><span class="p">.</span><span class="na">uiState</span><span class="p">.</span><span class="na">collectAsStateWithLifecycle</span><span class="p">()</span>
+<span class="w">    </span><span class="n">HomeContent</span><span class="p">(</span>
+<span class="w">        </span><span class="n">uiState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uiState</span><span class="p">,</span>
+<span class="w">        </span><span class="n">onUiEvent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">homeViewModel</span><span class="o">::</span><span class="n">onUiEvent</span><span class="p">,</span>
+<span class="w">        </span><span class="n">onNavigateToTracking</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">onNavigateToTracking</span><span class="p">.</span><span class="na">invoke</span><span class="p">(</span><span class="n">uiState</span><span class="p">.</span><span class="na">code</span><span class="p">,</span><span class="w"> </span><span class="n">uiState</span><span class="p">.</span><span class="na">cep</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nd">@Composable</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">HomeContent</span><span class="p">(</span>
+<span class="w">    </span><span class="n">uiState</span><span class="p">:</span><span class="w"> </span><span class="n">HomeUiState</span><span class="p">,</span>
+<span class="w">    </span><span class="n">onUiEvent</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="n">HomeUiEvent</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Unit</span><span class="p">,</span>
+<span class="w">    </span><span class="n">onNavigateToTracking</span><span class="p">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Unit</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Column</span><span class="p">(</span>
+<span class="w">        </span><span class="n">verticalArrangement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arrangement</span><span class="p">.</span><span class="na">Center</span><span class="p">,</span>
+<span class="w">        </span><span class="n">horizontalAlignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="na">CenterHorizontally</span><span class="p">,</span>
+<span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span>
+<span class="w">            </span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">()</span>
+<span class="w">            </span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="m">24.</span><span class="n">dp</span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">verticalSpacing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14.</span><span class="n">dp</span>
+<span class="w">        </span><span class="n">Text</span><span class="p">(</span>
+<span class="w">            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">tracker</span><span class="p">),</span>
+<span class="w">            </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MaterialTheme</span><span class="p">.</span><span class="na">colorScheme</span><span class="p">.</span><span class="na">primary</span><span class="p">,</span>
+<span class="w">            </span><span class="n">fontSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">34.</span><span class="n">sp</span><span class="p">,</span>
+<span class="w">            </span><span class="n">fontWeight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FontWeight</span><span class="p">.</span><span class="na">Bold</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">        </span><span class="n">Spacer</span><span class="p">(</span><span class="n">Modifier</span><span class="p">.</span><span class="na">height</span><span class="p">(</span><span class="n">verticalSpacing</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">verticalSpacing</span><span class="p">))</span>
+<span class="w">        </span><span class="n">CommonTextField</span><span class="p">(</span>
+<span class="w">            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uiState</span><span class="p">.</span><span class="na">code</span><span class="p">,</span>
+<span class="w">            </span><span class="n">onTextChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">onUiEvent</span><span class="p">.</span><span class="na">invoke</span><span class="p">(</span><span class="n">HomeUiEvent</span><span class="p">.</span><span class="na">CodeChanged</span><span class="p">(</span><span class="nb">it</span><span class="p">))</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">tracking_code</span><span class="p">),</span>
+<span class="w">            </span><span class="n">leadingIcon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Icons</span><span class="p">.</span><span class="na">Default</span><span class="p">.</span><span class="na">Info</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">        </span><span class="n">Spacer</span><span class="p">(</span><span class="n">Modifier</span><span class="p">.</span><span class="na">height</span><span class="p">(</span><span class="n">verticalSpacing</span><span class="p">))</span>
+<span class="w">        </span><span class="n">CommonTextField</span><span class="p">(</span>
+<span class="w">            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uiState</span><span class="p">.</span><span class="na">cepText</span><span class="p">,</span>
+<span class="w">            </span><span class="n">onTextChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">updatedCep</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">                </span><span class="n">updatedCep</span><span class="p">.</span><span class="na">toIntOrNull</span><span class="p">()</span><span class="o">?.</span><span class="na">let</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">cep</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">                    </span><span class="n">onUiEvent</span><span class="p">.</span><span class="na">invoke</span><span class="p">(</span><span class="n">HomeUiEvent</span><span class="p">.</span><span class="na">CepChanged</span><span class="p">(</span><span class="n">cep</span><span class="p">))</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">updatedCep</span><span class="p">.</span><span class="na">isBlank</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">onUiEvent</span><span class="p">.</span><span class="na">invoke</span><span class="p">(</span><span class="n">HomeUiEvent</span><span class="p">.</span><span class="na">CepChanged</span><span class="p">(</span><span class="n">UndefinedCep</span><span class="p">))</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">cep</span><span class="p">),</span>
+<span class="w">            </span><span class="n">leadingIcon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Icons</span><span class="p">.</span><span class="na">Default</span><span class="p">.</span><span class="na">LocationOn</span><span class="p">,</span>
+<span class="w">            </span><span class="n">keyboardType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">KeyboardType</span><span class="p">.</span><span class="na">Number</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">        </span><span class="n">Spacer</span><span class="p">(</span><span class="n">Modifier</span><span class="p">.</span><span class="na">height</span><span class="p">(</span><span class="n">verticalSpacing</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">verticalSpacing</span><span class="p">))</span>
+<span class="w">        </span><span class="n">Button</span><span class="p">(</span>
+<span class="w">            </span><span class="n">onClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">onNavigateToTracking</span><span class="p">,</span>
+<span class="w">            </span><span class="n">contentPadding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PaddingValues</span><span class="p">(</span><span class="m">16.</span><span class="n">dp</span><span class="p">),</span>
+<span class="w">            </span><span class="n">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uiState</span><span class="p">.</span><span class="na">canNavigateToTrackingScreen</span><span class="p">,</span>
+<span class="w">            </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">fillMaxWidth</span><span class="p">()</span>
+<span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">Text</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">track</span><span class="p">))</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nd">@Composable</span>
+<span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">CommonTextField</span><span class="p">(</span>
+<span class="w">    </span><span class="n">text</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">    </span><span class="n">onTextChange</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Unit</span><span class="p">,</span>
+<span class="w">    </span><span class="n">label</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">    </span><span class="n">leadingIcon</span><span class="p">:</span><span class="w"> </span><span class="n">ImageVector</span><span class="p">,</span>
+<span class="w">    </span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">,</span>
+<span class="w">    </span><span class="n">keyboardType</span><span class="p">:</span><span class="w"> </span><span class="n">KeyboardType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">KeyboardType</span><span class="p">.</span><span class="na">Text</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">OutlinedTextField</span><span class="p">(</span>
+<span class="w">        </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">text</span><span class="p">,</span>
+<span class="w">        </span><span class="n">onValueChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">onTextChange</span><span class="p">,</span>
+<span class="w">        </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">Text</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">label</span><span class="p">)</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="n">leadingIcon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">Icon</span><span class="p">(</span>
+<span class="w">                </span><span class="n">imageVector</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">leadingIcon</span><span class="p">,</span>
+<span class="w">                </span><span class="n">contentDescription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">            </span><span class="p">)</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="n">shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RoundedCornerShape</span><span class="p">(</span><span class="m">16.</span><span class="n">dp</span><span class="p">),</span>
+<span class="w">        </span><span class="n">singleLine</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="n">keyboardOptions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">KeyboardOptions</span><span class="p">(</span><span class="n">keyboardType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">keyboardType</span><span class="p">),</span>
+<span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modifier</span><span class="p">.</span><span class="na">fillMaxWidth</span><span class="p">()</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+</details>
+
+<p>Na função <strong>HomeScreen</strong>, instanciamos o <strong>HomeViewModel</strong> e observamos o estado da UI coletando o <strong>StateFlow</strong> de <strong>uiState</strong> com a função <strong>collectAsStateWithLifecycle()</strong>. Qualquer alteração no estado da UI irá refletir na <strong>HomeContent</strong>. Lembre-se que para utilizar essa função, é necessário importar a dependência abaixo (cheque a versão atual na <a href="https://developer.android.com/jetpack/androidx/releases/lifecycle">documentação</a>):</p>
+<div class="highlight"><pre><span></span><code>implementation(&quot;androidx.lifecycle:lifecycle-runtime-compose:$version&quot;)
+</code></pre></div>
+<h4 id="por-que-criar-duas-funcoes-homescreen-e-homecontent">Por que criar duas funções, HomeScreen e HomeContent?</h4>
+<p>Não é o caso nesse projeto, mas normalmente o <strong>ViewModel</strong> usa algumas classes com <strong>injeção de dependências</strong>, utilizando alguma biblioteca para isso, como <a href="https://developer.android.com/training/dependency-injection/hilt-android"><strong>Hilt</strong></a>. Por exemplo, o nosso <strong>HomeViewModel</strong> poderia ser algo como abaixo:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@HiltViewModel</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">HomeViewModel</span><span class="w"> </span><span class="nd">@Inject</span><span class="w"> </span><span class="k">constructor</span><span class="p">(</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">trackingRepository</span><span class="p">:</span><span class="w"> </span><span class="n">TrackingRepository</span>
+<span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ViewModel</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Restante do código</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Nesse cenário bem comum, <a href="https://developer.android.com/jetpack/compose/tooling/previews#preview-viewmodel"><strong>Previews</strong> têm uma limitação em relação a <strong>ViewModels</strong></a>. Se criarmos todo o conteúdo da tela e ao mesmo tempo instanciarmos o <strong>ViewModel</strong> na mesma função, nós obteríamos um erro ao tentar visualizar o layout com <strong>Preview</strong> e o layout não seria exibido. Em resumo, isso é feito principalmente para tornar as <strong>Previews</strong> acessíveis e também facilitar passar dados mais controlados para a tela em outros casos, como testes e as próprias <strong>Previews</strong>.</p>
+<p>O <a href="https://github.com/android/nowinandroid/blob/main/feature/interests/src/main/kotlin/com/google/samples/apps/nowinandroid/feature/interests/InterestsScreen.kt"><strong>Now in Android</strong></a> segue um padrão similar, mas tendo nomenclaturas com sufixo <strong>Route</strong> e <strong>Screen</strong>. Por exemplo, <strong>HomeRoute</strong> e <strong>HomeScreen</strong>. Os nomes das funções ficam a seu critério, é claro.</p>
+<h2 id="criando-a-trackingscreen-trackingviewmodel-e-trackinguistate">Criando a TrackingScreen, TrackingViewModel e TrackingUiState</h2>
+<p>Agora que já vimos alguns dos conceitos básicos que estamos usando, vamos criar a <strong>TrackingScreen</strong>, <strong>TrackingViewModel</strong> e <strong>TrackingUiState</strong>. Antes de tudo, crie um novo pacote chamado <strong>tracking</strong> onde esses arquivos serão criados, assim como já discutimos antes sobre a organização.</p>
+<details>
+  <summary>Ver código da TrackingScreen</summary>
+
+<div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">TrackingScreen</span><span class="p">(</span>
+<span class="w">    </span><span class="n">code</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">    </span><span class="n">cep</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">,</span>
+<span class="w">    </span><span class="n">onNavigateBack</span><span class="p">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Unit</span><span class="p">,</span>
+<span class="w">    </span><span class="n">trackingViewModel</span><span class="p">:</span><span class="w"> </span><span class="n">TrackingViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModel</span><span class="p">()</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">uiState</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">trackingViewModel</span><span class="p">.</span><span class="na">uiState</span><span class="p">.</span><span class="na">collectAsStateWithLifecycle</span><span class="p">()</span>
+<span class="w">    </span><span class="n">LaunchedEffect</span><span class="p">(</span><span class="kt">Unit</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">trackingViewModel</span><span class="p">.</span><span class="na">getTrackingInfo</span><span class="p">(</span><span class="n">code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">code</span><span class="p">,</span><span class="w"> </span><span class="n">cep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cep</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">TrackingContent</span><span class="p">(</span>
+<span class="w">        </span><span class="n">uiState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uiState</span><span class="p">,</span>
+<span class="w">        </span><span class="n">onNavigateBack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">onNavigateBack</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nd">@OptIn</span><span class="p">(</span><span class="n">ExperimentalMaterial3Api</span><span class="o">::</span><span class="n">class</span><span class="p">)</span>
+<span class="nd">@Composable</span>
+<span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">TrackingContent</span><span class="p">(</span>
+<span class="w">    </span><span class="n">uiState</span><span class="p">:</span><span class="w"> </span><span class="n">TrackingUiState</span><span class="p">,</span>
+<span class="w">    </span><span class="n">onNavigateBack</span><span class="p">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Unit</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Scaffold</span><span class="p">(</span>
+<span class="w">        </span><span class="n">topBar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">CenterAlignedTopAppBar</span><span class="p">(</span>
+<span class="w">                </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">tracking</span><span class="p">))</span><span class="w"> </span><span class="p">},</span>
+<span class="w">                </span><span class="n">colors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TopAppBarDefaults</span><span class="p">.</span><span class="na">topAppBarColors</span><span class="p">(</span>
+<span class="w">                    </span><span class="n">containerColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MaterialTheme</span><span class="p">.</span><span class="na">colorScheme</span><span class="p">.</span><span class="na">primary</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">titleContentColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MaterialTheme</span><span class="p">.</span><span class="na">colorScheme</span><span class="p">.</span><span class="na">onPrimary</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">navigationIconContentColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MaterialTheme</span><span class="p">.</span><span class="na">colorScheme</span><span class="p">.</span><span class="na">onPrimary</span>
+<span class="w">                </span><span class="p">),</span>
+<span class="w">                </span><span class="n">navigationIcon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">IconButton</span><span class="p">(</span><span class="n">onClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">onNavigateBack</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="n">Icon</span><span class="p">(</span>
+<span class="w">                            </span><span class="n">imageVector</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Icons</span><span class="p">.</span><span class="na">AutoMirrored</span><span class="p">.</span><span class="na">Default</span><span class="p">.</span><span class="na">ArrowBack</span><span class="p">,</span>
+<span class="w">                            </span><span class="n">contentDescription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">                        </span><span class="p">)</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">paddingValues</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">        </span><span class="n">MainContent</span><span class="p">(</span>
+<span class="w">            </span><span class="n">uiState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uiState</span><span class="p">,</span>
+<span class="w">            </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="n">paddingValues</span><span class="p">)</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nd">@Composable</span>
+<span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">MainContent</span><span class="p">(</span>
+<span class="w">    </span><span class="n">uiState</span><span class="p">:</span><span class="w"> </span><span class="n">TrackingUiState</span><span class="p">,</span>
+<span class="w">    </span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Column</span><span class="p">(</span>
+<span class="w">        </span><span class="n">verticalArrangement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arrangement</span><span class="p">.</span><span class="na">Center</span><span class="p">,</span>
+<span class="w">        </span><span class="n">horizontalAlignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="na">CenterHorizontally</span><span class="p">,</span>
+<span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modifier</span>
+<span class="w">            </span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">()</span>
+<span class="w">            </span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="m">24.</span><span class="n">dp</span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Card</span><span class="p">(</span>
+<span class="w">            </span><span class="n">shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RoundedCornerShape</span><span class="p">(</span><span class="m">16.</span><span class="n">dp</span><span class="p">),</span>
+<span class="w">            </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="m">12.</span><span class="n">dp</span><span class="p">)</span>
+<span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">Column</span><span class="p">(</span>
+<span class="w">                </span><span class="n">horizontalAlignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="na">CenterHorizontally</span><span class="p">,</span>
+<span class="w">                </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="m">24.</span><span class="n">dp</span><span class="p">)</span>
+<span class="w">            </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">Text</span><span class="p">(</span>
+<span class="w">                    </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">tracking_code</span><span class="p">),</span>
+<span class="w">                    </span><span class="n">fontSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">16.</span><span class="n">sp</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">fontWeight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FontWeight</span><span class="p">.</span><span class="na">Normal</span>
+<span class="w">                </span><span class="p">)</span>
+<span class="w">                </span><span class="n">Spacer</span><span class="p">(</span><span class="n">Modifier</span><span class="p">.</span><span class="na">height</span><span class="p">(</span><span class="m">2.</span><span class="n">dp</span><span class="p">))</span>
+<span class="w">                </span><span class="n">Text</span><span class="p">(</span>
+<span class="w">                    </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uiState</span><span class="p">.</span><span class="na">code</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">fontSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">22.</span><span class="n">sp</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">fontWeight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FontWeight</span><span class="p">.</span><span class="na">Bold</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">textAlign</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TextAlign</span><span class="p">.</span><span class="na">Center</span>
+<span class="w">                </span><span class="p">)</span>
+<span class="w">                </span><span class="n">Spacer</span><span class="p">(</span><span class="n">Modifier</span><span class="p">.</span><span class="na">height</span><span class="p">(</span><span class="m">16.</span><span class="n">dp</span><span class="p">))</span>
+<span class="w">                </span><span class="n">Text</span><span class="p">(</span>
+<span class="w">                    </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">cep</span><span class="p">),</span>
+<span class="w">                    </span><span class="n">fontSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">16.</span><span class="n">sp</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">fontWeight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FontWeight</span><span class="p">.</span><span class="na">Normal</span>
+<span class="w">                </span><span class="p">)</span>
+<span class="w">                </span><span class="n">Spacer</span><span class="p">(</span><span class="n">Modifier</span><span class="p">.</span><span class="na">height</span><span class="p">(</span><span class="m">2.</span><span class="n">dp</span><span class="p">))</span>
+<span class="w">                </span><span class="n">Text</span><span class="p">(</span>
+<span class="w">                    </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uiState</span><span class="p">.</span><span class="na">cep</span><span class="p">.</span><span class="na">toString</span><span class="p">(),</span>
+<span class="w">                    </span><span class="n">fontSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">22.</span><span class="n">sp</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">fontWeight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FontWeight</span><span class="p">.</span><span class="na">Bold</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">textAlign</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TextAlign</span><span class="p">.</span><span class="na">Center</span>
+<span class="w">                </span><span class="p">)</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">Spacer</span><span class="p">(</span><span class="n">Modifier</span><span class="p">.</span><span class="na">height</span><span class="p">(</span><span class="m">16.</span><span class="n">dp</span><span class="p">))</span>
+<span class="w">        </span><span class="n">Row</span><span class="p">(</span><span class="n">verticalAlignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="na">CenterVertically</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">Icon</span><span class="p">(</span>
+<span class="w">                </span><span class="n">imageVector</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Icons</span><span class="p">.</span><span class="na">Default</span><span class="p">.</span><span class="na">LocationOn</span><span class="p">,</span>
+<span class="w">                </span><span class="n">contentDescription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">            </span><span class="p">)</span>
+<span class="w">            </span><span class="n">Spacer</span><span class="p">(</span><span class="n">Modifier</span><span class="p">.</span><span class="na">width</span><span class="p">(</span><span class="m">6.</span><span class="n">dp</span><span class="p">))</span>
+<span class="w">            </span><span class="n">Text</span><span class="p">(</span>
+<span class="w">                </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringResource</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">order_status</span><span class="p">),</span>
+<span class="w">                </span><span class="n">fontSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">18.</span><span class="n">sp</span><span class="p">,</span>
+<span class="w">                </span><span class="n">fontWeight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FontWeight</span><span class="p">.</span><span class="na">Normal</span><span class="p">,</span>
+<span class="w">                </span><span class="n">textAlign</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TextAlign</span><span class="p">.</span><span class="na">Center</span>
+<span class="w">            </span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</details>
+
+<p><img src="../screens/img-02.png" alt="HomeScreen" width="50%" height="20%"/></p>
+<p>A <strong>TrackingScreen</strong> não possui nada do que já não vimos antes, mas como destaque, é possível perceber que ela possui 2 parâmetros, <strong>code</strong> e <strong>cep</strong>, que são os que iremos passar quando navegar da <strong>HomeScreen</strong>, além do <strong>onNavigateBack</strong>, que será acionado quando o ícone de arrow back for tocado para voltar à tela anterior. Ela também utiliza uma função do <strong>TrackingViewModel</strong> chamada <strong>getTrackingInfo()</strong>, que veremos posteriormente que é apenas uma forma de inicializar o estado da tela. Estamos usando <strong>LaunchedEffect(Unit)</strong> para que essa função seja chamada apenas na primeira composição da tela.</p>
+<p>É importante notar que em um cenário real, onde <strong>getTrackingInfo()</strong> fosse uma função que busca informações em um repositório com base no código de rastreio e cep e devesse ser chamada apenas na primeira vez que a tela é exibida, chamá-la dessa forma com <strong>LaunchedEffect(Unit)</strong> talvez não fosse o mais ideal, pois a função ainda seria chamada em rotações de tela e buscaria os dados novamente. Mas funciona bem como exemplo.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">TrackingViewModel</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ViewModel</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">_uiState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MutableStateFlow</span><span class="p">(</span><span class="n">TrackingUiState</span><span class="p">())</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">uiState</span><span class="p">:</span><span class="w"> </span><span class="n">StateFlow</span><span class="o">&lt;</span><span class="n">TrackingUiState</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_uiState</span><span class="p">.</span><span class="na">asStateFlow</span><span class="p">()</span>
+
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">getTrackingInfo</span><span class="p">(</span>
+<span class="w">        </span><span class="n">code</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">        </span><span class="n">cep</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">_uiState</span><span class="p">.</span><span class="na">update</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">it</span><span class="p">.</span><span class="na">copy</span><span class="p">(</span><span class="n">code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">code</span><span class="p">,</span><span class="w"> </span><span class="n">cep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cep</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>TrackingViewModel</strong> também não tem nada demais, então pouparei os comentários.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">TrackingUiState</span><span class="p">(</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">code</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">cep</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>Existe uma pequena observação sobre a <strong>TrackingUiState</strong>. Como pode ver, ela é bastante parecida com a <strong>HomeUiState</strong>. Normalmente ela teria mais propriedades, como por exemplo, uma para especificar o estado atual da tela, seja <strong>loading</strong>, <strong>success</strong> ou <strong>error</strong>, já que na teoria essa tela iria buscar informações de algum dado remoto e isso demoraria um pouco para ser exibido, podendo também ocasionar em erro. Mas para fins de simplificação, não teremos nada disso. Como também não teremos nenhum evento muito importante e esses dados não vão mudar, não faremos uma <strong>TrackingUiEvent</strong> aqui.</p>
+<h2 id="conclusao">Conclusão</h2>
+<p>Chegamos ao fim do tópico sobre telas e <strong>ViewModels</strong>. No próximo tópico dessa seção, veremos finalmente a navegação entre essas duas telas, onde a <strong>HomeScreen</strong> irá passar os dados <strong>code</strong> e <strong>cep</strong> para a <strong>TrackingScreen</strong>.</p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Última atualização">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">11 de fevereiro de 2024</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Rodapé" >
+        
+          
+          <a href="../../canvas/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Canvas e UI personalizada">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                Canvas e UI personalizada
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../navigation/" class="md-footer__link md-footer__link--next" aria-label="Próximo: Navegação">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Próximo
+              </span>
+              <div class="md-ellipsis">
+                Navegação
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7c377c4.min.js"></script>
+      
+    
+  </body>
+</html>

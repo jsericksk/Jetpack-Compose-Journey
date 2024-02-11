@@ -1,0 +1,15 @@
+/* Light mode */
+[data-md-color-scheme="default"] {
+    --md-primary-fg-color: #EE0F0F;
+    --md-accent-fg-color: #24BD09;
+    --md-default-bg-color: #FDFDFD;
+    --md-typeset-a-color: #EE0F0F;
+}
+
+/* Dark mode */
+[data-md-color-scheme="slate"] {
+    --md-primary-fg-color: #D21312;
+    --md-accent-fg-color: #24BD09;
+    --md-default-bg-color: #131314;
+    --md-typeset-a-color: #DAE90A;
+}
