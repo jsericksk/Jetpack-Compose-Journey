@@ -14,7 +14,7 @@ Os testes de UI no Compose usam **semântica** para interagir com a hierarquia d
 
 <img src="../testing/img-02.png" alt="Semântica" width="50%" height="30%"/>
 
-A partir de um teste, podemos usar ```printToLog()``` para mostrar a árvore semântica:
+A partir de um teste, podemos usar ```onRoot().printToLog()``` para mostrar a árvore semântica:
 
 ```composeTestRule.onRoot().printToLog("TAG")```
 
@@ -38,11 +38,15 @@ Node #1 at (...)px
    MergeDescendants = 'true'
 ```
 
-Alguns nós mesclam as informações semânticas de seus filhos. Por exemplo, um botão com dois elementos de texto mescla seus rótulos, como vimos acima. Se você precisar corresponder a um nó do que seria a árvore não mesclada, poderá definir ```useUnmergedTree``` como true:
+Veja que os 2 textos foram mesclados. Alguns nós mesclam as informações semânticas de seus filhos. Por exemplo, um botão com dois elementos de texto mescla seus rótulos, como vimos acima. Se você precisar corresponder a um nó do que seria a árvore não mesclada, poderá definir ```useUnmergedTree``` como **true** no ```onNode``` (ou suas variações). Por exemplo:
 
-```composeTestRule.onRoot(useUnmergedTree = true).printToLog("TAG")```
+```
+composeTestRule
+    .onNodeWithText(text = "Texto", useUnmergedTree = true)
+    .assertIsNotEnabled()
+```
 
-E geraria a seguinte saída:
+Imprimir a árvore semântica do código anterior com ```composeTestRule.onRoot(useUnmergedTree = true).printToLog("TAG")``` geraria a seguinte saída:
 
 ```
 Node #1 at (...)px
@@ -51,7 +55,7 @@ Node #1 at (...)px
    MergeDescendants = 'true'
     |-Node #3 at (...)px
     | Text = '[Hello]'
-    |-Node #5 at (83.0, 86.0, 191.0, 135.0)px
+    |-Node #5 at (...)px
       Text = '[World]'
 ```
 
