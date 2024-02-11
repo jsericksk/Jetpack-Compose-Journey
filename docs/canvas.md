@@ -127,7 +127,7 @@ Podemos desenhar arcos com a função **drawArc()**.
 
 ```kotlin
 @Composable
-private fun Arc1() {
+private fun Arc() {
     Canvas(
         modifier = Modifier
             .fillMaxSize()
@@ -243,7 +243,7 @@ Vamos usar a função **quadraticBezierTo()** para criar uma [curva de Bézier](
 
 ```kotlin
 @Composable
-private fun Path2() {
+private fun Path() {
     Spacer(
         modifier = Modifier
             .drawWithCache {
