@@ -161,7 +161,7 @@ class MainActivity : ComponentActivity() {
 
 E é isso! O app já deve se comportar devidamente com a navegação entre as duas telas, como pode ver na imagem abaixo.
 
-<img src="../navigation/img-01.gif" alt="Navigation" width="50%" height="20%"/>
+<img src="../navigation/img-01.gif" alt="Navigation" width="40%" height="20%"/>
 
 ## Usando SavedStateHandle
 
@@ -217,6 +217,8 @@ implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$version")
 ```
 
 Como o **Navigation Component** já inclui essa dependência por padrão, você não precisa adicioná-la explicitamente se não desejar.
+
+- Normalmente se utiliza alguma biblioteca para injeção de dependências, então esse processo de instanciação do **TrackingViewModel** usando a função **createSavedStateHandle()** não seria necessário.
 
 #### Modificando o AppNavHost
 
@@ -304,23 +306,23 @@ fun AppNavHost(navController: NavHostController) {
 
 Usamos as funções **slideIntoContainer()** e **slideOutOfContainer()** fornecidas pelo Compose para criar uma animação de slide com uma direção. Veja o resultado:
 
-<img src="../navigation/img-02.gif" alt="Navigation com animação" width="50%" height="20%"/>
+<img src="../navigation/img-02.gif" alt="Navigation com animação" width="40%" height="20%"/>
 
-Modificando para **SlideDirection.Up** na **slideIntoContainer()** e **SlideDirection.Down** na **slideOutOfContainer()**:
+Modificando para **SlideDirection.Up** na **slideIntoContainer()** e **SlideDirection.Down** na **slideOutOfContainer()**, temos o seguinte:
 
-<img src="../navigation/img-03.gif" alt="Navigation com animação" width="50%" height="20%"/>
+<img src="../navigation/img-03.gif" alt="Navigation com animação" width="40%" height="20%"/>
 
 E claro, também é possível utilizar animações personalizadas, bem como outros tipos de animação, mas para não se estender muito, vamos ficando por aqui nesse tópico.
 
 ## Resolvendo um problema comum de navegação
 
-Existe um problema bem antigo e conhecido no **Navigation Component** da navegação abrindo múltiplas telas ou telas em branco ao voltar com **navController.popBackStack()**. No nosso código atual, se o usuário tocar o botão de "rastrear" na **HomeScreen** múltiplas vezes em um curto período de tempo, a **TrackingScreen** será aberta múltiplas vezes. Um outro problema similar acontece quando o ícone de arrow back é tocado múltiplas vezes na **TrackingScreen** e uma tela em branco é exibida. Isso também pode acontecer com dispositivos mais lentos, onde às vezes dão duplo clique acidental.
+Existe um problema no **Navigation Component** da navegação abrindo múltiplas telas ou telas em branco ao voltar com **navController.popBackStack()** com múltiplos cliques. No nosso código atual, se o usuário tocar o botão de "rastrear" na **HomeScreen** múltiplas vezes em um curto período de tempo, a **TrackingScreen** será aberta múltiplas vezes. Um outro problema similar acontece quando o ícone de arrow back é tocado múltiplas vezes na **TrackingScreen** e uma tela em branco é exibida. Isso também pode acontecer com dispositivos mais lentos, onde às vezes dão duplo clique acidental.
 
 Você pode checar essa [issue](https://github.com/google/accompanist/issues/1320) e [essa](https://github.com/google/accompanist/issues/1408) para referência. Como antigamente só era possível navegar com animação através da **Navigation-Animation** da [**Accompanist**](https://github.com/google/accompanist), essas issues se encontram no repositório dela.
 
 Veja a imagem abaixo para ter ideia do problema:
 
-<img src="../navigation/img-04.gif" alt="Navigation com problemas" width="50%" height="20%"/>
+<img src="../navigation/img-04.gif" alt="Navigation com problemas" width="40%" height="20%"/>
 
 Existem algumas formas de resolver isso. Uma delas seria desabilitar múltiplos cliques no componente em um curto período de tempo, mas isso pode ser complicado e não atinge diretamente o problema, já que se trata de um problema na navegação. Uma outra opção para esse caso é criar uma [função auxiliar](https://github.com/android/compose-samples/issues/456#issuecomment-886944725) que verifica se o status atual do **Lifecycle** é **Lifecycle.State.RESUMED**, pois caso contrário, significa que esse **NavBackStackEntry** já processou um evento de navegação. Veja o código abaixo:
 
@@ -368,7 +370,7 @@ fun AppNavHost(navController: NavHostController) {
 }
 ```
 
-<img src="../navigation/img-05.gif" alt="Navigation sem problemas" width="50%" height="20%"/>
+<img src="../navigation/img-05.gif" alt="Navigation sem problemas" width="40%" height="20%"/>
 
 
 #### Problema de argumento com URL
