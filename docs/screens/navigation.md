@@ -413,4 +413,4 @@ Há vários outros pontos que não foram abordados nessa seção sobre **Navigat
 ## :link: Conteúdos auxiliares:
 - [Navigation with Compose (documentação)](https://developer.android.com/jetpack/compose/navigation)
 - [Jetpack Compose Navigation (codelab)](https://developer.android.com/codelabs/jetpack-compose-navigation)
-- [Navigation in Jetpack compose. Full guide Beginner to Advanced (artigo)](https://medium.com/@KaushalVasava/navigation-in-jetpack-compose-full-guide-beginner-to-advanced-950c1133740)
+- [Navigation in Jetpack Compose. Full guide Beginner to Advanced (artigo)](https://medium.com/@KaushalVasava/navigation-in-jetpack-compose-full-guide-beginner-to-advanced-950c1133740)
