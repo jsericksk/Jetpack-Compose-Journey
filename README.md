@@ -2,7 +2,7 @@
   <img src="/images/compose-journey.png" width="150">
 </p>
 <h1 align="center">
-  Jetpack Compose Journey
+  <a href="https://jsericksk.github.io/Jetpack-Compose-Journey">Jetpack Compose Journey</a>
 </h1>
 
 **Jetpack Compose** é um toolkit moderno para criação de UI nativa de forma declarativa no Android. Sua [primeira versão estável](https://android-developers.googleblog.com/2021/07/jetpack-compose-announcement.html) foi lançada oficialmente no final de julho de 2021 e desde então não para de receber atualizações, melhorias e diversas novidades.
