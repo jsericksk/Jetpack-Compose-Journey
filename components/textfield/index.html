@@ -1417,7 +1417,7 @@
 
 
 <h1 id="textfield">TextField</h1>
-<p>No <strong>TextField</strong> você começará a ver conceitos interessantes que se repetirão bastante no Compose. Vamos falar sobre algumas delas antes de ver os exemplos de código.</p>
+<p>No <strong>TextField</strong> você começará a ver conceitos interessantes que se repetirão bastante no Compose. Vamos falar sobre alguns deles antes de ver os exemplos de código.</p>
 <ul>
 <li>Como se trata de um campo de texto editável, o <strong>TextField</strong> usará o que já falamos no começo sobre <strong>estados</strong> (o texto) e <strong>eventos</strong> (quando o usuário digitar algo). No exemplo do código, temos uma linha importante: <code>var text by remember { mutableStateOf("") }</code>. Basicamente essa variável será lida como um estado que, ao ser modificada, acionará a <strong>recomposição</strong>. Ou seja, o texto do <strong>TextField</strong> mudará. Veremos explicações melhores sobre isso na seção sobre <a href="../../state/"><strong>estados</strong></a>.</li>
 <li><strong>TextField</strong> tem diversos parâmetros que <strong>recebem como argumentos funções Composable</strong>. Por exemplo, <strong>label</strong>. Ao invés de passarmos apenas uma String ou algo do tipo, podemos colocar o componente <strong>Text()</strong> ou o que quisermos de Composable. Isso é muito útil no Compose e já vimos isso várias vezes na seção de layouts de forma implícita. Por exemplo, <strong>Column</strong> tem como último parâmetro uma Composable: <code>content: @Composable() (ColumnScope.() -&gt; Unit)</code>.</li>
@@ -1554,7 +1554,7 @@
     <span class="md-icon" title="Última atualização">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">6 de fevereiro de 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">11 de fevereiro de 2024</span>
   </span>
 
     

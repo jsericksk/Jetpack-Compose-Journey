@@ -1364,7 +1364,7 @@
 
 <h1 id="button">Button</h1>
 <p>Botões também são uma parte fundamental em qualquer app. No Jetpack Compose nós temos várias opções de botões para se utilizar. Para evitar deixar essa seção longa, você pode ler a descrição de cada botão na <a href="https://developer.android.com/jetpack/compose/components/button">documentação</a>.</p>
-<p>A implementação básica de um Button segue o código abaixo:</p>
+<p>A implementação básica de um <strong>Button</strong> segue o código abaixo:</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
 <span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">Button</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">Button</span><span class="p">(</span><span class="n">onClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{})</span><span class="w"> </span><span class="p">{</span>
@@ -1372,9 +1372,9 @@
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>Você pode alterar o nome <strong>Button</strong> no código acima para qualquer uma das seguintes opções: <strong><em>FilledTonalButton</em></strong>, <strong><em>OutlinedButton</em></strong>, <strong><em>ElevatedButton</em></strong> ou <strong><em>TextButton</em></strong>. O resultado você vê logo abaixo, onde <strong><em>Filled</em></strong> é a implementação básica mostrada no código acima.</p>
+<p>Você pode alterar o nome <strong>Button</strong> no código acima para qualquer uma das seguintes opções: <strong><em>FilledTonalButton</em></strong>, <strong><em>OutlinedButton</em></strong>, <strong><em>ElevatedButton</em></strong> ou <strong><em>TextButton</em></strong>. O resultado você vê logo abaixo, onde <strong><em>Filled</em></strong> é a implementação básica mostrada no código anterior.</p>
 <p><img alt="Button" src="img-01.png" /></p>
-<p>Obviamente, você tem diversas opções de customização do Button. Veja um pequeno exemplo modificando o <strong>contentPadding</strong> e a <strong>containerColor</strong> do Button, além de um ícone ao lado do texto:</p>
+<p>Obviamente, você tem diversas opções de customização do <strong>Button</strong>. Veja um pequeno exemplo modificando o <strong>contentPadding</strong> e a <strong>containerColor</strong>, além de um ícone ao lado do texto:</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
 <span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">CustomButton</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">Button</span><span class="p">(</span>
@@ -1395,7 +1395,7 @@
 </code></pre></div>
 <p><img alt="Custom button" src="img-02.png" /></p>
 <ul>
-<li>Não precisamos especificar uma <strong>Row</strong> para obter o efeito do <strong>Icon()</strong> estar ao lado do <strong>Text()</strong> porque o <strong>content</strong> (o último parâmetro) que o Button espera já é uma <strong><em>RowScope</em></strong>, ou seja, é como se estivéssemos dentro de uma Row por padrão.</li>
+<li>Não precisamos especificar uma <strong>Row</strong> para obter o efeito do <strong>Icon()</strong> estar ao lado do <strong>Text()</strong> porque o <strong>content</strong> (o último parâmetro) que o <strong>Button</strong> espera já é uma <strong><em>RowScope</em></strong>, ou seja, é como se estivéssemos dentro de uma <strong>Row</strong> por padrão.</li>
 </ul>
 <h2 id="conteudos-auxiliares"><img alt="🔗" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/1f517.png" title=":link:" /> Conteúdos auxiliares:</h2>
 <ul>
@@ -1422,7 +1422,7 @@
     <span class="md-icon" title="Última atualização">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">9 de janeiro de 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">11 de fevereiro de 2024</span>
   </span>
 
     
