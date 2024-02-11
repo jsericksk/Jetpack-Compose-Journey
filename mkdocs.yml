@@ -84,6 +84,7 @@ nav:
     - 'Telas e ViewModels': screens/screens.md
     - 'Navegação': screens/navigation.md
   - 'Testes de interface': testing.md
+  - 'Conclusão': conclusion.md
   
 # Extensions
 markdown_extensions:
