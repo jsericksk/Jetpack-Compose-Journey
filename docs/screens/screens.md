@@ -136,7 +136,7 @@ private fun CommonTextField(
 ```
 </details>
 
-<img src="../screens/img-01.png" alt="HomeScreen" width="50%" height="20%"/>
+<img src="../screens/img-01.png" alt="HomeScreen" width="40%" height="20%"/>
 
 É uma tela comum sem muitos segredos. Criamos a função **CommonTextField()**, sendo uma forma de componentizar o **OutlinedTextField** expondo apenas algumas das opções de personalizações que fazem sentido pra gente nesse contexto, além de usar o padrão de **state hoisting** que já vimos antes. Um destaque que vale a pena mencionar na **HomeScreen()** é o uso da **CommonTextField()** de **CEP** com uma pequena lógica para impedir a inserção de outros caracteres que não sejam números para um **CEP**. Mesmo definindo ```keyboardType = KeyboardType.Number```, o usuário ainda pode colar ou digitar caracteres como pontos (.), vírgulas (,) etc., então desejamos evitar isso.
 
@@ -521,7 +521,7 @@ private fun MainContent(
 ```
 </details>
 
-<img src="../screens/img-02.png" alt="HomeScreen" width="50%" height="20%"/>
+<img src="../screens/img-02.png" alt="HomeScreen" width="40%" height="20%"/>
 
 A **TrackingScreen** não possui nada do que já não vimos antes, mas como destaque, é possível perceber que ela possui 2 parâmetros, **code** e **cep**, que são os que iremos passar quando navegar da **HomeScreen**, além do **onNavigateBack**, que será acionado quando o ícone de arrow back for tocado para voltar à tela anterior. Ela também utiliza uma função do **TrackingViewModel** chamada **getTrackingInfo()**, que veremos posteriormente que é apenas uma forma de inicializar o estado da tela. Estamos usando **LaunchedEffect(Unit)** para que essa função seja chamada apenas na primeira composição da tela.
 
