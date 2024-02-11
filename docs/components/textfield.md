@@ -1,6 +1,6 @@
 # TextField
 
-No **TextField** você começará a ver conceitos interessantes que se repetirão bastante no Compose. Vamos falar sobre algumas delas antes de ver os exemplos de código.
+No **TextField** você começará a ver conceitos interessantes que se repetirão bastante no Compose. Vamos falar sobre alguns deles antes de ver os exemplos de código.
 
 - Como se trata de um campo de texto editável, o **TextField** usará o que já falamos no começo sobre **estados** (o texto) e **eventos** (quando o usuário digitar algo). No exemplo do código, temos uma linha importante: ```var text by remember { mutableStateOf("") }```. Basicamente essa variável será lida como um estado que, ao ser modificada, acionará a **recomposição**. Ou seja, o texto do **TextField** mudará. Veremos explicações melhores sobre isso na seção sobre [**estados**](../state.md).
 - **TextField** tem diversos parâmetros que **recebem como argumentos funções Composable**. Por exemplo, **label**. Ao invés de passarmos apenas uma String ou algo do tipo, podemos colocar o componente **Text()** ou o que quisermos de Composable. Isso é muito útil no Compose e já vimos isso várias vezes na seção de layouts de forma implícita. Por exemplo, **Column** tem como último parâmetro uma Composable: ```content: @Composable() (ColumnScope.() -> Unit)```.
