@@ -450,7 +450,7 @@ No Compose, há modificadores que só podem ser usados ​​quando aplicados a 
 
 Por exemplo, se você quiser deixar um filho tão grande quanto o Box pai sem afetar o tamanho do Box, use o ```Modificador.matchParentSize()```. Ele só está disponível em um ```BoxScope```. Portanto, ele só pode ser usado em um filho dentro de um dos Box pais.
 
-A segurança do escopo evita que você adicione modificadores que não funcionariam em outros Composables e escopos, além de economizar tempo de tentativa e erro.
+A segurança do escopo evita que você adicione modificadores que não funcionariam em outros Composables e escopos, além de economizar tempo de tentativa e erro. Por exemplo:
 
 ```kotlin
 @Composable
@@ -488,9 +488,116 @@ private fun Item() {
 }
 ```
 
+#### Modifier.weight()
+
+Você pode definir o tamanho do Composable para ser flexível dentro de seu pai usando o ```Modifier.weight()```. Ele está disponível apenas em **RowScope** e **ColumnScope**. Veja alguns exemplos de seu uso com diferentes pesos:
+
+```kotlin
+@Composable
+private fun ModifierWeight() {
+    Column(
+        verticalArrangement = Arrangement.Center,
+        modifier = Modifier.fillMaxSize()
+    ) {
+        Row(modifier = Modifier.fillMaxWidth()) {
+            Box(
+                contentAlignment = Alignment.Center,
+                modifier = Modifier
+                    .background(Color.Red)
+                    .height(80.dp)
+                    .weight(1f)
+            ) { Text(text = "weight(1f)") }
+
+            Box(
+                contentAlignment = Alignment.Center,
+                modifier = Modifier
+                    .background(Color.Blue)
+                    .height(80.dp)
+                    .weight(1f)
+            ) { Text(text = "weight(1f)") }
+        }
+
+        Spacer(Modifier.height(16.dp))
+
+        Row(modifier = Modifier.fillMaxWidth()) {
+            Box(
+                contentAlignment = Alignment.Center,
+                modifier = Modifier
+                    .background(Color.Red)
+                    .height(80.dp)
+                    .weight(2f)
+            ) { Text(text = "weight(2f)") }
+
+            Box(
+                contentAlignment = Alignment.Center,
+                modifier = Modifier
+                    .background(Color.Blue)
+                    .height(80.dp)
+                    .weight(1f)
+            ) { Text(text = "weight(1f)") }
+        }
+
+        Spacer(Modifier.height(16.dp))
+
+        Row(modifier = Modifier.fillMaxWidth()) {
+            Box(
+                contentAlignment = Alignment.Center,
+                modifier = Modifier
+                    .background(Color.Red)
+                    .height(80.dp)
+                    .weight(1f)
+            ) { Text(text = "weight(1f)") }
+
+            Box(
+                contentAlignment = Alignment.Center,
+                modifier = Modifier
+                    .background(Color.Blue)
+                    .size(height = 80.dp, width = 60.dp)
+            ) {
+                Text(
+                    text = "Sem weight()",
+                    fontSize = 12.sp,
+                    textAlign = TextAlign.Center
+                )
+            }
+        }
+
+        Spacer(Modifier.height(16.dp))
+
+        Row(modifier = Modifier.fillMaxWidth()) {
+            Box(
+                contentAlignment = Alignment.Center,
+                modifier = Modifier
+                    .background(Color.Red)
+                    .height(80.dp)
+                    .weight(1f)
+            ) { Text(text = "weight(1f)") }
+
+            Box(
+                contentAlignment = Alignment.Center,
+                modifier = Modifier
+                    .background(Color.Blue)
+                    .height(80.dp)
+                    .weight(1f)
+            ) { Text(text = "weight(1f)") }
+
+            Box(
+                contentAlignment = Alignment.Center,
+                modifier = Modifier
+                    .background(Color.Green)
+                    .height(80.dp)
+                    .weight(1f)
+            ) { Text(text = "weight(1f)") }
+        }
+    }
+}
+```
+
+<img src="../modifiers/img-11.png" alt="Modifier.weight()" width="40%" height="20%"/>
+
 ## Um parâmetro Modifier opcional
 
-Você já deve ter notado que praticamente todo componente no Compose possui um parâmetro **Modifier** opcional, certo? Isso acontece porque **é uma boa prática sempre adicionar um parâmetro Modifier opcional aos Composables**, pois como já foi discutido antes, com ele você pode alterar alguns comportamentos do Composable sem muito esforço.
+Você já deve ter notado que praticamente todo componente no Compose possui um parâmetro **Modifier** opcional, certo? Isso acontece porque **é uma boa prática sempre adicionar um parâmetro Modifier opcional aos Composables**, pois como já foi discutido antes, com ele você pode alterar alguns comportamentos do Composable sem muito esforço. Por exemplo, com o Modifier como opção, o chamador pode usar ```Modifier.align()``` para alinhar o componente como desejar, dependendo do layout que está criando.
 
 Portanto, quando estiver criando seu componente, é recomendável sempre colocar um parâmetro Modifier opcional. É importante ser opcional porque o chamador nem sempre irá usar o Modifier. **Ele deve ser o primeiro parâmetro opcional**. Veja o exemplo abaixo, os parâmetros **text** e **onClick** não são opcionais, portanto, ele fica logo abaixo deles:
 
@@ -583,7 +690,7 @@ fun CheckboxRow(
 
 #### Modifier como último argumento
 
-Não é uma regra específica, mas como o Modifier costuma ter vários modificadores, é interessante sempre colocá-lo como último argumento. Ao invés disso:
+Não é nenhuma regra específica, mas como o Modifier costuma ter vários modificadores, às vezes é interessante colocá-lo como último argumento para uma melhor legibilidade. Por exemplo, ao invés disso:
 
 ```kotlin
 @Composable
@@ -601,7 +708,7 @@ private fun Item() {
 }
 ```
 
-Faça isso:
+Você pode fazer isso:
 
 ```kotlin
 @Composable
