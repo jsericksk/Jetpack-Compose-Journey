@@ -695,32 +695,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../components/switch/" class="md-nav__link">
+      <a href="../../components/selectioncontrols/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Switch
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../components/checkbox/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Checkbox
+    Checkbox, RadioButton e Switch
   </span>
   
 
@@ -1660,7 +1639,7 @@ screens:
 </code></pre></div>
 </details>
 
-<p><img src="../screens/img-01.png" alt="HomeScreen" width="50%" height="20%"/></p>
+<p><img src="../screens/img-01.png" alt="HomeScreen" width="40%" height="20%"/></p>
 <p>É uma tela comum sem muitos segredos. Criamos a função <strong>CommonTextField()</strong>, sendo uma forma de componentizar o <strong>OutlinedTextField</strong> expondo apenas algumas das opções de personalizações que fazem sentido pra gente nesse contexto, além de usar o padrão de <strong>state hoisting</strong> que já vimos antes. Um destaque que vale a pena mencionar na <strong>HomeScreen()</strong> é o uso da <strong>CommonTextField()</strong> de <strong>CEP</strong> com uma pequena lógica para impedir a inserção de outros caracteres que não sejam números para um <strong>CEP</strong>. Mesmo definindo <code>keyboardType = KeyboardType.Number</code>, o usuário ainda pode colar ou digitar caracteres como pontos (.), vírgulas (,) etc., então desejamos evitar isso.</p>
 <p>Outro ponto importante é o lambda <strong>onNavigateToTracking</strong> como parâmetro da <strong>HomeScreen()</strong>. Você verá mais sobre ele mais a frente, quando chegarmos no tópico sobre navegação. Mas a princípio, a utilidade dele é ser invocado quando quisermos navegar da <strong>HomeScreen()</strong> para a <strong>TrackingScreen()</strong>, que também criaremos mais a frente. Como pode ver, ele é invocado no <strong>onClick</strong> do <strong>Button()</strong> de rastrear.</p>
 <h2 id="viewmodel-e-state-holder">ViewModel e state holder</h2>
@@ -2011,7 +1990,7 @@ screens:
 </code></pre></div>
 </details>
 
-<p><img src="../screens/img-02.png" alt="HomeScreen" width="50%" height="20%"/></p>
+<p><img src="../screens/img-02.png" alt="HomeScreen" width="40%" height="20%"/></p>
 <p>A <strong>TrackingScreen</strong> não possui nada do que já não vimos antes, mas como destaque, é possível perceber que ela possui 2 parâmetros, <strong>code</strong> e <strong>cep</strong>, que são os que iremos passar quando navegar da <strong>HomeScreen</strong>, além do <strong>onNavigateBack</strong>, que será acionado quando o ícone de arrow back for tocado para voltar à tela anterior. Ela também utiliza uma função do <strong>TrackingViewModel</strong> chamada <strong>getTrackingInfo()</strong>, que veremos posteriormente que é apenas uma forma de inicializar o estado da tela. Estamos usando <strong>LaunchedEffect(Unit)</strong> para que essa função seja chamada apenas na primeira composição da tela.</p>
 <p>É importante notar que em um cenário real, onde <strong>getTrackingInfo()</strong> fosse uma função que busca informações em um repositório com base no código de rastreio e cep e devesse ser chamada apenas na primeira vez que a tela é exibida, chamá-la dessa forma com <strong>LaunchedEffect(Unit)</strong> talvez não fosse o mais ideal, pois a função ainda seria chamada em rotações de tela e buscaria os dados novamente. Mas funciona bem como exemplo.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">TrackingViewModel</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ViewModel</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>

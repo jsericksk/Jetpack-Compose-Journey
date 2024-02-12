@@ -12,13 +12,13 @@
         <meta name="author" content="Jesus Ericks">
       
       
-        <link rel="canonical" href="https://github.com/jsericksk/Jetpack-Compose-Journey/components/switch/">
+        <link rel="canonical" href="https://github.com/jsericksk/Jetpack-Compose-Journey/components/selectioncontrols/">
       
       
         <link rel="prev" href="../card/">
       
       
-        <link rel="next" href="../checkbox/">
+        <link rel="next" href="../slider/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Switch - Jetpack Compose Journey</title>
+        <title>Checkbox, RadioButton e Switch - Jetpack Compose Journey</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#switch" class="md-skip">
+        <a href="#checkbox-radiobutton-e-switch" class="md-skip">
           Pular para conteúdo
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Switch
+              Checkbox, RadioButton e Switch
             
           </span>
         </div>
@@ -710,7 +710,7 @@
           
   
   <span class="md-ellipsis">
-    Switch
+    Checkbox, RadioButton e Switch
   </span>
   
 
@@ -721,7 +721,7 @@
         
   
   <span class="md-ellipsis">
-    Switch
+    Checkbox, RadioButton e Switch
   </span>
   
 
@@ -743,6 +743,33 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#checkbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      Checkbox
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#radiobutton" class="md-nav__link">
+    <span class="md-ellipsis">
+      RadioButton
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#switch" class="md-nav__link">
+    <span class="md-ellipsis">
+      Switch
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#conteudos-auxiliares" class="md-nav__link">
     <span class="md-ellipsis">
       Conteúdos auxiliares:
@@ -755,27 +782,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../checkbox/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Checkbox
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -1336,6 +1342,33 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#checkbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      Checkbox
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#radiobutton" class="md-nav__link">
+    <span class="md-ellipsis">
+      RadioButton
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#switch" class="md-nav__link">
+    <span class="md-ellipsis">
+      Switch
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#conteudos-auxiliares" class="md-nav__link">
     <span class="md-ellipsis">
       Conteúdos auxiliares:
@@ -1362,12 +1395,14 @@
   
 
 
-<h1 id="switch">Switch</h1>
-<p>Switch é um componente simples para uma função de <strong><em>checked</em></strong> e <strong><em>unchecked</em></strong>. Não há muito segredo nele, então vamos à implementação básica:</p>
+<h1 id="checkbox-radiobutton-e-switch">Checkbox, RadioButton e Switch</h1>
+<p>Os componentes <strong>Checkbox</strong>, <strong>RadioButton</strong> e <strong>Switch</strong> fazem parte da categoria de controles de seleção, permitindo aos usuários selecionarem entre um estado marcado/desmarcado ou ativado/desativado.</p>
+<h2 id="checkbox">Checkbox</h2>
+<p>O <strong>Checkbox</strong> é utilizado principalmente para representar um estado de "marcado/desmarcado", além de uma seleção múltipla e não exclusiva de itens. A implementação básica de um <strong>Checkbox</strong> segue o código abaixo:</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
-<span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">Switch</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">Checkbox</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">checked</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">remember</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateOf</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
-<span class="w">    </span><span class="n">Switch</span><span class="p">(</span>
+<span class="w">    </span><span class="n">Checkbox</span><span class="p">(</span>
 <span class="w">        </span><span class="n">checked</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">checked</span><span class="p">,</span>
 <span class="w">        </span><span class="n">onCheckedChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">isChecked</span><span class="w"> </span><span class="o">-&gt;</span>
 <span class="w">            </span><span class="n">checked</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">isChecked</span>
@@ -1375,40 +1410,154 @@
 <span class="w">    </span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
-<p><img alt="Switch" src="img-01.png" /></p>
-<p>Também é possível personalizar a <strong>thumbContent</strong>, que pode ser o ícone exibido durante o estado marcado ou desmarcado, além, é claro, de podermos modificar as cores facilmente:</p>
+<p><img src="../selectioncontrols/img-01.png" alt="Checkbox" width="30%" height="10%"/></p>
+<p>Não há muito segredo, mas como pode ver, ele só possui a estrutura para o <strong>Checkbox</strong> em si. O formato de layout com texto ao lado deve ser montado personalizadamente. Isso também vale para o <strong>RadioButton</strong> e <strong>Switch</strong>. Vamos ver então uma implementação comum, com um <strong>Text()</strong> ao lado. Além disso, também podemos definir as cores para os diferentes estados (checked, unchecked etc.) através do parâmetro <strong>colors</strong>. Veja o código:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
+<span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">Checkbox</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">checked</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">remember</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateOf</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="n">Row</span><span class="p">(</span>
+<span class="w">        </span><span class="n">verticalAlignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="na">CenterVertically</span><span class="p">,</span>
+<span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span>
+<span class="w">            </span><span class="p">.</span><span class="na">clip</span><span class="p">(</span><span class="n">RoundedCornerShape</span><span class="p">(</span><span class="m">16.</span><span class="n">dp</span><span class="p">))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">clickable</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">checked</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">checked</span><span class="w"> </span><span class="p">}</span>
+<span class="w">            </span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="n">horizontal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6.</span><span class="n">dp</span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Checkbox</span><span class="p">(</span>
+<span class="w">            </span><span class="n">checked</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">checked</span><span class="p">,</span>
+<span class="w">            </span><span class="n">onCheckedChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">isChecked</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">                </span><span class="n">checked</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">isChecked</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="n">colors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CheckboxDefaults</span><span class="p">.</span><span class="na">colors</span><span class="p">(</span>
+<span class="w">                </span><span class="n">checkedColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Color</span><span class="p">.</span><span class="na">Black</span><span class="p">,</span>
+<span class="w">                </span><span class="n">uncheckedColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Color</span><span class="p">.</span><span class="na">Red</span><span class="p">,</span>
+<span class="w">                </span><span class="n">checkmarkColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Color</span><span class="p">.</span><span class="na">Yellow</span>
+<span class="w">            </span><span class="p">)</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">        </span><span class="n">Text</span><span class="p">(</span>
+<span class="w">            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Tema Dark&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">fontSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">18.</span><span class="n">sp</span><span class="p">,</span>
+<span class="w">            </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6.</span><span class="n">dp</span><span class="p">)</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><img src="../selectioncontrols/img-02.gif" alt="Checkbox" width="60%" height="20%"/></p>
+<h2 id="radiobutton">RadioButton</h2>
+<p>Diferente do <strong>Checkbox</strong>, o <strong>RadioButton</strong> possui os parâmetros principais como <strong>selected</strong> e <strong>onClick</strong>. Ele é mais comumente usado para uma lista de opções onde um único item é selecionável. Também é possível definir cores personalizadas para ele, mas vamos usar as cores padrão. Veja o pequeno exemplo:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
+<span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">RadioButton</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">options</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">listOf</span><span class="p">(</span><span class="s">&quot;Padrão do sistema&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Dark&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Light&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">selectedOption</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">remember</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateOf</span><span class="p">(</span><span class="n">options</span><span class="o">[</span><span class="m">0</span><span class="o">]</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="n">Column</span><span class="p">(</span>
+<span class="w">        </span><span class="n">verticalArrangement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arrangement</span><span class="p">.</span><span class="na">Center</span><span class="p">,</span>
+<span class="w">        </span><span class="n">horizontalAlignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="na">CenterHorizontally</span><span class="p">,</span>
+<span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span>
+<span class="w">            </span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="m">18.</span><span class="n">dp</span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Text</span><span class="p">(</span>
+<span class="w">            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Selecione o tema do app&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">fontSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">22.</span><span class="n">sp</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">        </span><span class="n">Spacer</span><span class="p">(</span><span class="n">Modifier</span><span class="p">.</span><span class="na">height</span><span class="p">(</span><span class="m">18.</span><span class="n">dp</span><span class="p">))</span>
+<span class="w">        </span><span class="n">options</span><span class="p">.</span><span class="na">forEach</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">option</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">            </span><span class="n">Row</span><span class="p">(</span>
+<span class="w">                </span><span class="n">verticalAlignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="na">CenterVertically</span><span class="p">,</span>
+<span class="w">                </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span>
+<span class="w">                    </span><span class="p">.</span><span class="na">fillMaxWidth</span><span class="p">()</span>
+<span class="w">                    </span><span class="p">.</span><span class="na">clip</span><span class="p">(</span><span class="n">RoundedCornerShape</span><span class="p">(</span><span class="m">16.</span><span class="n">dp</span><span class="p">))</span>
+<span class="w">                    </span><span class="p">.</span><span class="na">clickable</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">selectedOption</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">option</span><span class="w"> </span><span class="p">}</span>
+<span class="w">            </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">RadioButton</span><span class="p">(</span>
+<span class="w">                    </span><span class="n">selected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">option</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">selectedOption</span><span class="p">),</span>
+<span class="w">                    </span><span class="n">onClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">selectedOption</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">option</span><span class="w"> </span><span class="p">}</span>
+<span class="w">                </span><span class="p">)</span>
+<span class="w">                </span><span class="n">Text</span><span class="p">(</span>
+<span class="w">                    </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">option</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">fontSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">18.</span><span class="n">sp</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6.</span><span class="n">dp</span><span class="p">)</span>
+<span class="w">                </span><span class="p">)</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><img src="../selectioncontrols/img-03.gif" alt="RadioButton" width="80%" height="30%"/></p>
+<h2 id="switch">Switch</h2>
+<p><strong>Switch</strong> é comumente utilizado para representar um estado de "ligado/desligado" e é bem similar ao <strong>Checkbox</strong> em implementação, mas há um parâmetro adicional <strong>thumbContent</strong> que você pode utilizar para personalizar o conteúdo desenhado dentro da <strong>thumb</strong>. No código de exemplo abaixo, estamos modificando o ícone de acordo com o estado atual do <strong>Switch</strong>, além de definir algumas cores personalizadas.</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
 <span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">Switch</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">checked</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">remember</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateOf</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
-<span class="w">    </span><span class="n">Switch</span><span class="p">(</span>
-<span class="w">        </span><span class="n">checked</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">checked</span><span class="p">,</span>
-<span class="w">        </span><span class="n">onCheckedChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">isChecked</span><span class="w"> </span><span class="o">-&gt;</span>
-<span class="w">            </span><span class="n">checked</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">isChecked</span>
-<span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="n">thumbContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="kd">val</span><span class="w"> </span><span class="nv">icon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">checked</span><span class="p">)</span><span class="w"> </span><span class="n">Icons</span><span class="p">.</span><span class="na">Filled</span><span class="p">.</span><span class="na">Check</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="n">Icons</span><span class="p">.</span><span class="na">Filled</span><span class="p">.</span><span class="na">Close</span>
-<span class="w">            </span><span class="n">Icon</span><span class="p">(</span>
-<span class="w">                </span><span class="n">imageVector</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">icon</span><span class="p">,</span>
-<span class="w">                </span><span class="n">contentDescription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Switch&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">size</span><span class="p">(</span><span class="n">SwitchDefaults</span><span class="p">.</span><span class="na">IconSize</span><span class="p">),</span>
+<span class="w">    </span><span class="n">Row</span><span class="p">(</span>
+<span class="w">        </span><span class="n">verticalAlignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="na">CenterVertically</span><span class="p">,</span>
+<span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span>
+<span class="w">            </span><span class="p">.</span><span class="na">clip</span><span class="p">(</span><span class="n">RoundedCornerShape</span><span class="p">(</span><span class="m">16.</span><span class="n">dp</span><span class="p">))</span>
+<span class="w">            </span><span class="p">.</span><span class="na">clickable</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">checked</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">checked</span><span class="w"> </span><span class="p">}</span>
+<span class="w">            </span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="n">horizontal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6.</span><span class="n">dp</span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Switch</span><span class="p">(</span>
+<span class="w">            </span><span class="n">checked</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">checked</span><span class="p">,</span>
+<span class="w">            </span><span class="n">onCheckedChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">isChecked</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">                </span><span class="n">checked</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">isChecked</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="n">thumbContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="kd">val</span><span class="w"> </span><span class="nv">icon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">checked</span><span class="p">)</span><span class="w"> </span><span class="n">Icons</span><span class="p">.</span><span class="na">Filled</span><span class="p">.</span><span class="na">Check</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="n">Icons</span><span class="p">.</span><span class="na">Filled</span><span class="p">.</span><span class="na">Close</span>
+<span class="w">                </span><span class="n">Icon</span><span class="p">(</span>
+<span class="w">                    </span><span class="n">imageVector</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">icon</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">contentDescription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">size</span><span class="p">(</span><span class="n">SwitchDefaults</span><span class="p">.</span><span class="na">IconSize</span><span class="p">),</span>
+<span class="w">                </span><span class="p">)</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="n">colors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SwitchDefaults</span><span class="p">.</span><span class="na">colors</span><span class="p">(</span>
+<span class="w">                </span><span class="n">checkedThumbColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Color</span><span class="p">.</span><span class="na">White</span><span class="p">,</span>
+<span class="w">                </span><span class="n">uncheckedThumbColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Color</span><span class="p">.</span><span class="na">Black</span><span class="p">,</span>
+<span class="w">                </span><span class="n">checkedTrackColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Color</span><span class="p">.</span><span class="na">Black</span><span class="p">,</span>
+<span class="w">                </span><span class="n">uncheckedTrackColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Color</span><span class="p">.</span><span class="na">DarkGray</span><span class="p">,</span>
+<span class="w">                </span><span class="n">checkedIconColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Color</span><span class="p">.</span><span class="na">Black</span><span class="p">,</span>
+<span class="w">                </span><span class="n">uncheckedIconColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Color</span><span class="p">.</span><span class="na">White</span><span class="p">,</span>
+<span class="w">                </span><span class="n">checkedBorderColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Color</span><span class="p">.</span><span class="na">Green</span><span class="p">,</span>
+<span class="w">                </span><span class="n">uncheckedBorderColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Color</span><span class="p">.</span><span class="na">Red</span>
 <span class="w">            </span><span class="p">)</span>
-<span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="n">colors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SwitchDefaults</span><span class="p">.</span><span class="na">colors</span><span class="p">(</span>
-<span class="w">            </span><span class="n">checkedThumbColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Color</span><span class="p">.</span><span class="na">White</span><span class="p">,</span>
-<span class="w">            </span><span class="n">uncheckedThumbColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Color</span><span class="p">.</span><span class="na">Black</span><span class="p">,</span>
-<span class="w">            </span><span class="n">checkedTrackColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Color</span><span class="p">.</span><span class="na">Black</span><span class="p">,</span>
-<span class="w">            </span><span class="n">uncheckedTrackColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Color</span><span class="p">.</span><span class="na">DarkGray</span><span class="p">,</span>
-<span class="w">            </span><span class="n">checkedIconColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Color</span><span class="p">.</span><span class="na">Black</span><span class="p">,</span>
-<span class="w">            </span><span class="n">uncheckedIconColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Color</span><span class="p">.</span><span class="na">White</span><span class="p">,</span>
-<span class="w">            </span><span class="n">checkedBorderColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Color</span><span class="p">.</span><span class="na">Green</span><span class="p">,</span>
-<span class="w">            </span><span class="n">uncheckedBorderColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Color</span><span class="p">.</span><span class="na">Red</span>
 <span class="w">        </span><span class="p">)</span>
-<span class="w">    </span><span class="p">)</span>
+<span class="w">        </span><span class="n">Text</span><span class="p">(</span>
+<span class="w">            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Tema Dark&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">fontSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">18.</span><span class="n">sp</span><span class="p">,</span>
+<span class="w">            </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6.</span><span class="n">dp</span><span class="p">)</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p><img alt="Switch" src="img-02.png" /></p>
+<p><img src="../selectioncontrols/img-04.gif" alt="Switch" width="60%" height="20%"/></p>
+<ul>
+<li>Se desejar ter o ícone personalizado apenas quando estiver no estado de ativado, você pode tornar <strong>thumbContent</strong> null quando o estado for desativado. Por exemplo:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
+<span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">Switch</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">checked</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">remember</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateOf</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="n">Row</span><span class="p">(</span>
+<span class="w">       </span><span class="p">...</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Switch</span><span class="p">(</span>
+<span class="w">            </span><span class="p">...,</span>
+<span class="w">            </span><span class="n">thumbContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">checked</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">Icon</span><span class="p">(</span>
+<span class="w">                        </span><span class="n">imageVector</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Icons</span><span class="p">.</span><span class="na">Filled</span><span class="p">.</span><span class="na">Check</span><span class="p">,</span>
+<span class="w">                        </span><span class="n">contentDescription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">                        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">size</span><span class="p">(</span><span class="n">SwitchDefaults</span><span class="p">.</span><span class="na">IconSize</span><span class="p">),</span>
+<span class="w">                    </span><span class="p">)</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="kc">null</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="p">...</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">        </span><span class="p">...</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <h2 id="conteudos-auxiliares"><img alt="🔗" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/1f517.png" title=":link:" /> Conteúdos auxiliares:</h2>
 <ul>
+<li><a href="https://m3.material.io/components/checkbox/overview">Checkbox (Material Design 3)</a></li>
 <li><a href="https://developer.android.com/jetpack/compose/components/switch">Switch (documentação)</a></li>
 <li><a href="https://m3.material.io/components/switch/overview">Switch (Material Design 3)</a></li>
 </ul>
@@ -1432,7 +1581,7 @@
     <span class="md-icon" title="Última atualização">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">9 de janeiro de 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">12 de fevereiro de 2024</span>
   </span>
 
     
@@ -1479,13 +1628,13 @@
         
         
           
-          <a href="../checkbox/" class="md-footer__link md-footer__link--next" aria-label="Próximo: Checkbox">
+          <a href="../slider/" class="md-footer__link md-footer__link--next" aria-label="Próximo: Slider">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Próximo
               </span>
               <div class="md-ellipsis">
-                Checkbox
+                Slider
               </div>
             </div>
             <div class="md-footer__button md-icon">

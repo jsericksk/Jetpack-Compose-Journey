@@ -695,32 +695,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../components/switch/" class="md-nav__link">
+      <a href="../components/selectioncontrols/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Switch
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../components/checkbox/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Checkbox
+    Checkbox, RadioButton e Switch
   </span>
   
 
@@ -1578,7 +1557,7 @@
 <h2 id="semantica">Semântica</h2>
 <p>Os testes de UI no Compose usam <strong>semântica</strong> para interagir com a hierarquia da UI. A semântica, como o nome indica, dá significado a uma parte da UI. Uma "parte da UI" (ou elemento) pode significar qualquer coisa, desde um único Composable até uma tela inteira. A <strong>árvore semântica</strong> é gerada junto com a hierarquia da UI e a descreve. A estrutura semântica é usada principalmente para acessibilidade, portanto os testes aproveitam as informações expostas pela semântica sobre a hierarquia da UI. Você decide o que e quanto expor.</p>
 <p><img src="../testing/img-02.png" alt="Semântica" width="50%" height="30%"/></p>
-<p>A partir de um teste, podemos usar <code>printToLog()</code> para mostrar a árvore semântica:</p>
+<p>A partir de um teste, podemos usar <code>onRoot().printToLog()</code> para mostrar a árvore semântica:</p>
 <p><code>composeTestRule.onRoot().printToLog("TAG")</code></p>
 <p>Por exemplo, temos o seguinte código:</p>
 <div class="highlight"><pre><span></span><code><span class="n">MyButton</span><span class="w"> </span><span class="p">{</span>
@@ -1594,16 +1573,19 @@
    Actions = [OnClick, GetTextLayoutResult]
    MergeDescendants = &#39;true&#39;
 </code></pre></div>
-<p>Alguns nós mesclam as informações semânticas de seus filhos. Por exemplo, um botão com dois elementos de texto mescla seus rótulos, como vimos acima. Se você precisar corresponder a um nó do que seria a árvore não mesclada, poderá definir <code>useUnmergedTree</code> como true:</p>
-<p><code>composeTestRule.onRoot(useUnmergedTree = true).printToLog("TAG")</code></p>
-<p>E geraria a seguinte saída:</p>
+<p>Veja que os 2 textos foram mesclados. Alguns nós mesclam as informações semânticas de seus filhos. Por exemplo, um botão com dois elementos de texto mescla seus rótulos, como vimos acima. Se você precisar corresponder a um nó do que seria a árvore não mesclada, poderá definir <code>useUnmergedTree</code> como <strong>true</strong> no <code>onNode</code> (ou suas variações). Por exemplo:</p>
+<div class="highlight"><pre><span></span><code>composeTestRule
+    .onNodeWithText(text = &quot;Texto&quot;, useUnmergedTree = true)
+    .assertIsNotEnabled()
+</code></pre></div>
+<p>Imprimir a árvore semântica do código anterior com <code>composeTestRule.onRoot(useUnmergedTree = true).printToLog("TAG")</code> geraria a seguinte saída:</p>
 <div class="highlight"><pre><span></span><code>Node #1 at (...)px
  |-Node #2 at (...)px
    OnClick = &#39;...&#39;
    MergeDescendants = &#39;true&#39;
     |-Node #3 at (...)px
     | Text = &#39;[Hello]&#39;
-    |-Node #5 at (83.0, 86.0, 191.0, 135.0)px
+    |-Node #5 at (...)px
       Text = &#39;[World]&#39;
 </code></pre></div>
 <h2 id="dependencias-de-teste">Dependências de teste</h2>
