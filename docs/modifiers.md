@@ -31,7 +31,7 @@ private fun Item() {
 
 <img src="../modifiers/img-01.png" alt="Modifiers" width="50%" height="30%"/>
 
-Agora vamos mudar a ordem do ***background()*** e do ***padding()***:
+Agora vamos mudar a ordem do ```background()``` e do ```padding()```:
 
 ```kotlin
 @Composable
@@ -52,7 +52,39 @@ private fun Item() {
 
 <img src="../modifiers/img-02.png" alt="Modifiers" width="50%" height="30%"/>
 
-Isso aconteceu porque no primeiro exemplo definimos a cor de fundo antes de definirmos um espaçamento, o que fez com que a cor preenchesse todo o Box. Já no segundo exemplo, definimos um padding antes e, por consequência, a cor de fundo só preencheu o espaço já modificado com padding.
+Isso aconteceu porque no primeiro exemplo definimos a cor de fundo antes de definirmos um espaçamento, o que fez com que a cor preenchesse todo o Box. Já no segundo exemplo, definimos um espaçamento antes e, por consequência, a cor de fundo só preencheu o espaço já modificado pelo ```padding()```.
+
+Vamos ver mais um exemplo, agora de como o ```Modifier.clickable()``` pode ser afetado com outros modificadores. Veja o código abaixo:
+
+```kotlin
+@Composable
+private fun CarItem() {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
+            .clickable {}
+            .padding(26.dp)
+            .fillMaxWidth()
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.img_car),
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .size(width = 300.dp, height = 250.dp)
+                .clip(RoundedCornerShape(16.dp))
+        )
+    }
+}
+```
+
+<img src="../modifiers/img-09.gif" alt="Modifiers" width="80%" height="30%"/>
+
+É possível clicar e o efeito de clique é aplicado em toda a área da **Column**. Porém, mudando a ordem dos modificadores, colocando o ```padding()``` primeiro e o ```clickable()``` após ele, nós temos o seguinte resultado:
+
+<img src="../modifiers/img-10.gif" alt="Modifiers" width="80%" height="30%"/>
+
+Agora veja que a **Column** não é mais completamente clicável, pois o ```Modifier.clickable()``` foi afetado pelo ```Modifier.padding()```.
 
 ## Margin no Compose
 
