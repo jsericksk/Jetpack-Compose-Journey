@@ -46,7 +46,7 @@ Chip também é um componente bem comum. Confira na [documentação](https://dev
 
 ## Conclusão
 
-Há vários outros componentes que não foram citados aqui, mas que são bem utilizados e também vale a pena mencionar, como o **NavigationBar**, **ModalBottomSheet**, **RadioButton** e **DropdownMenu**. Como nenhum deles possuem uma página dedicada na seção de componentes da documentação como os mencionados acima, evitei colocá-los sem uma referência "oficial", mas todos eles estão presentes na [documentação do pacote do Material Design 3 do Compose](https://developer.android.com/reference/kotlin/androidx/compose/material3/package-summary), incluindo alguns exemplos de implementação e imagens.
+Há vários outros componentes que não foram citados aqui, mas que são bem utilizados e também vale a pena mencionar, como o **NavigationBar**, **ModalBottomSheet** e **DropdownMenu**. Todos eles estão presentes na [documentação do pacote do Material Design 3 do Compose](https://developer.android.com/reference/kotlin/androidx/compose/material3/package-summary), incluindo alguns exemplos de implementação e imagens.
 
 ## :link: Conteúdos auxiliares:
 - [androidx.compose.material3 (documentação)](https://developer.android.com/reference/kotlin/androidx/compose/material3/package-summary)

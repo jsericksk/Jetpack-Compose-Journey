@@ -60,8 +60,7 @@ nav:
     - 'Button': components/button.md
     - 'Image': components/image.md
     - 'Card': components/card.md
-    - 'Switch': components/switch.md
-    - 'Checkbox': components/checkbox.md
+    - 'Checkbox, RadioButton e Switch': components/selectioncontrols.md
     - 'Slider': components/slider.md
     - 'Surface': components/surface.md
     - 'Scaffold': components/scaffold.md
