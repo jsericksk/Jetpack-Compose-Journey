@@ -916,6 +916,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Segurança de escopo no Compose">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modifierweight" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modifier.weight()
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1433,6 +1448,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Segurança de escopo no Compose">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modifierweight" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modifier.weight()
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1521,7 +1551,7 @@
 <span class="p">}</span>
 </code></pre></div>
 <p><img src="../modifiers/img-01.png" alt="Modifiers" width="50%" height="30%"/></p>
-<p>Agora vamos mudar a ordem do <strong><em>background()</em></strong> e do <strong><em>padding()</em></strong>:</p>
+<p>Agora vamos mudar a ordem do <code>background()</code> e do <code>padding()</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
 <span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">Item</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">Box</span><span class="p">(</span>
@@ -1538,7 +1568,32 @@
 <span class="p">}</span>
 </code></pre></div>
 <p><img src="../modifiers/img-02.png" alt="Modifiers" width="50%" height="30%"/></p>
-<p>Isso aconteceu porque no primeiro exemplo definimos a cor de fundo antes de definirmos um espaçamento, o que fez com que a cor preenchesse todo o Box. Já no segundo exemplo, definimos um padding antes e, por consequência, a cor de fundo só preencheu o espaço já modificado com padding.</p>
+<p>Isso aconteceu porque no primeiro exemplo definimos a cor de fundo antes de definirmos um espaçamento, o que fez com que a cor preenchesse todo o Box. Já no segundo exemplo, definimos um espaçamento antes e, por consequência, a cor de fundo só preencheu o espaço já modificado pelo <code>padding()</code>.</p>
+<p>Vamos ver mais um exemplo, agora de como o <code>Modifier.clickable()</code> pode ser afetado com outros modificadores. Veja o código abaixo:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
+<span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">CarItem</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Column</span><span class="p">(</span>
+<span class="w">        </span><span class="n">horizontalAlignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="na">CenterHorizontally</span><span class="p">,</span>
+<span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span>
+<span class="w">            </span><span class="p">.</span><span class="na">clickable</span><span class="w"> </span><span class="p">{}</span>
+<span class="w">            </span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="m">26.</span><span class="n">dp</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="na">fillMaxWidth</span><span class="p">()</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Image</span><span class="p">(</span>
+<span class="w">            </span><span class="n">painter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">painterResource</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">drawable</span><span class="p">.</span><span class="na">img_car</span><span class="p">),</span>
+<span class="w">            </span><span class="n">contentDescription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">            </span><span class="n">contentScale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ContentScale</span><span class="p">.</span><span class="na">Crop</span><span class="p">,</span>
+<span class="w">            </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span>
+<span class="w">                </span><span class="p">.</span><span class="na">size</span><span class="p">(</span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">300.</span><span class="n">dp</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">250.</span><span class="n">dp</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">clip</span><span class="p">(</span><span class="n">RoundedCornerShape</span><span class="p">(</span><span class="m">16.</span><span class="n">dp</span><span class="p">))</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><img src="../modifiers/img-09.gif" alt="Modifiers" width="80%" height="30%"/></p>
+<p>É possível clicar e o efeito de clique é aplicado em toda a área da <strong>Column</strong>. Porém, mudando a ordem dos modificadores, colocando o <code>padding()</code> primeiro e o <code>clickable()</code> após ele, nós temos o seguinte resultado:</p>
+<p><img src="../modifiers/img-10.gif" alt="Modifiers" width="80%" height="30%"/></p>
+<p>Agora veja que a <strong>Column</strong> não é mais completamente clicável, pois o <code>Modifier.clickable()</code> foi afetado pelo <code>Modifier.padding()</code>.</p>
 <h2 id="margin-no-compose">Margin no Compose</h2>
 <p><img alt="Margin e Padding" src="img-03.png" /></p>
 <p>Diferente do sistema de Views, o Compose não possui uma opção para <strong>margin</strong> como no XML. Como basicamente <strong>margin</strong> é o espaçamento entre o componente e outros componentes, e <strong>padding</strong> é o espaçamento interno do conteúdo do componente, ambas funcionalidades podem ser obtidas com <code>Modifier.padding()</code> utilizando o mesmo princípio da ordem de modificadores que vimos anteriormente.  </p>
@@ -1854,7 +1909,7 @@
 <h2 id="seguranca-de-escopo-no-compose">Segurança de escopo no Compose</h2>
 <p>No Compose, há modificadores que só podem ser usados ​​quando aplicados a filhos de determinados Composables. O Compose impõe isso por meio de escopos personalizados.</p>
 <p>Por exemplo, se você quiser deixar um filho tão grande quanto o Box pai sem afetar o tamanho do Box, use o <code>Modificador.matchParentSize()</code>. Ele só está disponível em um <code>BoxScope</code>. Portanto, ele só pode ser usado em um filho dentro de um dos Box pais.</p>
-<p>A segurança do escopo evita que você adicione modificadores que não funcionariam em outros Composables e escopos, além de economizar tempo de tentativa e erro.</p>
+<p>A segurança do escopo evita que você adicione modificadores que não funcionariam em outros Composables e escopos, além de economizar tempo de tentativa e erro. Por exemplo:</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
 <span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">Item</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">Box</span><span class="p">(</span>
@@ -1887,8 +1942,110 @@
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
+<h4 id="modifierweight">Modifier.weight()</h4>
+<p>Você pode definir o tamanho do Composable para ser flexível dentro de seu pai usando o <code>Modifier.weight()</code>. Ele está disponível apenas em <strong>RowScope</strong> e <strong>ColumnScope</strong>. Veja alguns exemplos de seu uso com diferentes pesos:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
+<span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">ModifierWeight</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Column</span><span class="p">(</span>
+<span class="w">        </span><span class="n">verticalArrangement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arrangement</span><span class="p">.</span><span class="na">Center</span><span class="p">,</span>
+<span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">()</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Row</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">fillMaxWidth</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">Box</span><span class="p">(</span>
+<span class="w">                </span><span class="n">contentAlignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="na">Center</span><span class="p">,</span>
+<span class="w">                </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span>
+<span class="w">                    </span><span class="p">.</span><span class="na">background</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">Red</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">.</span><span class="na">height</span><span class="p">(</span><span class="m">80.</span><span class="n">dp</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">.</span><span class="na">weight</span><span class="p">(</span><span class="m">1f</span><span class="p">)</span>
+<span class="w">            </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;weight(1f)&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">            </span><span class="n">Box</span><span class="p">(</span>
+<span class="w">                </span><span class="n">contentAlignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="na">Center</span><span class="p">,</span>
+<span class="w">                </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span>
+<span class="w">                    </span><span class="p">.</span><span class="na">background</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">Blue</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">.</span><span class="na">height</span><span class="p">(</span><span class="m">80.</span><span class="n">dp</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">.</span><span class="na">weight</span><span class="p">(</span><span class="m">1f</span><span class="p">)</span>
+<span class="w">            </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;weight(1f)&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="n">Spacer</span><span class="p">(</span><span class="n">Modifier</span><span class="p">.</span><span class="na">height</span><span class="p">(</span><span class="m">16.</span><span class="n">dp</span><span class="p">))</span>
+
+<span class="w">        </span><span class="n">Row</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">fillMaxWidth</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">Box</span><span class="p">(</span>
+<span class="w">                </span><span class="n">contentAlignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="na">Center</span><span class="p">,</span>
+<span class="w">                </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span>
+<span class="w">                    </span><span class="p">.</span><span class="na">background</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">Red</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">.</span><span class="na">height</span><span class="p">(</span><span class="m">80.</span><span class="n">dp</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">.</span><span class="na">weight</span><span class="p">(</span><span class="m">2f</span><span class="p">)</span>
+<span class="w">            </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;weight(2f)&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">            </span><span class="n">Box</span><span class="p">(</span>
+<span class="w">                </span><span class="n">contentAlignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="na">Center</span><span class="p">,</span>
+<span class="w">                </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span>
+<span class="w">                    </span><span class="p">.</span><span class="na">background</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">Blue</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">.</span><span class="na">height</span><span class="p">(</span><span class="m">80.</span><span class="n">dp</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">.</span><span class="na">weight</span><span class="p">(</span><span class="m">1f</span><span class="p">)</span>
+<span class="w">            </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;weight(1f)&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="n">Spacer</span><span class="p">(</span><span class="n">Modifier</span><span class="p">.</span><span class="na">height</span><span class="p">(</span><span class="m">16.</span><span class="n">dp</span><span class="p">))</span>
+
+<span class="w">        </span><span class="n">Row</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">fillMaxWidth</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">Box</span><span class="p">(</span>
+<span class="w">                </span><span class="n">contentAlignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="na">Center</span><span class="p">,</span>
+<span class="w">                </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span>
+<span class="w">                    </span><span class="p">.</span><span class="na">background</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">Red</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">.</span><span class="na">height</span><span class="p">(</span><span class="m">80.</span><span class="n">dp</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">.</span><span class="na">weight</span><span class="p">(</span><span class="m">1f</span><span class="p">)</span>
+<span class="w">            </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;weight(1f)&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">            </span><span class="n">Box</span><span class="p">(</span>
+<span class="w">                </span><span class="n">contentAlignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="na">Center</span><span class="p">,</span>
+<span class="w">                </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span>
+<span class="w">                    </span><span class="p">.</span><span class="na">background</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">Blue</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">.</span><span class="na">size</span><span class="p">(</span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">80.</span><span class="n">dp</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">60.</span><span class="n">dp</span><span class="p">)</span>
+<span class="w">            </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">Text</span><span class="p">(</span>
+<span class="w">                    </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Sem weight()&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">fontSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12.</span><span class="n">sp</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">textAlign</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TextAlign</span><span class="p">.</span><span class="na">Center</span>
+<span class="w">                </span><span class="p">)</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="n">Spacer</span><span class="p">(</span><span class="n">Modifier</span><span class="p">.</span><span class="na">height</span><span class="p">(</span><span class="m">16.</span><span class="n">dp</span><span class="p">))</span>
+
+<span class="w">        </span><span class="n">Row</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">fillMaxWidth</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">Box</span><span class="p">(</span>
+<span class="w">                </span><span class="n">contentAlignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="na">Center</span><span class="p">,</span>
+<span class="w">                </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span>
+<span class="w">                    </span><span class="p">.</span><span class="na">background</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">Red</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">.</span><span class="na">height</span><span class="p">(</span><span class="m">80.</span><span class="n">dp</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">.</span><span class="na">weight</span><span class="p">(</span><span class="m">1f</span><span class="p">)</span>
+<span class="w">            </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;weight(1f)&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">            </span><span class="n">Box</span><span class="p">(</span>
+<span class="w">                </span><span class="n">contentAlignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="na">Center</span><span class="p">,</span>
+<span class="w">                </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span>
+<span class="w">                    </span><span class="p">.</span><span class="na">background</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">Blue</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">.</span><span class="na">height</span><span class="p">(</span><span class="m">80.</span><span class="n">dp</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">.</span><span class="na">weight</span><span class="p">(</span><span class="m">1f</span><span class="p">)</span>
+<span class="w">            </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;weight(1f)&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">            </span><span class="n">Box</span><span class="p">(</span>
+<span class="w">                </span><span class="n">contentAlignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="na">Center</span><span class="p">,</span>
+<span class="w">                </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span>
+<span class="w">                    </span><span class="p">.</span><span class="na">background</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">Green</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">.</span><span class="na">height</span><span class="p">(</span><span class="m">80.</span><span class="n">dp</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">.</span><span class="na">weight</span><span class="p">(</span><span class="m">1f</span><span class="p">)</span>
+<span class="w">            </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;weight(1f)&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><img src="../modifiers/img-11.png" alt="Modifier.weight()" width="40%" height="20%"/></p>
 <h2 id="um-parametro-modifier-opcional">Um parâmetro Modifier opcional</h2>
-<p>Você já deve ter notado que praticamente todo componente no Compose possui um parâmetro <strong>Modifier</strong> opcional, certo? Isso acontece porque <strong>é uma boa prática sempre adicionar um parâmetro Modifier opcional aos Composables</strong>, pois como já foi discutido antes, com ele você pode alterar alguns comportamentos do Composable sem muito esforço.</p>
+<p>Você já deve ter notado que praticamente todo componente no Compose possui um parâmetro <strong>Modifier</strong> opcional, certo? Isso acontece porque <strong>é uma boa prática sempre adicionar um parâmetro Modifier opcional aos Composables</strong>, pois como já foi discutido antes, com ele você pode alterar alguns comportamentos do Composable sem muito esforço. Por exemplo, com o Modifier como opção, o chamador pode usar <code>Modifier.align()</code> para alinhar o componente como desejar, dependendo do layout que está criando.</p>
 <p>Portanto, quando estiver criando seu componente, é recomendável sempre colocar um parâmetro Modifier opcional. É importante ser opcional porque o chamador nem sempre irá usar o Modifier. <strong>Ele deve ser o primeiro parâmetro opcional</strong>. Veja o exemplo abaixo, os parâmetros <strong>text</strong> e <strong>onClick</strong> não são opcionais, portanto, ele fica logo abaixo deles:</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
 <span class="kd">fun</span><span class="w"> </span><span class="nf">MyCustomButton</span><span class="p">(</span>
@@ -1961,7 +2118,7 @@
 <span class="p">)</span>
 </code></pre></div>
 <h4 id="modifier-como-ultimo-argumento">Modifier como último argumento</h4>
-<p>Não é uma regra específica, mas como o Modifier costuma ter vários modificadores, é interessante sempre colocá-lo como último argumento. Ao invés disso:</p>
+<p>Não é nenhuma regra específica, mas como o Modifier costuma ter vários modificadores, às vezes é interessante colocá-lo como último argumento para uma melhor legibilidade. Por exemplo, ao invés disso:</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
 <span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">Item</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">Text</span><span class="p">(</span>
@@ -1976,7 +2133,7 @@
 <span class="w">    </span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>Faça isso:</p>
+<p>Você pode fazer isso:</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
 <span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">Item</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">Text</span><span class="p">(</span>
@@ -2019,7 +2176,7 @@
     <span class="md-icon" title="Última atualização">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">10 de fevereiro de 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">12 de fevereiro de 2024</span>
   </span>
 
     
