@@ -140,7 +140,7 @@ fun HomeScreen() {
 }
 ```
 
-<img src="../navigationdrawer/img-01.gif" alt="Navigation Drawer" width="50%" height="30%"/>
+<img src="../navigationdrawer/img-01.gif" alt="Navigation Drawer" width="40%" height="20%"/>
 
 ## Opções de controle e personalização
 

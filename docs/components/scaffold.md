@@ -63,7 +63,7 @@ private fun Scaffold() {
 }
 ```
 
-<img src="../scaffold/img-01.png" alt="Scaffold" width="50%" height="30%"/>
+<img src="../scaffold/img-01.png" alt="Scaffold" width="40%" height="20%"/>
 
 ## PaddingValues
 
