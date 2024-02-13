@@ -145,7 +145,11 @@ private fun Preview() { ... }
 
 ## Outros pontos importantes
 
-Você também pode executar sua Preview como se fosse uma tela normal do seu app, num dispositivo físico ou emulador. Basta tocar em **Run Preview**. É bastante útil se quiser ver uma tela inteira sem a necessidade de executar todo o app. A opção aparece tanto ao lado do nome da função Preview no código quanto no design. Também há uma opção para configurar rapidamente sua Preview com as propriedades que foram abordadas nessa seção, como pode ver no ícone de configuração na imagem abaixo.
+Você também pode executar sua Preview como se fosse uma tela normal do seu app, num dispositivo físico ou emulador. Basta tocar em **Run Preview**. É bastante útil se quiser ver uma tela inteira sem a necessidade de executar todo o app. A opção aparece tanto ao lado do nome da função Preview no código quanto no design. 
+
+Além dos modos de **lista** e **grade**, que exibem todas as Previews de uma vez, uma outra função útil é o **modo de galeria (Gallery**), onde é possível visualizar uma Preview por vez, assim economizando recursos de renderização. É recomendável utilizá-lo quando estiver focando em apenas uma Preview. Você pode alterar facilmente entre os modos na guia de design.
+
+Também há uma opção para configurar rapidamente sua Preview com as propriedades que foram abordadas nessa seção, como pode ver no ícone de configuração na imagem abaixo.
 
 ![Preview com devices](previews/img-05.png)
 
