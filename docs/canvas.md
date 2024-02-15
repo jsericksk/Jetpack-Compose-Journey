@@ -471,6 +471,7 @@ Como é possível observar, as decorações dão um visual mais interessante à 
 ## :link: Conteúdos auxiliares:
 - [Graphics in Compose (documentação)](https://developer.android.com/jetpack/compose/graphics/draw/overview)
 - [Easing in to Easing Curves in Jetpack Compose (artigo)](https://medium.com/androiddevelopers/easing-in-to-easing-curves-in-jetpack-compose-d72893eeeb4d)
+- [Exploring Canvas in Jetpack Compose — Crafting Graphics, Animations, and Game Experiences (artigo)](https://proandroiddev.com/exploring-canvas-in-jetpack-compose-crafting-graphics-animations-and-game-experiences-b0aa31160bff)
 - [How to Draw an Arc in Jetpack Compose Canvas (artigo)](https://semicolonspace.com/draw-arc-jetpack-compose-canvas)
 - [Jetpack Compose Canvas (artigo)](https://medium.com/falabellatechnology/jetpack-compose-canvas-8aee73eab393)
 - [Creating a Custom Microsoft Icon with Jetpack Compose (artigo)](https://medium.com/@esthcarelle/creating-a-custom-microsoft-icon-with-jetpack-compose-ddf3df088688)
