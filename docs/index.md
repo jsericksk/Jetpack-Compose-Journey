@@ -1,4 +1,9 @@
-# Introdução
+<p align="center">
+  <img src="https://raw.githubusercontent.com/jsericksk/Jetpack-Compose-Journey/main/images/compose-journey.png" width="150">
+</p>
+<h1 align="center">
+  <a href="https://github.com/jsericksk/Jetpack-Compose-Journey">Jetpack Compose Journey</a>
+</h1>
 
 Esse conteúdo foi planejado para ser algo direto ao ponto para iniciantes, mas em alguns momentos você poderá ver diversas informações importantes que podem tornar alguns tópicos relativamente extensos. Cada seção abordará temas específicos, sendo como espécie de capítulos, e terá referências tanto à documentação quanto a conteúdos que eu achar interessantes.
 
