@@ -220,7 +220,7 @@ Como última chamada, ela espera um **onDrawWithContent** ou **onDrawBehind**, q
 
 Agora vamos à explicação do **Path** criado:
 
-- **moveTo(x = 0f, y = size.height / 2)**: Inicia um subpath com a coordenada indicada, ou seja, **x** e **y**. No nosso código, estamos "se movendo" para **0f** e **size.height / 2**, que significa o início da tela horizontalmente (**x = 0f**) e o centro da tela verticalmente (**size.height / 2**). Como dito antes, dentro de um **DrawScope** temos acesso a algumas propriedades, como **size**. Ou seja, **size.height** = tamanho em pixels desse **DrawScope**.
+- **moveTo(x = 0f, y = size.height / 2)**: Inicia um subpath com a coordenada indicada, ou seja, **x** e **y**. No nosso código, estamos usando as coordenadas **0f** e **size.height / 2**, que significa o início da tela horizontalmente (**x = 0f**) e o centro da tela verticalmente (**y = size.height / 2**). Como dito antes, dentro de um **DrawScope** temos acesso a algumas propriedades, como **size**. Ou seja, **size.height** = tamanho em pixels desse **DrawScope**.
 
 - **lineTo(x = size.width / 2, y = 0f)**: Adiciona um segmento de linha reta do ponto atual ao ponto determinado. No nosso código, o **ponto atual** é **(x = 0f, y = size.height / 2)**, como já definimos antes com **moveTo()**. Como usamos **lineTo(x = size.width / 2, y = 0f)**, criamos uma linha reta desse ponto atual até a coordenada indicada, ou seja, o centro da tela horizontalmente e o topo da tela verticalmente **(x = size.width / 2, y = 0f)**.
 
