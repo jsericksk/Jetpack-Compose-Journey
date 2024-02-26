@@ -1748,7 +1748,7 @@
 <p>Agora vamos à explicação do <strong>Path</strong> criado:</p>
 <ul>
 <li>
-<p><strong>moveTo(x = 0f, y = size.height / 2)</strong>: Inicia um subpath com a coordenada indicada, ou seja, <strong>x</strong> e <strong>y</strong>. No nosso código, estamos "se movendo" para <strong>0f</strong> e <strong>size.height / 2</strong>, que significa o início da tela horizontalmente (<strong>x = 0f</strong>) e o centro da tela verticalmente (<strong>size.height / 2</strong>). Como dito antes, dentro de um <strong>DrawScope</strong> temos acesso a algumas propriedades, como <strong>size</strong>. Ou seja, <strong>size.height</strong> = tamanho em pixels desse <strong>DrawScope</strong>.</p>
+<p><strong>moveTo(x = 0f, y = size.height / 2)</strong>: Inicia um subpath com a coordenada indicada, ou seja, <strong>x</strong> e <strong>y</strong>. No nosso código, estamos usando as coordenadas <strong>0f</strong> e <strong>size.height / 2</strong>, que significa o início da tela horizontalmente (<strong>x = 0f</strong>) e o centro da tela verticalmente (<strong>y = size.height / 2</strong>). Como dito antes, dentro de um <strong>DrawScope</strong> temos acesso a algumas propriedades, como <strong>size</strong>. Ou seja, <strong>size.height</strong> = tamanho em pixels desse <strong>DrawScope</strong>.</p>
 </li>
 <li>
 <p><strong>lineTo(x = size.width / 2, y = 0f)</strong>: Adiciona um segmento de linha reta do ponto atual ao ponto determinado. No nosso código, o <strong>ponto atual</strong> é <strong>(x = 0f, y = size.height / 2)</strong>, como já definimos antes com <strong>moveTo()</strong>. Como usamos <strong>lineTo(x = size.width / 2, y = 0f)</strong>, criamos uma linha reta desse ponto atual até a coordenada indicada, ou seja, o centro da tela horizontalmente e o topo da tela verticalmente <strong>(x = size.width / 2, y = 0f)</strong>.</p>
@@ -2001,7 +2001,7 @@
     <span class="md-icon" title="Última atualização">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">15 de fevereiro de 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">17 de fevereiro de 2024</span>
   </span>
 
     
